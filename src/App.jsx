@@ -1,5 +1,5 @@
 import "./App.css";
-import RootRouter from "./config/redux/router";
+import RootRouter from "./config/router/index";
 
 function App() {
   return <RootRouter />;

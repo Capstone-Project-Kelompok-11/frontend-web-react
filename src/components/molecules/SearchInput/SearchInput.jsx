@@ -1,5 +1,5 @@
 import React from 'react'
-import MagnifyingIcon from '../Icons/MagnifyingIcon'
+import MagnifyingIcon from '../../atoms/Icons/MagnifyingIcon'
 
 function SearchInput() {
   return (

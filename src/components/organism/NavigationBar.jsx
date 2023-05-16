@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import {Menu , Transition} from "@headlessui/react"
 import logo from "../../assets/logo.png";
 import BellIcon from "../atoms/Icons/BellIcon";
-import SearchInput from "../atoms/SearchInput/SearchInput";
+import SearchInput from "../molecules/SearchInput/SearchInput";
 import WhatsappIcon from "../atoms/Icons/WhatsappIcon";
 
 function classNames(...classes) {
@@ -14,7 +14,7 @@ function NavigationBar() {
       <div>
         <img src={logo} alt="" width={276} className="px-1" />
       </div>
-     <SearchInput />
+      <SearchInput />
       <div className="absolute inset-y-0 right-12 mx-8 flex items-center pr-36 ">
         <WhatsappIcon style={{width:30}} />
         <BellIcon style={{width:30}} />
