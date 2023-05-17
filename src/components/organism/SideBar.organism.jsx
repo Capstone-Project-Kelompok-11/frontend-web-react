@@ -24,19 +24,19 @@ function SideBar() {
   ];
   return (
     <div className="absolute block top-0 bg-custom-blue w-72 h-screen ">
-      <div className="text-center items-center flex-row gap-4">
+      <div className="text-center items-center flex-row ">
         {nav.map((item) => (
-          <div
-            key={item.name}
-            className={`inline-flex relative w-64 mx-8 top-40 my-2 py-2 ${
-              item.href === location.pathname ? "bg-white font-bold" : ""
-            } `}
-          >
-            <div className="px-4">{item.icon}</div>
-            <h1>
-              <a className="mx-4 text-xl" href={item.href}>{item.name}</a>
-            </h1>
-          </div>
+          <a href={item.href}>
+            <div
+              key={item.name}
+              className={`inline-flex relative px-4 w-64 mx-8 top-40 my-2 py-2 ${
+                item.href === location.pathname ? "bg-white font-bold" : ""
+              } `}
+            >
+              <div >{item.icon}</div>
+              <h1 className="mx-4 text-xl">{item.name}</h1>
+            </div>
+          </a>
         ))}
       </div>
     </div>
