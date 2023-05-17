@@ -26,19 +26,19 @@ function SideBar() {
    
       <div className="absolute block top-0 bg-[#3D8BFD] w-72 h-screen ">
         <div className=" items-center flex-row gap-4">
-          {nav.map((v) => (
+          {nav.map((item) => (
             <div
-              key={v.name}
+              key={item.name}
               className={`inline-flex relative  w-64 mx-8 top-40 py-2 px-4 ${
-                v.href === location.pathname ? "bg-white font-bold" : ""
+                item.href === location.pathname ? "bg-white font-bold" : ""
               } `}
             >
               <div className="px-4">
-              {v.icon}
+              {item.icon}
               </div>
              
               <h1>
-                <a href={v.href}>{v.name}</a>
+                <a href={item.href}>{item.name}</a>
               </h1>
               
             </div>
