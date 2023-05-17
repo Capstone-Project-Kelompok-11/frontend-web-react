@@ -28,6 +28,7 @@ module.exports = {
         },
       },
     ],
+    "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/destructuring-assignment": ["error", "always"],
     "no-nested-ternary": "off",
