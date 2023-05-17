@@ -1,9 +1,9 @@
 import React from 'react'
-import DashboardLayout from '../components/templates/DashboardLayout'
+import Orders from '../components/molecules/Orders/Orders'
 
 function DashboardView() {
   return (
-    <DashboardLayout />
+   <Orders />
   )
 }
 

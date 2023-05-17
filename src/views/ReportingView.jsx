@@ -1,10 +1,10 @@
 import React from 'react'
 import AllCourse from '../components/molecules/AllCourse/AllCourse'
 
-function CourseView() {
+function ReportingView() {
   return (
     <AllCourse />
   )
 }
 
-export default CourseView
+export default ReportingView
