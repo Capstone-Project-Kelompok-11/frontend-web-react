@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DashboardView from "../../views/DashboardView";
-import CourseView from "../../views/CourseView";
-import DashboardTemplate from "../../components/templates/DashboardTemplate";
-import ReportingView from "../../views/ReportingView";
+import DashboardTemplate from '../../components/templates/Dashboard.template'
+import DashboardView from '../../views/Dashboard.view'
+import CourseView from '../../views/Course.view'
+import ReportingView from '../../views/Reporting.view'
 
 function RootRouter() {
   return (
