@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
-import DashboardIcon from "../atoms/Icons/DashboardIcon";
-import CourseIcon from "../atoms/Icons/CourseIcon";
-import ReportingIcon from "../atoms/Icons/ReportingIcon";
+import DashboardIcon from "../atoms/Icons/DashboardIcon.atom";
+import CourseIcon from "../atoms/Icons/CourseIcon.atom";
+import ReportingIcon from "../atoms/Icons/ReportingIcon.atom";
 
 function SideBar() {
   const location = useLocation();

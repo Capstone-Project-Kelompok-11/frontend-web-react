@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import NavigationBar from '../organism/NavigationBar'
-import SideBar from '../organism/SideBar'
+import NavigationBar from '../organism/NavigationBar.organism'
+import SideBar from '../organism/SideBar.organism'
 
 function DashboardTemplate() {
   return (
