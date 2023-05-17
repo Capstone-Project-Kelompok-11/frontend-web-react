@@ -33,7 +33,7 @@ function NavigationBar() {
                   alt=""
                 /> 
                 </div>
-               <div className="py-2 px-1 text-md">
+               <div className="py-1 px-1 text-lg font-medium">
                 Gabriel
                </div>
                 
