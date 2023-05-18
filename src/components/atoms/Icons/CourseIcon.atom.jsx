@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function CourseIcon(props) {
   return (
@@ -15,7 +15,7 @@ function CourseIcon(props) {
         fill="#262626"
       />
     </svg>
-  )
+  );
 }
 
-export default CourseIcon
+export default CourseIcon;

@@ -1,10 +1,8 @@
-import React from 'react'
-import Orders from '../components/molecules/Orders/Orders.molecule'
+import React from "react";
+import Orders from "../components/molecules/Orders/Orders.molecule";
 
 function DashboardView() {
-  return (
-   <Orders />
-  )
+  return <Orders />;
 }
 
-export default DashboardView
+export default DashboardView;
