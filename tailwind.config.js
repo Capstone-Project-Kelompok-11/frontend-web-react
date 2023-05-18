@@ -41,6 +41,7 @@ export default {
 				"dark-50": "#212529",
 				"dark-70": "#1A1E21",
 				"dark-90": "#141619",
+				"light-blue": "#9BC7F6",
 			},
 			fontFamily: {
 				poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
