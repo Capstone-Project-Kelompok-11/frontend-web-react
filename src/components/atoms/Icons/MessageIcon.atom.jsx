@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function MessageIcon(props) {
   return (
@@ -15,7 +15,7 @@ function MessageIcon(props) {
         fill="#262626"
       />
     </svg>
-  )
+  );
 }
 
-export default MessageIcon
+export default MessageIcon;

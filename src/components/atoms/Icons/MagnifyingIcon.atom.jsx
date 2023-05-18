@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function MagnifyingIcon(props) {
   return (
@@ -27,7 +27,7 @@ function MagnifyingIcon(props) {
         d="M175.394 175.4L223.994 224.001"
       />
     </svg>
-  )
+  );
 }
 
-export default MagnifyingIcon
+export default MagnifyingIcon;

@@ -33,7 +33,7 @@ function SideBar() {
                 item.href === location.pathname ? "bg-white font-bold" : ""
               } `}
             >
-              <div >{item.icon}</div>
+              <div>{item.icon}</div>
               <h1 className="mx-4 text-xl">{item.name}</h1>
             </div>
           </a>

@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function BellIcon(props) {
   return (
@@ -19,7 +19,7 @@ function BellIcon(props) {
         </clipPath>
       </defs>
     </svg>
-  )
+  );
 }
 
-export default BellIcon
+export default BellIcon;

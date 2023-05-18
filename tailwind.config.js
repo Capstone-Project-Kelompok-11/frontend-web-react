@@ -6,7 +6,7 @@ export default {
       colors: {
         "custom-yellow": "#FFDA6A",
         "custom-blue": "#3D8BFD",
-        "logo": "#0A58CA",
+        logo: "#0A58CA",
       },
     },
   },
