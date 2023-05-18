@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react";
+import OrderTable from "../../organism/Table/OrdersTable.organism";
+import { dummyData } from "../../organism/Table/dummy";
 
 function Orders() {
-  return (
-    <div className=' flex-col p-5 left-80 inline-flex w-56 bg-blue-500 '>
-        <h1>Orders</h1>
-        <p>+245</p>
-    </div>
-  )
+	return <OrderTable newData={dummyData} />;
 }
 
-export default Orders
+export default Orders;
