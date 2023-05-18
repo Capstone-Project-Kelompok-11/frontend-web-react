@@ -24,7 +24,7 @@ function SideBar() {
 	];
 
 	return (
-		<section className="absolute block top-0 bg-primary-30 w-72 h-screen ">
+		<section className="absolute block top-0 z-10 bg-primary-30 w-72 h-screen ">
 			<section className="text-center items-center flex-row ">
 				{nav.map((item) => (
 					<Link
