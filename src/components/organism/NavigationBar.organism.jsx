@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import {Menu , Transition} from "@headlessui/react"
+import { Menu, Transition } from "@headlessui/react";
 import BellIcon from "../atoms/Icons/BellIcon.atom";
 import WhatsappIcon from "../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../molecules/IconAcademade/IconAcademade.molecul";
@@ -15,9 +15,8 @@ function NavigationBar() {
       </div>
       {/* Notification and Whatsapp Icon */}
       <div className="absolute gap-4 inset-y-0 right-12 mx-8 flex items-center pr-36 ">
-        <WhatsappIcon style={{width:30}} />
-        <BellIcon style={{width:30}} />
-        
+        <WhatsappIcon style={{ width: 30 }} />
+        <BellIcon style={{ width: 30 }} />
       </div>
       {/* Dropdown Icon */}
       <div>
@@ -27,16 +26,13 @@ function NavigationBar() {
               <Menu.Button className="flex -mb-1 gap-4 rounded-full text-sm  focus:ring-white focus:ring-offset-2 ">
                 <span className="sr-only">Open user menu</span>
                 <div className="relative  flex">
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                /> 
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                    alt=""
+                  />
                 </div>
-               <div className="py-1 px-1 text-lg font-medium">
-                Gabriel
-               </div>
-                
+                <div className="py-1 px-1 text-lg font-medium">Gabriel</div>
               </Menu.Button>
             </div>
             <Transition
@@ -62,7 +58,7 @@ function NavigationBar() {
                     </a>
                   )}
                 </Menu.Item>
-                
+
                 <Menu.Item>
                   {({ active }) => (
                     <a

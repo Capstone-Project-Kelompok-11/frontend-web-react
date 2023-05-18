@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function DashboardIcon(props) {
   return (
@@ -15,7 +15,7 @@ function DashboardIcon(props) {
         fill="#262626"
       />
     </svg>
-  )
+  );
 }
 
-export default DashboardIcon
+export default DashboardIcon;

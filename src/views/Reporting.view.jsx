@@ -1,10 +1,8 @@
-import React from 'react'
-import AllCourse from '../components/molecules/AllCourse/AllCourse.molecule'
+import React from "react";
+import AllCourse from "../components/molecules/AllCourse/AllCourse.molecule";
 
 function ReportingView() {
-  return (
-    <AllCourse />
-  )
+  return <AllCourse />;
 }
 
-export default ReportingView
+export default ReportingView;
