@@ -3,7 +3,9 @@ import { getVariant } from "./constant";
 
 function Badge({ variant, text }) {
 	return (
-		<div className={`badge ${getVariant(variant)} rounded border-none`}>
+		<div
+			className={`badge ${getVariant(variant)} rounded border-none capitalize`}
+		>
 			{text}
 		</div>
 	);
