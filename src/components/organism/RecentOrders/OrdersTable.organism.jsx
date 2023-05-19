@@ -13,7 +13,7 @@ function OrdersTable({ newData }) {
     });
 
   return (
-    <section className="flex flex-col gap-3 drop-shadow-lg shadow-lg rounded-2xl w-3/5 p-5 bg-light-blue/20">
+    <section className="flex flex-col gap-3 drop-shadow-lg shadow-lg rounded-2xl w-9/12 p-5 bg-light-blue/20">
       <h1 className="font-bold text-xl">Recent Orders</h1>
 
       <table {...getTableProps()} className="border-collapse w-full">

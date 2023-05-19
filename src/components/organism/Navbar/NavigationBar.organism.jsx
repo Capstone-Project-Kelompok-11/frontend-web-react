@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import BellIcon from "../atoms/Icons/BellIcon.atom";
-import WhatsappIcon from "../atoms/Icons/WhatsappIcon.atom";
-import IconAcademade from "../molecules/IconAcademade/IconAcademade.molecul";
+import BellIcon from "../../atoms/Icons/BellIcon.atom";
+import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
+import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

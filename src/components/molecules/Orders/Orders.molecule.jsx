@@ -1,6 +1,6 @@
 import React from "react";
-import OrderTable from "../../organism/Table/OrdersTable.organism";
-import { dummyData } from "../../organism/Table/dummy";
+import OrderTable from "../../organism/RecentOrders/OrdersTable.organism";
+import { dummyData } from "../../organism/RecentOrders/dummy";
 
 function Orders() {
   return <OrderTable newData={dummyData} />;
