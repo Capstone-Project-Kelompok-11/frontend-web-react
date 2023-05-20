@@ -1,4 +1,4 @@
-export const dummyCourse = [
+export const favCourse = [
   {
     id: "1",
     courseTitle: "Data Science",
