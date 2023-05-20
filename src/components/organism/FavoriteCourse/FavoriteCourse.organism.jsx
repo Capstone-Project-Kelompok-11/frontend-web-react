@@ -1,26 +1,29 @@
 import React from "react";
 import RatingStars from "../../atoms/Rating/Rating.atom";
-import { dummyCourse } from "./dummyCourse";
+import { favCourse } from "./dummyCourse";
 
 function FavoriteCourse() {
-  const favcourse = dummyCourse;
   return (
     <section className="flex flex-col gap-3 drop-shadow-lg shadow-lg rounded-2xl w-3/12 p-5 bg-light-blue/20">
       <h1 className="font-bold text-xl">Favorite Course</h1>
-      {favcourse.map((item) => (
-        <div
+
+      {favCourse.map((item) => (
+        <section
           key={item.id}
-          className="bg-white p-5 rounded-2xl border-2 border-secondary-10"
+          className="bg-white p-4 rounded-2xl border-2 border-secondary-10"
         >
-          <div className="flex justify-between ps-2">
+          <article className="flex justify-between gap-3">
             <h2 className="font-bold text-lg">{item.courseTitle}</h2>
-            <div className="rating rating-sm flex items-center pe-7">
+            <section className="rating rating-sm flex items-center">
               <RatingStars />
               <p className="ps-2 text-sm">{item.ratings}</p>
-            </div>
-          </div>
-          <div className="ps-6 text-sm py-1">Attendees : {item.attendees}</div>
-        </div>
+            </section>
+          </article>
+
+          <section className="text-sm text-center py-1">
+            Attendees : {item.attendees}
+          </section>
+        </section>
       ))}
     </section>
   );
