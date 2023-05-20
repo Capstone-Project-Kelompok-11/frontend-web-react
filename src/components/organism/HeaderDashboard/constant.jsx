@@ -1,4 +1,4 @@
-import newStudentImage from "../../../assets/newstudent.svg";
+import newStudentImage from "../../../assets/NewStudent.svg";
 import studentImage from "../../../assets/student.svg";
 import courseImage from "../../../assets/course.svg";
 import graduateImage from "../../../assets/graduate.svg";
