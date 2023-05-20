@@ -1,9 +1,8 @@
 import React from 'react'
-import Orders from '../components/molecules/Orders/Orders.molecule'
 
 function DashboardView() {
   return (
-   <Orders />
+   <div>halo</div>
   )
 }
 
