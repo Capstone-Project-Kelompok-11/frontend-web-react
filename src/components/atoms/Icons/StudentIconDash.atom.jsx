@@ -1,22 +1,62 @@
 import React from "react";
 
-function StudentIconDash() {
+function Icon() {
   return (
-    <div>
-      <svg
-        width="38"
-        height="36"
-        viewBox="0 0 34 39"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M29.75 18.4444V8.94444L25.2663 11.1822C25.569 12.4246 25.5839 13.719 25.3097 14.9679C25.0355 16.2168 24.4794 17.3875 23.6834 18.3917C22.8874 19.396 21.8722 20.2076 20.7145 20.7653C19.5567 21.3229 18.2867 21.6122 17 21.6111C15.7133 21.6122 14.4433 21.3229 13.2855 20.7653C12.1278 20.2076 11.1126 19.396 10.3166 18.3917C9.5206 17.3875 8.96453 16.2168 8.69034 14.9679C8.41614 13.719 8.43099 12.4246 8.73375 11.1822L2.125 7.88889L17 0.5L31.875 7.88889V18.4444H29.75ZM17 15.2778L12.75 13.1667C12.75 15.4889 14.6625 17.3889 17 17.3889C19.3375 17.3889 21.25 15.4889 21.25 13.1667L17 15.2778ZM22.8438 7.72L17.34 4.93333L11.6238 7.82556L17.1488 10.6122L22.8438 7.72ZM17 23.7222C22.6737 23.7222 34 26.53 34 32.1667V38.5H0V32.1667C0 26.53 11.3263 23.7222 17 23.7222ZM17 27.7333C10.625 27.7333 4.0375 30.8156 4.0375 32.1667V34.4889H29.9625V32.1667C29.9625 30.8156 23.3113 27.7333 17 27.7333Z"
-          fill="#0A0A0A"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="72"
+      height="67"
+      fill="none"
+      viewBox="0 0 72 67"
+    >
+      <g filter="url(#filter0_d_300_7455)">
+        <rect
+          width="64"
+          height="58"
+          x="4"
+          y="0.5"
+          fill="#75B798"
+          rx="16"
+          shapeRendering="crispEdges"
         />
-      </svg>
-    </div>
+        <path
+          fill="#262626"
+          d="M48.75 28.444v-9.5l-4.484 2.238a8.39 8.39 0 01-1.583 7.21 8.488 8.488 0 01-2.968 2.373 8.545 8.545 0 01-3.715.846 8.545 8.545 0 01-3.715-.846 8.488 8.488 0 01-2.968-2.373 8.39 8.39 0 01-1.583-7.21l-6.609-3.293L36 10.5l14.875 7.389v10.555H48.75zM36 25.278l-4.25-2.111c0 2.322 1.913 4.222 4.25 4.222 2.337 0 4.25-1.9 4.25-4.222L36 25.277zm5.844-7.558l-5.504-2.787-5.716 2.893 5.525 2.786 5.695-2.892zM36 33.722c5.674 0 17 2.808 17 8.445V48.5H19v-6.333c0-5.637 11.326-8.445 17-8.445zm0 4.011c-6.375 0-12.962 3.083-12.962 4.434v2.322h25.924v-2.322c0-1.351-6.65-4.434-12.962-4.434z"
+        />
+      </g>
+      <defs>
+        <filter
+          id="filter0_d_300_7455"
+          width="72"
+          height="66"
+          x="0"
+          y="0.5"
+          colorInterpolationFilters="sRGB"
+          filterUnits="userSpaceOnUse"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
+          <feColorMatrix
+            in="SourceAlpha"
+            result="hardAlpha"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          />
+          <feOffset dy="4" />
+          <feGaussianBlur stdDeviation="2" />
+          <feComposite in2="hardAlpha" operator="out" />
+          <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+          <feBlend
+            in2="BackgroundImageFix"
+            result="effect1_dropShadow_300_7455"
+          />
+          <feBlend
+            in="SourceGraphic"
+            in2="effect1_dropShadow_300_7455"
+            result="shape"
+          />
+        </filter>
+      </defs>
+    </svg>
   );
 }
 
-export default StudentIconDash;
+export default Icon;
