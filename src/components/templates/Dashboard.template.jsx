@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import NavigationBar from "../organism/NavigationBar.organism";
-import SideBar from "../organism/SideBar.organism";
+import SideBar from "../organism/Sidebar/SideBar.organism";
 import ProfileSideBar from "../organism/ProfileSideBar/ProfileSideBar.organism";
+import NavigationBar from "../organism/Navbar/NavigationBar.organism";
 
 function DashboardTemplate() {
   const location = useLocation();
