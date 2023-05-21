@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function ProductSoldIcon(props) {
   return (
@@ -15,7 +15,7 @@ function ProductSoldIcon(props) {
         fill="#fff"
       />
     </svg>
-  )
+  );
 }
 
-export default ProductSoldIcon
+export default ProductSoldIcon;
