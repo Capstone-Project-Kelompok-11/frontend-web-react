@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function IncomeIcon(props) {
   return (
@@ -15,7 +15,7 @@ function IncomeIcon(props) {
         fill="#fff"
       />
     </svg>
-  )
+  );
 }
 
-export default IncomeIcon
+export default IncomeIcon;
