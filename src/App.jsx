@@ -1,20 +1,8 @@
-import * as React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import Login from "./components/Login";
+import RootRouter from "./config/router/index";
 
 function App() {
-  React.useEffect(() => {}, []);
-  return (
-    <div>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/Login" element={<Login />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+  return <RootRouter />;
+  
 }
 
-export default App;
+export default App;;

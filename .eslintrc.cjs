@@ -28,10 +28,13 @@ module.exports = {
         },
       },
     ],
+    "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/destructuring-assignment": ["error", "always"],
     "no-nested-ternary": "off",
     "import/no-extraneous-dependencies": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
     "import/prefer-default-export": [
       "off" || "warn" || "error",
       { target: "any" },
