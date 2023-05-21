@@ -27,7 +27,7 @@ function ProfileSideBar() {
   ];
 
   return (
-    <div className="absolute block inset-x-0 top-0 py-28 bg-custom-blue w-72 h-screen ">
+    <div className="fixed block inset-x-0 top-0 py-28 bg-primary-30 w-72 h-screen ">
       <div className="text-center px-10 flex-row">
         <ProfileAccount />
         <div className="flex flex-col items-start my-4">
