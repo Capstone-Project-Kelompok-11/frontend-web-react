@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 
 function StudentIcon(props) {
   return (
@@ -15,7 +15,7 @@ function StudentIcon(props) {
         fill="#fff"
       />
     </svg>
-  )
+  );
 }
 
-export default StudentIcon
+export default StudentIcon;
