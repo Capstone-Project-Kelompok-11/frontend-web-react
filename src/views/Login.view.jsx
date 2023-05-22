@@ -4,9 +4,9 @@
 import * as React from "react";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
-import Navbar from "./Navbar";
+import Navbar from "../components/templates/Navbar";
 import "react-toastify/dist/ReactToastify.css";
-import "../App.css";
+import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -48,9 +48,9 @@ function Login() {
     <div>
       <Navbar />
       <ToastContainer position="top-center" />
-      <div className="container">
+      <div className="container w-100">
         <div href="" className="wrab" id="wrab">
-          <div className="bg-color">
+          <div className="bg-color ">
             <div className="badan" id="modal">
               <form
                 onSubmit={formik.handleSubmit}
