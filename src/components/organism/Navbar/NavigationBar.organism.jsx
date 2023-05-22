@@ -10,7 +10,7 @@ function classNames(...classes) {
 
 function NavigationBar() {
   return (
-    <section className="flex relative z-20 max-w-8xl mx-8 my-4 px-10 bg-warning-10 h-16 shadow-xl rounded-2xl">
+    <section className="flex sticky top-4 z-20 max-w-8xl mx-8 my-4 px-10 bg-warning-10 h-16 shadow-xl rounded-2xl">
       <IconAcademade />
       {/* Notification and Whatsapp Icon */}
       <section className="absolute gap-4 inset-y-0 right-12 mx-8 flex items-center pr-36 ">
