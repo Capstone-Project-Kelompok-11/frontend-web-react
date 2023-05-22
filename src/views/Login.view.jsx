@@ -50,7 +50,7 @@ function Login() {
       <ToastContainer position="top-center" />
       <div className="container w-100">
         <div href="" className="wrab" id="wrab">
-          <div className="bg-color w-100">
+          <div className="bg-color ">
             <div className="badan" id="modal">
               <form
                 onSubmit={formik.handleSubmit}
