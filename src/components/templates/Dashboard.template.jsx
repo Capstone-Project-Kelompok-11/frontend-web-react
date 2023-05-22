@@ -1,14 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import NavigationBar from "../organism/Navbar/NavigationBar.organism";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "../organism/Sidebar/SideBar.organism";
+import ProfileSideBar from "../organism/ProfileSideBar/ProfileSideBar.organism";
+import NavigationBar from "../organism/Navbar/NavigationBar.organism";
 
 function DashboardTemplate() {
+  const location = useLocation();
   return (
     <>
       <NavigationBar />
-      <SideBar />
-      <div className="relative pl-80">
+      {location.pathname === "/profile" ? <ProfileSideBar /> : <SideBar />}
+      <div className="relative pl-80 my-6">
         <Outlet />
       </div>
     </>

@@ -4,6 +4,7 @@ import DashboardTemplate from "../../components/templates/Dashboard.template";
 import DashboardView from "../../views/Dashboard.view";
 import CourseView from "../../views/Course.view";
 import ReportingView from "../../views/Reporting.view";
+import ProfileView from "../../views/Profile.view";
 import LandingPage from "../../views/LandingPage.view";
 import Login from "../../views/Login.view";
 
@@ -19,6 +20,7 @@ function RootRouter() {
           <Route path="/dashboard" element={<DashboardView />} />
           <Route path="/course" element={<CourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
+          <Route path="/profile" element={<ProfileView />} />
         </Route>
       </Routes>
     </BrowserRouter>
