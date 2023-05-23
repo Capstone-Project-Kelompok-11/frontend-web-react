@@ -5,6 +5,7 @@ import DashboardView from "../../views/Dashboard.view";
 import CourseView from "../../views/Course.view";
 import ReportingView from "../../views/Reporting.view";
 import ProfileView from "../../views/Profile.view";
+import Quiz from "../../components/organism/Quiz/Quiz.organism";
 
 function RootRouter() {
   return (
@@ -13,6 +14,8 @@ function RootRouter() {
         <Route element={<DashboardTemplate />}>
           <Route path="/dashboard" element={<DashboardView />} />
           <Route path="/course" element={<CourseView />} />
+          <Route path="/course/:id_course/chapter/new_quiz" element={<Quiz />}/>
+          <Route path="/course/:id_course/chapter/:id_chapter/update_quiz" element={<Quiz />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route path="/profile" element={<ProfileView />} />
         </Route>
