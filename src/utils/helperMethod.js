@@ -5,7 +5,7 @@ export const makeRupiahValue = (price) =>
     maximumSignificantDigits: 1,
   }).format(price);
 
-export const transformDate = (date) =>
+export const transformDate = (date, dateStyle = "medium") =>
   Intl.DateTimeFormat("en-us", {
-    dateStyle: "medium",
+    dateStyle,
   }).format(new Date(date));
