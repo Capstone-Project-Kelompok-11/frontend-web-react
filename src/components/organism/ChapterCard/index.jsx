@@ -19,7 +19,7 @@ function ChapterCard({ title, onClick }) {
   return (
     <section
       onClick={onClick}
-      className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
+      className="relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
     >
       <h2>{title}</h2>
       <Menu>
@@ -60,6 +60,7 @@ function ChapterCard({ title, onClick }) {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         title="Delete Confirmation"
+        content={title}
       />
     </section>
   );
