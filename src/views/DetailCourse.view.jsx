@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { transformDate } from "../utils/helperMethod";
 import PlusIcon from "../components/atoms/Icons/PlusIcon.atom";
 import ChapterCard from "../components/organism/ChapterCard";
 import CourseThumbnailCard from "../components/organism/CourseThumbnailCard";
@@ -30,7 +31,7 @@ function DetailCourseView() {
     },
     {
       title: "Last Update",
-      content: "05/05/2023",
+      content: transformDate(new Date("2023-10-20T12:00:00Z"), "short"),
     },
     {
       title: "Members",
