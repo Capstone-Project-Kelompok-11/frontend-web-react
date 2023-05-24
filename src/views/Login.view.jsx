@@ -1,17 +1,13 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable import/order */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
-import Navbar from "../components/templates/Navbar.template";
 import "react-toastify/dist/ReactToastify.css";
-// import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 function Login() {
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -21,24 +17,32 @@ function Login() {
     onSubmit: (values) => {
       // Logika untuk mengirim data login
       console.log(values);
-      toast.success("Login berhasil");
+      setLoginSuccess(true);
     },
     validate: (values) => {
       const errors = {};
 
-      // Validasi email
       if (!values.email) {
-        errors.email = "Email dibutuhkan";
+        errors.email = "Email dibutuhkan!";
       }
 
-      // Validasi password
       if (!values.password) {
-        errors.password = "Password dibutuhkan";
+        errors.password = "Password dibutuhkan!";
       }
 
       return errors;
     },
   });
+
+  useEffect(() => {
+    if (loginSuccess) {
+      toast.success("Login berhasil", {
+        onClose: () => {
+          window.location.href = "/dashboard";
+        },
+      });
+    }
+  }, [loginSuccess]);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -46,7 +50,6 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
       <ToastContainer position="top-center" />
       <div className="container w-100">
         <div href="" className="wrab" id="wrab">
@@ -70,9 +73,9 @@ function Login() {
                     formik.errors.email && formik.touched.email ? "error" : ""
                   }
                 />
-                {formik.touched.email && formik.errors.email ? (
+                {formik.touched.email && formik.errors.email && (
                   <div className="error-message">{formik.errors.email}</div>
-                ) : null}
+                )}
                 <label htmlFor="password">Password:</label>
                 <div className="password-input-wrapper">
                   <input
@@ -102,9 +105,9 @@ function Login() {
                     )}
                   </span>
                 </div>
-                {formik.touched.password && formik.errors.password ? (
+                {formik.touched.password && formik.errors.password && (
                   <div className="error-message">{formik.errors.password}</div>
-                ) : null}
+                )}
                 <button type="submit" className="btn2">
                   Login
                 </button>{" "}

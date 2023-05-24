@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import GuruSvg from "../assets/guru.svg";
-import LogoSvg from "../assets/home.svg";
+import LogoSvg from "../assets/logo.svg";
 import Navbar from "../components/templates/Navbar.template";
 
 function LandingPage() {
@@ -14,7 +14,7 @@ function LandingPage() {
       <Navbar />
       <div className="main-container">
         <div className="main">
-          <img src={LogoSvg} alt="Logo" className="w-700 h-500 opacity-20" />
+          <img src={LogoSvg} alt="Logo" className="w-700 h-500 opacity-201" />
         </div>
         <div className="tulisan">
           <img className="foto w-700 h-500" src={GuruSvg} alt="Guru" />
