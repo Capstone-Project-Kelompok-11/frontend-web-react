@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from "react";
 import "../../index.css";
-import homeImage from "../../assets/home.svg";
+import homeImage from "../../assets/Home.svg";
 
 function Navbar() {
   return (
