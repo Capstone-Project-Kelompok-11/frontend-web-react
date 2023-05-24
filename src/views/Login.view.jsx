@@ -15,7 +15,6 @@ function Login() {
       password: "",
     },
     onSubmit: (values) => {
-      // Logika untuk mengirim data login
       console.log(values);
       setLoginSuccess(true);
     },
