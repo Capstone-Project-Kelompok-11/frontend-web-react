@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import GuruSvg from "../assets/Guru.svg";
-import LogoSvg from "../assets/logo.svg";
+import LogoSvg from "../assets/Logo.svg";
 import Navbar from "../components/templates/Navbar.template";
 
 function LandingPage() {
