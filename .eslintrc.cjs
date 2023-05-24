@@ -35,6 +35,9 @@ module.exports = {
     "import/no-extraneous-dependencies": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "react/jsx-no-bind": "off",
     "import/prefer-default-export": [
       "off" || "warn" || "error",
       { target: "any" },
