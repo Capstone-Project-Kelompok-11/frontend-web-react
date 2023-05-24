@@ -4,10 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/templates/Navbar.template";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -37,11 +40,11 @@ function Login() {
     if (loginSuccess) {
       toast.success("Login berhasil", {
         onClose: () => {
-          window.location.href = "/dashboard";
+          navigate("/dashboard");
         },
       });
     }
-  }, [loginSuccess]);
+  }, [loginSuccess, navigate]);
 
   const handleTogglePassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -49,8 +52,9 @@ function Login() {
 
   return (
     <div>
+      <Navbar />
       <ToastContainer position="top-center" />
-      <div className="container w-100">
+      <div className="container">
         <div href="" className="wrab" id="wrab">
           <div className="bg-color ">
             <div className="badan" id="modal">
