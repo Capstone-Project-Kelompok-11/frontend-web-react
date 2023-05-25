@@ -33,7 +33,7 @@ function ProfileSideBar() {
         <div className="flex flex-col items-start my-4">
           <h1 className="font-bold text-sm py-2 ">Contact Information</h1>
           {contactInfo.map((item) => (
-            <ContactInformation items={item} />
+            <ContactInformation key={item.name} items={item} />
           ))}
         </div>
         <div className="border-t border-black">

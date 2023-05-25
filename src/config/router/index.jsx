@@ -5,6 +5,7 @@ import DashboardView from "../../views/Dashboard.view";
 import CourseView from "../../views/Course.view";
 import ReportingView from "../../views/Reporting.view";
 import ProfileView from "../../views/Profile.view";
+import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 
 function RootRouter() {
   return (
@@ -15,6 +16,7 @@ function RootRouter() {
           <Route path="/course" element={<CourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route path="/profile" element={<ProfileView />} />
+          <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
         </Route>
       </Routes>
     </BrowserRouter>
