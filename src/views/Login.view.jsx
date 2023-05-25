@@ -54,68 +54,71 @@ function Login() {
     <div>
       <Navbar />
       <ToastContainer position="top-center" autoClose={1000} />
-      <div className="container">
-        <div href="" className="wrab" id="wrab">
-          <div className="bg-color ">
-            <div className="badan" id="modal">
-              <form
-                onSubmit={formik.handleSubmit}
-                method="get"
-                acceptCharset="utf-8"
-              >
-                <label htmlFor="email">Email:</label>
+      <div className="container mx-auto bg-blue-600 h-screen">
+        <div className="flex justify-center items-center h-screen text-base">
+          <div className="bg-white p-20 rounded-xl shadow-md m-2">
+            <form onSubmit={formik.handleSubmit}>
+              <label htmlFor="email" className="font-semibold ">
+                Email:
+              </label>
+              <input
+                type="text"
+                placeholder="Email"
+                id="email"
+                name="email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+                className={`w-full p-2 rounded-md outline-none bg-gray-100 my-3 ${
+                  formik.errors.email && formik.touched.email
+                    ? "border-red-500"
+                    : "border-gray-300"
+                }`}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.email}
+                </div>
+              )}
+              <label htmlFor="password" className="block font-semibold mt-4">
+                Password:
+              </label>
+              <div className="relative">
                 <input
-                  type="text"
-                  placeholder="Email"
-                  id="email"
-                  name="email"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  id="password"
+                  name="password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                  className={
-                    formik.errors.email && formik.touched.email ? "error" : ""
-                  }
+                  value={formik.values.password}
+                  className={`w-full p-2 rounded-md outline-none bg-gray-100 my-3 ${
+                    formik.errors.password && formik.touched.password
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
                 />
-                {formik.touched.email && formik.errors.email && (
-                  <div className="error-message">{formik.errors.email}</div>
-                )}
-                <label htmlFor="password">Password:</label>
-                <div className="password-input-wrapper">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Password"
-                    id="password"
-                    name="password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                    className={
-                      formik.errors.password && formik.touched.password
-                        ? "error"
-                        : ""
-                    }
-                  />
-                  <span
-                    className={`password-toggle-icon ${
-                      showPassword ? "show" : ""
-                    }`}
-                    onClick={handleTogglePassword}
-                  >
-                    {showPassword ? (
-                      <FontAwesomeIcon icon={faEyeSlash} />
-                    ) : (
-                      <FontAwesomeIcon icon={faEye} />
-                    )}
-                  </span>
+                <span
+                  className={`absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer ${
+                    showPassword ? "text-gray-600" : "text-gray-400"
+                  }`}
+                  onClick={handleTogglePassword}
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </span>
+              </div>
+              {formik.touched.password && formik.errors.password && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.password}
                 </div>
-                {formik.touched.password && formik.errors.password && (
-                  <div className="error-message">{formik.errors.password}</div>
-                )}
-                <button type="submit" className="btn2">
-                  Login
-                </button>{" "}
-              </form>
-            </div>
+              )}
+              <button
+                type="submit"
+                className="bg-blue-500 text-white mt-6 py-2 px-4 rounded-lg w-full"
+              >
+                Login
+              </button>
+            </form>
           </div>
         </div>
       </div>
