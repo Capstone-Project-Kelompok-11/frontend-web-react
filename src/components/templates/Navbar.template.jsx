@@ -7,7 +7,7 @@ import homeImage from "../../assets/Home.svg";
 function Navbar() {
   return (
     <div>
-      <nav className="bg-white ">
+      <nav className="bg-white fixed w-full ">
         <div className="flex items-center justify-between">
           <a className="Home" href="/">
             <img src={homeImage} alt="some-image" className="w-500 h-100" />
