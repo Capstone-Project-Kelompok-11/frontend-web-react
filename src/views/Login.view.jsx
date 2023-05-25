@@ -54,7 +54,7 @@ function Login() {
     <div>
       <Navbar />
       <ToastContainer position="top-center" autoClose={1000} />
-      <div className="container mx-auto bg-[url('../../src/assets/Background.svg')] min-h-screen">
+      <div className="container mx-auto bg-[url('../../src/assets/background.svg')] min-h-screen">
         <div className="flex justify-center items-center h-screen text-base">
           <div className="bg-white p-20 rounded-xl shadow-md m-2">
             <form onSubmit={formik.handleSubmit}>
