@@ -10,11 +10,11 @@ function LandingPage() {
   }, []);
 
   return (
-    <div>
+    <div className="max-h-fit">
       <Navbar />
-      <div className="bg-blue-600 h-screen flex flex-col justify-center items-center">
+      <div className="bg-blue-600  flex flex-col justify-center items-center">
         <div className="flex items-center justify-center mr-10 mb-24">
-          <img src={GuruSvg} alt="Guru" className="w-1/2 mt-24 mr-10" />
+          <img src={GuruSvg} alt="Guru" className="w-1/2 mr-10" />
           <div className="mr-10">
             <div className="mb-8 ">
               <p className="text-5xl text-white font-bold ">

@@ -71,7 +71,7 @@ function Login() {
                 value={formik.values.email}
                 className={`w-full p-2 rounded-md outline-none bg-gray-100 my-3 ${
                   formik.errors.email && formik.touched.email
-                    ? "border-red-500"
+                    ? "outline-red-500"
                     : "border-gray-300"
                 }`}
               />
@@ -94,13 +94,13 @@ function Login() {
                   value={formik.values.password}
                   className={`w-full p-2 rounded-md outline-none bg-gray-100 my-3 ${
                     formik.errors.password && formik.touched.password
-                      ? "border-red-500"
+                      ? "outline-red-500"
                       : "border-gray-300"
                   }`}
                 />
                 <span
                   className={`absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer ${
-                    showPassword ? "text-gray-600" : "text-gray-400"
+                    showPassword ? "text-black" : "text-black"
                   }`}
                   onClick={handleTogglePassword}
                 >
