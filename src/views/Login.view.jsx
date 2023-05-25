@@ -53,7 +53,7 @@ function Login() {
   return (
     <div>
       <Navbar />
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" autoClose={1000} />
       <div className="container">
         <div href="" className="wrab" id="wrab">
           <div className="bg-color ">

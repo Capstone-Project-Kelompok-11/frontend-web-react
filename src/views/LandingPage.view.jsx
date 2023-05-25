@@ -33,7 +33,7 @@ function LandingPage() {
           </div>
         </div>
         <Link
-          to="/Login"
+          to="/login"
           className="Signin bg-blue-600 rounded-lg text-white font-bold text-lg p-6 px-8 py-5"
         >
           Sign In

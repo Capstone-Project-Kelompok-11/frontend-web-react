@@ -15,7 +15,7 @@ function RootRouter() {
       <Routes>
         <Route>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
         </Route>
         <Route element={<DashboardTemplate />}>
           <Route path="/dashboard" element={<DashboardView />} />
