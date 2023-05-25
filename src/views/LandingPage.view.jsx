@@ -12,7 +12,7 @@ function LandingPage() {
   return (
     <div>
       <Navbar />
-      <div className="bg-[url('../../src/assets/Background.svg')] h-screen flex flex-col justify-center items-center">
+      <div className="bg-[url('../../src/assets/background.svg')] h-screen flex flex-col justify-center items-center">
         <div className="flex items-center justify-center mr-10 mb-24">
           <img src={GuruSvg} alt="Guru" className="w-2/5 mr-10 mt-20 " />
           <div className="mr-10">
