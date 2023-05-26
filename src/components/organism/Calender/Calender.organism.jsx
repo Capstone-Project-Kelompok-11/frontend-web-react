@@ -11,6 +11,7 @@ function Calender() {
         onChange={onChange}
         value={value}
         defaultActiveStartDate={new Date()}
+        // formatShortWeekday={(_, date) => (date, 'D')}
         className="rounded-lg drop-shadow-lg  "
       />
     </div>

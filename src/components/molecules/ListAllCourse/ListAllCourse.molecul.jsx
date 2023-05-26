@@ -6,7 +6,7 @@ import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 function ListAllCourse({ course }) {
   const price = makeRupiahValue(course.coursePrice);
   return (
-    <div className="border border-black rounded-xl text-sm px-8 mr-8 py-2 my-4">
+    <div className="border border-black rounded-xl text-sm px-8 mr-5 py-2 my-4">
       <div className="grid grid-cols-5 items-center ">
         <p className="font-medium text-base"> {course.courseName}</p>
         <p className="font-bold text-base pt-4">{price}</p>

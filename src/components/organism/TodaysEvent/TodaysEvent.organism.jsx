@@ -5,10 +5,10 @@ import { listEvent } from "./dummyData";
 
 function TodaysEvent() {
   return (
-    <div className=" py-4 mx-3 shadow-lg  bg-light-blue/20 rounded-xl">
+    <div className="py-4 shadow-lg  bg-light-blue/20 rounded-xl">
       <div className="flex justify-center ">
         <CalendarIcon />
-        <h1 className="font-bold pb-4 px-10">Today`s Event</h1>
+        <h1 className="font-bold pb-4 pl-10">Today`s Event</h1>
       </div>
       {listEvent.map((list) => (
         <TodaysEventCard key={list.id} list={list} />

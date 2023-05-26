@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 function TodaysEventCard({ list }) {
   return (
     <>
-      <div className="flex text-sm pr-3 py-2 ">
-        <Link to="/dashboard" className="text-primary-50 ">
+      <div className="flex text-sm py-2 ">
+        <Link to="/dashboard" className="text-primary-50">
           -{list.hours}
         </Link>
-        <p className="pl-2">{list.activity}</p>
+        <p className="px-4">{list.activity}</p>
       </div>
-      <div className="text-xs px-12 text-gray-400">{list.hoursActivity}</div>
+      <div className="text-xs pl-14 text-gray-400">{list.hoursActivity}</div>
     </>
   );
 }
