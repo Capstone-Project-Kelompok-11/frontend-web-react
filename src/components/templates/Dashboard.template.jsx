@@ -9,7 +9,7 @@ function DashboardTemplate() {
   return (
     <>
       <NavigationBar />
-      {location.pathname === "/profile" ? <ProfileSideBar /> : <SideBar />}
+      {location.pathname.includes("profile") ? <ProfileSideBar /> : <SideBar />}
       <div className="relative pl-80 my-6">
         <Outlet />
       </div>
