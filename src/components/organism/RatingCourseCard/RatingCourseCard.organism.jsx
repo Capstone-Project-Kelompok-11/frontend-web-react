@@ -5,7 +5,7 @@ import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 function RatingCourseCard({ list }) {
   return (
     <div>
-      <div className="flex justify-between p-2">
+      <div className="flex justify-between p-2 py-3">
         <img
           src={list.imageURL}
           alt=""

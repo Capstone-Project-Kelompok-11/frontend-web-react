@@ -15,7 +15,7 @@ function ContentProfile() {
         </div>
         <RatingCourse />
       </div>
-      <div className="grid grid-cols-4 absolute bottom-0  gap-6 mr-6">
+      <div className="grid grid-cols-4 absolute bottom-0 pb-10 px-2 gap-4 mr-10 ">
         <Calendar />
         <TodaysEvent />
       </div>
