@@ -16,7 +16,7 @@ function ListAllCourse({ course }) {
         </div>
         <p className="pt-4">{course.category}</p>
         <Link
-          to="/profile"
+          to="/course/cdscd"
           className=" mx-auto py-2 px-6 mt-2 rounded-xl font-bold  bg-primary-50 "
         >
           Detail
