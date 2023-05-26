@@ -1,10 +1,8 @@
 import React from "react";
 
-function ContactInformation({ items }) {
-  const { name, text } = items;
-
+function ContactInformation({ name, text }) {
   return (
-    <div className="flex flex-col items-start text-sm bg-[#6EA8FE] w-full px-2 py-1 my-1 rounded-xl">
+    <div className="flex flex-col items-start text-xs bg-[#6EA8FE] w-full px-3 p-2 my-1 rounded-xl">
       <p className="opacity-60">{name}</p>
       <p>{text}</p>
     </div>
