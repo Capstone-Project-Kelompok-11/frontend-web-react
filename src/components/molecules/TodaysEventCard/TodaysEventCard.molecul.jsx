@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function TodaysEventCard({hours, activity ,hoursActivity }) {
+function TodaysEventCard({ hours, activity, hoursActivity }) {
   return (
     <>
       <div className="flex text-sm py-2 ">
