@@ -5,8 +5,8 @@ import DashboardView from "../../views/Dashboard.view";
 import CourseView from "../../views/Course.view";
 import ReportingView from "../../views/Reporting.view";
 import ProfileView from "../../views/Profile.view";
-import Quiz from "../../components/organism/Quiz/Quiz.organism";
 import DetailCourseView from "../../views/DetailCourse.view";
+import Quiz from "../../views/Quiz/Quiz.view";
 
 function RootRouter() {
   return (
