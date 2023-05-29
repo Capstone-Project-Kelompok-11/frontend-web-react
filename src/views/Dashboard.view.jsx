@@ -6,7 +6,7 @@ import { dummyData } from "../components/organism/RecentOrders/dummy";
 
 function DashboardView() {
   return (
-    <section className="flex flex-col gap-6 me-8 min-h-screen">
+    <section className="flex flex-col gap-6 me-8">
       <HeaderDashboard />
 
       <section className="flex gap-10 ">
