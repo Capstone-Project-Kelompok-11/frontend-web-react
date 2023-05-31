@@ -1,7 +1,6 @@
 import React from "react";
 
 function QuizIcon() {
-  
   return (
     <svg
       width="28"
