@@ -13,7 +13,7 @@ function QuizForm({ values, arrayHelpers, setFieldValue }) {
         <QuizHeader />
         <button
           type="submit"
-          className=" bg-primary-10 px-5 py-2 rounded-lg font-bold outline-none"
+          className="bg-primary-10 px-5 py-2 rounded-lg font-bold outline-none"
         >
           SUBMIT
         </button>
