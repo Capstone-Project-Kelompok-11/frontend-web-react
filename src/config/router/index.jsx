@@ -44,6 +44,10 @@ function RootRouter() {
           />
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
+          <Route
+            path="/reporting/:course_name/:detail_user"
+            element={<ReportingSummary />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
