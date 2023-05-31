@@ -5,7 +5,7 @@ function UserListCourseCard({ name, email, activity }) {
     <div className="p-4 my-4 mr-9 rounded-lg shadow-lg text-sm">
       <div className="py-2 grid grid-cols-2">
         <p>{name}</p>
-        <p className="text-success-50 font-bold">
+        <p className="px-2 text-success-50 font-bold">
           {activity ? "Aktif" : "Tidak Aktif"}
         </p>
       </div>
