@@ -32,14 +32,6 @@ function RootRouter() {
             path="/course/:id_course/chapter/:id_chapter/update_quiz"
             element={<Quiz />}
           />
-          <Route
-            path="/course/:id_course/chapter/new_quiz"
-            element={<Quiz />}
-          />
-          <Route
-            path="/course/:id_course/chapter/:id_chapter/update_quiz"
-            element={<Quiz />}
-          />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route
