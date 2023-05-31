@@ -27,7 +27,7 @@ function DetailCourseView() {
   const thumbnailCourseContent = [
     {
       title: "Responsible",
-      content: "Gabriel",
+      content: "Gabriel Alexander Dwi Jaka",
     },
     {
       title: "Last Update",
