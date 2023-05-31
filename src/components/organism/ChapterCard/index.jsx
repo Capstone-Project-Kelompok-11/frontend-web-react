@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
+import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import DeleteModal from "../../molecules/Modal/DeleteModal.molecul";
 
-function ChapterCard({ title, onClick, isReporting, score }) {
+function ChapterCard({ title, score, onClick, isReporting = false }) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (value) => {
@@ -14,6 +16,8 @@ function ChapterCard({ title, onClick, isReporting, score }) {
     }
 
     alert("Updated is clicked!");
+    // TODO: navigate to create new chapter form!
+    navigate("/dashboard", { state: { data: { title, score } } });
   };
 
   return (
