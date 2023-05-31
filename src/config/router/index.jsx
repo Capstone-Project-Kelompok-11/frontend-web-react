@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashboardTemplate from "../../components/templates/Dashboard.template";
 import DashboardView from "../../views/Dashboard.view";
 import CourseView from "../../views/Course.view";
-import ReportingView from "../../views/Reporting.view";
+import ReportingView from "../../views/Reporting/Reporting.view";
 import ProfileView from "../../views/Profile.view";
 import LandingPage from "../../views/LandingPage.view";
 import Login from "../../views/Login.view";
 import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 import DetailCourseView from "../../views/DetailCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
+import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 
 function RootRouter() {
   return (
@@ -34,6 +35,10 @@ function RootRouter() {
           <Route path="/reporting" element={<ReportingView />} />
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
+          <Route
+            path="/reporting/:course_name/:detail_user"
+            element={<ReportingSummary />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
