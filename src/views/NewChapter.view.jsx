@@ -1,5 +1,5 @@
 import React from "react";
-import CreateNewChapter from "../components/molecules/CreateNewChapter/CreateNewChapter.molecules";
+import CreateNewChapter from "../components/organism/CreateNewChapter/CreateNewChapter.organism";
 
 function NewChapter() {
   return (
