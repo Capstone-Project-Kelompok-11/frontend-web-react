@@ -6,15 +6,15 @@ import UserListCourseCard from "../../components/organism/UserListCourseCard/Use
 function ReportingUserView() {
   let { course_name } = useParams();
   return (
-    <div className="">
-      <h1 className="py-4 text-xl"> {course_name} </h1>
+    <div>
+      <h1 className="py-4 text-xl">{course_name}</h1>
       <div className="grid grid-cols-2 p-1 mr-9 px-4 rounded-lg bg-light-blue/20 border ">
         <p>Name</p>
         <p>Aktivitas</p>
       </div>
       {userListName.map((user) => (
-        <Link to={`/reporting/${course_name}/${user.name}`}>
-          <UserListCourseCard key={user.id} {...user} />
+        <Link key={user.id} to={`/reporting/${course_name}/${user.name}`}>
+          <UserListCourseCard {...user} />
         </Link>
       ))}
     </div>

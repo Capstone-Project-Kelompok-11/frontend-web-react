@@ -22,7 +22,7 @@ function QuizForm({ values, arrayHelpers, setFieldValue }) {
       <div className="flex justify-end me-16 mt-24">
         <button
           type="submit"
-          className=" bg-warning-10 px-5 py-2 rounded-lg font-bold outline-none"
+          className="bg-warning-10 px-5 py-2 rounded-lg font-bold outline-none"
         >
           Submit
         </button>
