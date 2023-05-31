@@ -10,6 +10,7 @@ import Login from "../../views/Login.view";
 import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 import DetailCourseView from "../../views/DetailCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
+import ReportingUserView from "../../views/ReportingUser.view";
 
 function RootRouter() {
   return (
@@ -32,6 +33,8 @@ function RootRouter() {
           />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
+          <Route path="/reporting/:course_name" element={<ReportingUserView />} />
+          
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
         </Route>
