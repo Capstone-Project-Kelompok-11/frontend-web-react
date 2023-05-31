@@ -34,14 +34,16 @@ function RootRouter() {
           />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
-          <Route path="/reporting/:course_name" element={<ReportingUserView />} />
+          <Route
+            path="/reporting/:course_name"
+            element={<ReportingUserView />}
+          />
           <Route
             path="/reporting/:course_name/:detail_user"
             element={<ReportingSummary />}
           />
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
-          
         </Route>
       </Routes>
     </BrowserRouter>

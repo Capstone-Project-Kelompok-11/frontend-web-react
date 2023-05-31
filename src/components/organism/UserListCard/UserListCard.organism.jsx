@@ -19,9 +19,7 @@ function UserListCard({
           <h1 className="text-xl font-bold">{courseName}</h1>
           <div className="flex items-center pt-5 pl-2">
             <AnonymousIcon />
-            <p className="text-2xl font-bold pt-1 ">
-              {totalMember}{" "}
-            </p>
+            <p className="text-2xl font-bold pt-1 ">{totalMember} </p>
           </div>
 
           <p className="pt-6">{category} </p>
