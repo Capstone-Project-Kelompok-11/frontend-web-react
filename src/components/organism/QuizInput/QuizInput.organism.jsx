@@ -20,7 +20,7 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full max-h-fit overflow-y-auto">
       {values.question &&
         values.question.length > 0 &&
         values.question.map((_, index) => (
@@ -34,9 +34,9 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
                 : null
             }`}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
               <img src={imageSoal} alt={imageSoal} className="px-6 w-3/6" />
-              <div className="flex flex-col ms-5 me-56">
+              <div className="flex flex-col ms-5 me-96">
                 <div className="flex py-5">
                   <Field
                     name={`question.${index}.Soal${index}`}
