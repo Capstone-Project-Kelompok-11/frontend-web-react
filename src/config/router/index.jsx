@@ -9,6 +9,8 @@ import LandingPage from "../../views/LandingPage.view";
 import Login from "../../views/Login.view";
 import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 import DetailCourseView from "../../views/DetailCourse.view";
+import NewCourseView from "../../views/NewCourse.view";
+import NewChapterView from "../../views/NewChapter.view";
 
 function RootRouter() {
   return (
@@ -21,6 +23,9 @@ function RootRouter() {
         <Route element={<DashboardTemplate />}>
           <Route path="/dashboard" element={<DashboardView />} />
           <Route path="/course" element={<CourseView />} />
+          <Route path="/course/newcorse" element={<NewCourseView />} />
+          <Route path="/course/newcourse" element={<NewCourseView />} />
+          <Route path="/course/newchapter" element={<NewChapterView />} />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route path="/profile" element={<ProfileView />} />
