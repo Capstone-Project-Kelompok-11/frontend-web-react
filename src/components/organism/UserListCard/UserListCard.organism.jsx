@@ -15,7 +15,7 @@ function UserListCard({
       <div
         className={`p-4 my-4 rounded-xl shadow-lg border-l-4 ${randomBorderColor}`}
       >
-        <div className="grid grid-cols-3 ">
+        <div className="grid grid-cols-3">
           <h1 className="text-xl font-bold">{courseName}</h1>
           <div className="flex items-center pt-5 pl-2">
             <AnonymousIcon />
