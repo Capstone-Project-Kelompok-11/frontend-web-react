@@ -11,6 +11,7 @@ import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 import DetailCourseView from "../../views/DetailCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
 import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
+import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 
 function RootRouter() {
   return (
@@ -33,6 +34,14 @@ function RootRouter() {
           />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
+          <Route
+            path="/reporting/:course_name"
+            element={<ReportingUserView />}
+          />
+          <Route
+            path="/reporting/:course_name/:detail_user"
+            element={<ReportingSummary />}
+          />
           <Route path="/profile" element={<ProfileView />} />
           <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
           <Route
