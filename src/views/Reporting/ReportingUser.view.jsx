@@ -8,7 +8,7 @@ function ReportingUserView() {
   return (
     <div className="">
       <h1 className="py-4 text-xl"> {course_name} </h1>
-      <div className="grid grid-cols-2 p-1 mr-9 px-4 rounded-lg bg-light-blue/10 border ">
+      <div className="grid grid-cols-2 p-1 mr-9 px-4 rounded-lg bg-light-blue/20 border ">
         <p>Name</p>
         <p>Aktivitas</p>
       </div>
