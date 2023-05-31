@@ -40,7 +40,7 @@ function ReportingSummary() {
   const thumbnailCourseContent = [
     {
       title: "Name",
-      content: "Dhewanda Putro Laksono Alexander",
+      content: detail_user,
     },
     {
       title: "Email",
