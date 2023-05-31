@@ -4,7 +4,7 @@ import { userListName } from "../../components/organism/UserListCourseCard/dummy
 import UserListCourseCard from "../../components/organism/UserListCourseCard/UserListCourseCard.organism";
 
 function ReportingUserView() {
-  let { course_name } = useParams();
+  const { course_name } = useParams();
   return (
     <div>
       <h1 className="py-4 text-xl">{course_name}</h1>
