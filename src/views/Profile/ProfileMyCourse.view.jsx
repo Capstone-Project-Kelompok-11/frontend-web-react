@@ -1,5 +1,5 @@
 import React from "react";
-import ListCourse from "../components/organism/ListCourse/ListCourse.organism";
+import ListCourse from "../../components/organism/ListCourse/ListCourse.organism";
 
 function ProfileMyCourse() {
   return (
