@@ -10,7 +10,7 @@ function ReportingView() {
       <div className="mr-4 my-4 h-[32rem] overflow-y-auto">
         {listAllCourse.map((list) => (
           <Link key={list.id} to={`/reporting/${list.courseName}`}>
-            <UserListCard  {...list} />
+            <UserListCard {...list} />
           </Link>
         ))}
       </div>
