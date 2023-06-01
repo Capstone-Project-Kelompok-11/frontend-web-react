@@ -20,10 +20,12 @@ function DetailCourseView() {
     <section className="flex flex-col gap-5 me-8 min-h-screen">
       <p className="text-xl">My Course {id}</p>
 
-      <section className="relative p-10 rounded-2xl bg-warning-10">
-        <CourseThumbnailCard data={thumbnailCourseContent} />
+      <section className="flex gap-3 p-10 rounded-2xl bg-warning-10">
+        <section className="relative w-5/6">
+          <CourseThumbnailCard data={thumbnailCourseContent} />
+        </section>
 
-        <section className="flex flex-col gap-3 float-right w-[70%]">
+        <section className="flex flex-col gap-3 ps-3">
           <h2 className="font-bold text-3xl">UI Design</h2>
           <p className="text-sm">
             User interface design (UI design) is an important part of developing
@@ -35,23 +37,27 @@ function DetailCourseView() {
         </section>
       </section>
 
-      <section className="relative flex flex-col gap-3 justify-end ml-80">
-        <section className="flex justify-between">
-          <h3 className="font-bold text-2xl">Chapter</h3>
-          <PlusIcon width={30} height={30} onClick={handleAddChapter} />
-        </section>
+      <section className="flex gap-3 px-10">
+        <section className="w-2/5" />
 
-        <section className="h-96 overflow-y-auto">
-          <section className="flex flex-col gap-3 px-2 py-3">
-            {dummyData.length ? (
-              dummyData.map((item) => (
-                <ChapterCard {...item} key={item.id} courseId={id} />
-              ))
-            ) : (
-              <p className="text-light-90 text-center">
-                Create a new chapter if there is no material chapter
-              </p>
-            )}
+        <section className="w-full ps-6">
+          <section className="flex justify-between">
+            <h3 className="font-bold text-2xl">Chapter</h3>
+            <PlusIcon width={30} height={30} onClick={handleAddChapter} />
+          </section>
+
+          <section className="h-96 overflow-y-auto">
+            <section className="flex flex-col gap-3 px-2 py-3">
+              {dummyData.length ? (
+                dummyData.map((item) => (
+                  <ChapterCard {...item} key={item.id} courseId={id} />
+                ))
+              ) : (
+                <p className="text-light-90 text-center">
+                  Create a new chapter if there is no material chapter
+                </p>
+              )}
+            </section>
           </section>
         </section>
       </section>
