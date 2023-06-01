@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { transformDate } from "../utils/helperMethod";
 import PlusIcon from "../components/atoms/Icons/PlusIcon.atom";
 import ChapterCard from "../components/organism/ChapterCard";
@@ -7,7 +7,6 @@ import CourseThumbnailCard from "../components/organism/CourseThumbnailCard";
 
 function DetailCourseView() {
   const { id } = useParams();
-  // TODO: fetch data by id
 
   const chapterData = [
     "Pengenalan tentang Desain Antarmuka Pengguna 1",
@@ -79,7 +78,15 @@ function DetailCourseView() {
         <section className="h-96 overflow-y-auto">
           <section className="flex flex-col gap-3 px-2 py-3">
             {chapterData.length ? (
-              chapterData.map((item) => <ChapterCard title={item} key={item} />)
+              chapterData.map((item) => (
+                <Link
+                  to="/course/detailchapter"
+                  key={item}
+                  className="cursor-pointer"
+                >
+                  <ChapterCard title={item} />
+                </Link>
+              ))
             ) : (
               <p className="text-light-90 text-center">
                 Create a new chapter if there is no material chapter
