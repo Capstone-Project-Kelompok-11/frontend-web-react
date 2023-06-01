@@ -40,7 +40,10 @@ function RootRouter() {
             path="/course/:id_course/chapter/:id_chapter/update_quiz"
             element={<Quiz />}
           />
-          <Route path="/course/:id/detailchapter" element={<DetailChapter />} />
+          <Route
+            path="/course/:id_course/chapter/:id_chapter"
+            element={<DetailChapter />}
+          />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route
