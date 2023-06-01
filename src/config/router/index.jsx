@@ -9,6 +9,7 @@ import LandingPage from "../../views/LandingPage.view";
 import Login from "../../views/Login.view";
 import ProfileMyCourse from "../../views/ProfileMyCourse.view";
 import DetailCourseView from "../../views/DetailCourse.view";
+import DetailChapter from "../../views/DetailChapter.view";
 
 function RootRouter() {
   return (
@@ -21,6 +22,7 @@ function RootRouter() {
         <Route element={<DashboardTemplate />}>
           <Route path="/dashboard" element={<DashboardView />} />
           <Route path="/course" element={<CourseView />} />
+          <Route path="/course/:id/detailchapter" element={<DetailChapter />} />
           <Route path="/course/:id" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route path="/profile" element={<ProfileView />} />
