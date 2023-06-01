@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useFormik } from "formik";
 import {
   initCreateNewChapterValue,
@@ -10,9 +10,12 @@ import CameraIcon from "../../atoms/Icons/CameraIcon.atom";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import MediaIcon from "../../atoms/Icons/MediaIcon.atom";
 
-const NewChapterForm = () => {
+const NewChapterForm = ({ createNewChapter, data = {} }) => {
+  const initData = useMemo(() =>
+    createNewChapter ? initCreateNewChapterValue : data
+  );
   const formik = useFormik({
-    initialValues: initCreateNewChapterValue,
+    initialValues: initData,
     validationSchema: validationCreateNewChapter,
     onSubmit: (values) => {
       if (values) {
@@ -42,7 +45,7 @@ const NewChapterForm = () => {
               <div className="flex items-center justify-center w-full">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 "
+                  className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <CameraIcon />
@@ -53,11 +56,11 @@ const NewChapterForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-5/6 mr-10 ">
-          <div className=" mb-2 ">
-            <label htmlFor="courseName ">
+        <div className="w-5/6 mr-10">
+          <div className="mb-2">
+            <label htmlFor="courseName">
               <div className="flex items-center">
-                <p className=" font-semibold">Course Name</p>
+                <p className="font-semibold">Course Name</p>
                 <span className="text-red-500">*</span>
               </div>
             </label>
@@ -67,21 +70,22 @@ const NewChapterForm = () => {
               value={formik.values.courseName}
               onChange={formik.handleChange}
               name="courseName"
-              className="w-full h-12 mt-3 bg-gray-200 p-5  rounded-lg border border-gray-500"
+              autoFocus
+              className="w-full h-12 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="e.g. “Capstone Project 11”"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="createDes">
+            <label htmlFor="courseDes">
               <div className="flex items-center">
-                <label className=" font-bold">Create Description</label>
+                <label className="font-bold">Create Description</label>
                 <span className="text-red-500">*</span>
               </div>
             </label>
             <textarea
-              name="createDes"
-              id="createDes"
-              value={formik.values.createDes}
+              name="courseDes"
+              id="courseDes"
+              value={formik.values.courseDes}
               onChange={formik.handleChange}
               className="resize-y w-full h-40 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="Type here..."
@@ -91,7 +95,7 @@ const NewChapterForm = () => {
         </div>
       </div>
       <div className="w-full flex flex-row gap-6">
-        <div className="w-80 ">
+        <div className="w-80">
           <div className="mb-2 flex items-center">
             <p className="font-bold">Task Quiz</p>
           </div>
@@ -100,7 +104,7 @@ const NewChapterForm = () => {
               <div className="flex items-center justify-center w-full">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 "
+                  className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <UploadFileIcon />
@@ -111,13 +115,13 @@ const NewChapterForm = () => {
             </div>
           </div>
         </div>
-        <div className="w-80 mt-8 ">
+        <div className="w-80 mt-8">
           <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
             <div className="flex items-center justify-center">
               <div className="flex items-center justify-center w-full">
                 <label
                   htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64 "
+                  className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <CreateQuizIcon />
