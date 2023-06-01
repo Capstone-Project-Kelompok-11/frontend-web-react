@@ -1,5 +1,5 @@
 import React from "react";
-import DetailCourseInfo from "../../molecules/DetailCourseInfo";
+import DetailCardInfo from "../../molecules/DetailCardInfo";
 import courseThumbnail from "../../../assets/courseThumbnail.svg";
 
 function CourseThumbnailCard({ data }) {
@@ -9,7 +9,7 @@ function CourseThumbnailCard({ data }) {
 
       <section className="flex flex-col gap-5 p-3 pb-10 rounded-2xl shadow-lg">
         {data.map((item) => (
-          <DetailCourseInfo key={item.title} {...item} />
+          <DetailCardInfo key={item.title} {...item} fromCourse />
         ))}
       </section>
     </section>
