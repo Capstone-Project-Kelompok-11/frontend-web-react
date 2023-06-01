@@ -6,19 +6,23 @@ import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
 
 function DetailCourseView() {
-  const { id } = useParams();
+  const { id: id_course } = useParams();
   const navigate = useNavigate();
   // TODO: fetch data by id
 
   const handleAddChapter = () => {
-    navigate(`/course/${id}/new-chapter`, {
+    navigate(`/course/${id_course}/new-chapter`, {
       state: { createNewChapter: true },
     });
   };
 
+  const handleChapterClick = (id_chapter) => {
+    navigate(`/course/${id_course}/chapter/${id_chapter}`);
+  };
+
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
-      <p className="text-xl">My Course {id}</p>
+      <p className="text-xl">My Course {id_course}</p>
 
       <section className="relative p-10 rounded-2xl bg-warning-10">
         <CourseThumbnailCard data={thumbnailCourseContent} />
@@ -45,7 +49,12 @@ function DetailCourseView() {
           <section className="flex flex-col gap-3 px-2 py-3">
             {dummyData.length ? (
               dummyData.map((item) => (
-                <ChapterCard {...item} key={item.id} courseId={id} />
+                <ChapterCard
+                  {...item}
+                  key={item.id}
+                  courseId={id_course}
+                  onClick={() => handleChapterClick(item.id)}
+                />
               ))
             ) : (
               <p className="text-light-90 text-center">
