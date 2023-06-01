@@ -2,10 +2,10 @@ import * as Yup from "yup";
 
 export const initCreateNewChapterValue = {
   courseName: "",
-  createDes: "",
+  courseDes: "",
 };
 
 export const validationCreateNewChapter = Yup.object().shape({
   courseName: Yup.string().required(),
-  createDes: Yup.string().required(),
+  courseDes: Yup.string().required(),
 });
