@@ -6,10 +6,10 @@ function DetailCardInfo({ title, content, fromCourse }) {
   const finalContent = needAdjustment ? getSimpleName(content, title) : content;
 
   return (
-    <section className="flex gap-2 border-b-2 px-2 pb-3 border-gray-600">
-      <p className={`${fromCourse ? "w-24" : "w-14"} text-sm`}>{title}</p>
+    <section className="flex gap-2 border-b-2 pb-3 border-gray-600 text-[0.5rem]">
+      <p className={fromCourse ? "w-24" : "w-14"}>{title}</p>
       <p>:</p>
-      <p className="text-sm">{finalContent}</p>
+      <p>{finalContent}</p>
     </section>
   );
 }
