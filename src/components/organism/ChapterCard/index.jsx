@@ -5,7 +5,14 @@ import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import DeleteModal from "../../molecules/Modal/DeleteModal.molecul";
 
-function ChapterCard({ title, score, onClick, isReporting = false }) {
+function ChapterCard({
+  courseName,
+  courseDes,
+  courseId,
+  score,
+  onClick,
+  isReporting = false,
+}) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,9 +22,10 @@ function ChapterCard({ title, score, onClick, isReporting = false }) {
       return;
     }
 
-    alert("Updated is clicked!");
     // TODO: navigate to create new chapter form!
-    navigate("/dashboard", { state: { data: { title, score } } });
+    navigate(`/course/${courseId}/new-chapter`, {
+      state: { createNewChapter: false, data: { courseName, courseDes } },
+    });
   };
 
   return (
@@ -25,7 +33,7 @@ function ChapterCard({ title, score, onClick, isReporting = false }) {
       onClick={onClick}
       className="relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
     >
-      <h2>{title}</h2>
+      <h2>{courseName}</h2>
       {isReporting ? (
         <p className="font-bold text-success-30 mr-10">{score}</p>
       ) : (
@@ -68,7 +76,7 @@ function ChapterCard({ title, score, onClick, isReporting = false }) {
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             title="Delete Confirmation"
-            content={title}
+            content={courseName}
           />
         </>
       )}

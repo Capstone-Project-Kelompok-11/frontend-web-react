@@ -1,13 +1,20 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { dummyData, thumbnailCourseContent } from "./dummy";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
 import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
-import { useParams } from "react-router-dom";
-import { dummyData, thumbnailCourseContent } from "./dummy";
 
 function DetailCourseView() {
   const { id } = useParams();
+  const navigate = useNavigate();
   // TODO: fetch data by id
+
+  const handleAddChapter = () => {
+    navigate(`/course/${id}/new-chapter`, {
+      state: { createNewChapter: true },
+    });
+  };
 
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
@@ -31,17 +38,15 @@ function DetailCourseView() {
       <section className="relative flex flex-col gap-3 justify-end ml-80">
         <section className="flex justify-between">
           <h3 className="font-bold text-2xl">Chapter</h3>
-          <PlusIcon
-            width={30}
-            height={30}
-            onClick={() => alert("Plus icon has been clicked!")}
-          />
+          <PlusIcon width={30} height={30} onClick={handleAddChapter} />
         </section>
 
         <section className="h-96 overflow-y-auto">
           <section className="flex flex-col gap-3 px-2 py-3">
             {dummyData.length ? (
-              dummyData.map((item) => <ChapterCard {...item} key={item.id} />)
+              dummyData.map((item) => (
+                <ChapterCard {...item} key={item.id} courseId={id} />
+              ))
             ) : (
               <p className="text-light-90 text-center">
                 Create a new chapter if there is no material chapter
