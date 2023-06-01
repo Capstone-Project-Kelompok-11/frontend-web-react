@@ -80,7 +80,7 @@ function DetailCourseView() {
             {chapterData.length ? (
               chapterData.map((item) => (
                 <Link
-                  to="/course/detailchapter"
+                  to={`/course/${id}/detailchapter`}
                   key={item}
                   className="cursor-pointer"
                 >
