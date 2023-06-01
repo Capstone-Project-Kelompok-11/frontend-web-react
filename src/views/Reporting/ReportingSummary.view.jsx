@@ -64,11 +64,14 @@ function ReportingSummary() {
         <section className="flex flex-col gap-3 float-right w-[65%]">
           <h2 className="font-bold text-3xl">Summary All Material</h2>
           <section className="flex justify-between items-center">
-            <button className=" bg-danger-10 p-4 py-2 rounded-lg font-semibold">
-              <Link to="/myfile.pdf" target="_blank" download>
-                Download
-              </Link>
-            </button>
+            <Link
+              to="/myfile.pdf"
+              target="_blank"
+              download
+              className=" bg-danger-10 hover:bg-danger-30 duration-500 p-4 py-2 rounded-lg font-semibold"
+            >
+              Download
+            </Link>
 
             <form onSubmit={handleSubmit} className="flex gap-3 items-center">
               <label htmlFor="nilai">Input Nilai</label>
