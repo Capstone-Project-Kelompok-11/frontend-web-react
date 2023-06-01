@@ -1,6 +1,6 @@
 import React from "react";
 
-const Media = () => {
+const MediaIcon = () => {
   return (
     <svg
       width="61"
@@ -18,4 +18,4 @@ const Media = () => {
   );
 };
 
-export default Media;
+export default MediaIcon;

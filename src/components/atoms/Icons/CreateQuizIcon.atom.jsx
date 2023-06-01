@@ -1,6 +1,6 @@
 import React from "react";
 
-const CreateQuiz = () => {
+const CreateQuizIcon = () => {
   return (
     <svg
       width="141"
@@ -13,16 +13,16 @@ const CreateQuiz = () => {
         <path
           d="M14.1781 4.73999H5.74712C4.75332 4.73999 3.80023 5.13477 3.09751 5.8375C2.39478 6.54022 2 7.49331 2 8.48711V25.3492C2 26.343 2.39478 27.296 3.09751 27.9988C3.80023 28.7015 4.75332 29.0963 5.74712 29.0963H24.4827C25.4765 29.0963 26.4296 28.7015 27.1323 27.9988C27.8351 27.296 28.2298 26.343 28.2298 25.3492V16.9181"
           stroke="#262626"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M24.4826 6.61367L26.2681 8.48723M28.2297 2.80472C28.7292 3.32118 29.0058 4.0132 28.9998 4.73164C28.9938 5.45008 28.7059 6.13742 28.1979 6.64552L15.1148 19.7286L9.49414 21.6022L11.3677 15.9815L24.4583 2.78037C24.9185 2.31662 25.5343 2.04 26.1866 2.00401C26.839 1.96802 27.4815 2.17521 27.9899 2.58552L28.2297 2.80472Z"
           stroke="#262626"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <path
@@ -34,4 +34,4 @@ const CreateQuiz = () => {
   );
 };
 
-export default CreateQuiz;
+export default CreateQuizIcon;

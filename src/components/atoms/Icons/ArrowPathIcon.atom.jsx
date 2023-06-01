@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrowPath = () => {
+const ArrowPathIcon = () => {
   return (
     <div>
       <svg
@@ -21,4 +21,4 @@ const ArrowPath = () => {
   );
 };
 
-export default ArrowPath;
+export default ArrowPathIcon;

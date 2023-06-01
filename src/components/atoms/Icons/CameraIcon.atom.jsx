@@ -1,6 +1,6 @@
 import React from "react";
 
-const Camera = () => {
+const CameraIcon = () => {
   return (
     <svg
       width="77"
@@ -18,4 +18,4 @@ const Camera = () => {
   );
 };
 
-export default Camera;
+export default CameraIcon;
