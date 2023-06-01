@@ -35,7 +35,7 @@ function DetailCourseView() {
         </section>
       </section>
 
-      <section className="relative flex flex-col gap-3 justify-end ml-80">
+      <section className="relative flex flex-col gap-3 justify-end ps-80">
         <section className="flex justify-between">
           <h3 className="font-bold text-2xl">Chapter</h3>
           <PlusIcon width={30} height={30} onClick={handleAddChapter} />
