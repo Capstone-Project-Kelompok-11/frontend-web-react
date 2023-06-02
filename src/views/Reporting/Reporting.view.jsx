@@ -1,8 +1,8 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import UserListCard from "../../components/organism/UserListCard/UserListCard.organism";
 import { listAllCourse } from "../../components/organism/ListCourse/dummyData";
+
 function ReportingView() {
   return (
     <div>
