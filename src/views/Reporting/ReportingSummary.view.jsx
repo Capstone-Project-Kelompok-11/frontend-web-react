@@ -2,40 +2,10 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
+import { dummyData } from "../Course/dummy";
 
 function ReportingSummary() {
   const { detail_user } = useParams();
-
-  const chapterData = [
-    {
-      title: "Pengenalan tentang Desain Antarmuka Pengguna 1",
-      score: 90,
-    },
-    {
-      title: "Desain Visual 1",
-      score: 60,
-    },
-    {
-      title: "Pengenalan tentang Desain Antarmuka Pengguna 2",
-      score: 75,
-    },
-    {
-      title: "Desain Visual 2",
-      score: 80,
-    },
-    {
-      title: "Pengenalan tentang Desain Antarmuka Pengguna 3",
-      score: 95,
-    },
-    {
-      title: "Desain Visual 3",
-      score: 100,
-    },
-    {
-      title: "Pengenalan tentang Desain Antarmuka Pengguna 4",
-      score: 100,
-    },
-  ];
 
   const thumbnailCourseContent = [
     {
@@ -64,11 +34,14 @@ function ReportingSummary() {
         <section className="flex flex-col gap-3 float-right w-[65%]">
           <h2 className="font-bold text-3xl">Summary All Material</h2>
           <section className="flex justify-between items-center">
-            <button className=" bg-danger-10 p-4 py-2 rounded-lg font-semibold">
-              <Link to="/myfile.pdf" target="_blank" download>
-                Download
-              </Link>
-            </button>
+            <Link
+              to="/myfile.pdf"
+              target="_blank"
+              download
+              className=" bg-danger-10 hover:bg-danger-30 duration-500 p-4 py-2 rounded-lg font-semibold"
+            >
+              Download
+            </Link>
 
             <form onSubmit={handleSubmit} className="flex gap-3 items-center">
               <label htmlFor="nilai">Input Nilai</label>
@@ -91,8 +64,8 @@ function ReportingSummary() {
 
         <section className="h-96 overflow-y-auto">
           <section className="flex flex-col gap-3 px-2 py-3">
-            {chapterData.length ? (
-              chapterData.map((item) => (
+            {dummyData.length ? (
+              dummyData.map((item) => (
                 <ChapterCard {...item} key={item} isReporting />
               ))
             ) : (
