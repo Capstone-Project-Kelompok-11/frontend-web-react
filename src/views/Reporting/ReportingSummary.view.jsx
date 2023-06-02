@@ -3,9 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { dummyData } from "../Course/dummy";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
+import Modal from "../../components/molecules/Modal/Modal.molecul";
 
 function ReportingSummary() {
   const { detail_user } = useParams();
+  const [isOpen, setIsOpen] = useState(false);
   const [finalScore, setFinalScore] = useState("");
   const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
 
@@ -24,11 +26,18 @@ function ReportingSummary() {
     },
   ];
 
+  const closeModal = () => setIsOpen(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (finalScore) {
-      setIsFillFinalScore(false);
+      setIsOpen(true);
     }
+  };
+
+  const handleGiveFinalScore = () => {
+    setIsFillFinalScore(false);
+    closeModal();
   };
 
   return (
@@ -77,20 +86,11 @@ function ReportingSummary() {
                   </button>
                 </form>
               ) : (
-                <section className="flex gap-3">
-                  <section className="flex gap-3 items-center font-semibold">
-                    <h3>Nilai Akhir</h3>
-                    <p className="border-2 border-secondary-10 text-success-30 rounded-md p-2 py-1">
-                      {finalScore}
-                    </p>
-                  </section>
-
-                  <button
-                    onClick={() => setIsFillFinalScore(true)}
-                    className="bg-success-50 hover:bg-success-70 duration-500 rounded-lg p-2 py-1 text-white"
-                  >
-                    edit
-                  </button>
+                <section className="flex gap-3 items-center font-semibold">
+                  <h3>Nilai Akhir</h3>
+                  <p className="border-2 border-secondary-10 text-success-30 rounded-md p-2 py-1">
+                    {finalScore}
+                  </p>
                 </section>
               )}
             </section>
@@ -115,6 +115,20 @@ function ReportingSummary() {
           </section>
         </section>
       </section>
+
+      <Modal
+        isOpen={isOpen}
+        header="Save Confirmation"
+        primaryButtonName="Save"
+        handleSecondary={closeModal}
+        handlePrimary={handleGiveFinalScore}
+        btnPrimaryClassName="bg-primary-70 hover:bg-primary-90"
+      >
+        <section className="mt-2 text-sm text-gray-500">
+          <p>Are you sure want to save this final score?</p>
+          <p>If you click Save, you can not edit it!</p>
+        </section>
+      </Modal>
     </section>
   );
 }

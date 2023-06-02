@@ -3,7 +3,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
-import DeleteModal from "../../molecules/Modal/DeleteModal.molecul";
+import Modal from "../../molecules/Modal/Modal.molecul";
 
 function ChapterCard({
   courseName,
@@ -15,6 +15,14 @@ function ChapterCard({
 }) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => setIsOpen(false);
+
+  const handleDelete = () => {
+    alert("button yes delete has been clicked!");
+    closeModal();
+    //TODO: finish this logic
+  };
 
   const handleClick = (value) => {
     if (value === "Delete") {
@@ -72,12 +80,21 @@ function ChapterCard({
             </Transition>
           </Menu>
 
-          <DeleteModal
+          <Modal
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            title="Delete Confirmation"
-            content={courseName}
-          />
+            header="Delete Confirmation"
+            primaryButtonName="Delete"
+            handleSecondary={closeModal}
+            handlePrimary={handleDelete}
+            btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
+          >
+            <section className="mt-2">
+              <p className="text-sm text-gray-500">
+                Are you sure want to delete chapter{" "}
+                <span className="font-semibold">{courseName}</span>?
+              </p>
+            </section>
+          </Modal>
         </>
       )}
     </section>
