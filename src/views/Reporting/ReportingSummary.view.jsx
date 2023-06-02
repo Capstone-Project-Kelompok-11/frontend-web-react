@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { dummyData } from "../Course/dummy";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
-import { dummyData } from "../Course/dummy";
 
 function ReportingSummary() {
   const { detail_user } = useParams();
+  const [finalScore, setFinalScore] = useState("");
+  const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
 
   const thumbnailCourseContent = [
     {
@@ -22,7 +24,12 @@ function ReportingSummary() {
     },
   ];
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (finalScore) {
+      setIsFillFinalScore(false);
+    }
+  };
 
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
@@ -45,18 +52,47 @@ function ReportingSummary() {
                 Download
               </Link>
 
-              <form onSubmit={handleSubmit} className="flex gap-3 items-center">
-                <label htmlFor="nilai">Input Nilai</label>
-                <input
-                  type="number"
-                  name="nilai"
-                  id="nilai"
-                  placeholder="00"
-                  min="0"
-                  max="100"
-                  className="p-2 outline-none rounded-md border-2 border-secondary-10 w-12 text-center placeholder:text-center"
-                />
-              </form>
+              {isFillFinalScore ? (
+                <form onSubmit={(e) => handleSubmit(e)} className="flex gap-3">
+                  <section className="flex gap-3 items-center">
+                    <label htmlFor="nilai">Input Nilai</label>
+                    <input
+                      type="number"
+                      name="nilai"
+                      id="nilai"
+                      placeholder="00"
+                      min="0"
+                      max="100"
+                      value={finalScore}
+                      onChange={(e) => setFinalScore(e.target.value)}
+                      className="p-2 py-1 outline-none rounded-md border-2 border-secondary-10 w-12 text-center placeholder:text-center"
+                    />
+                  </section>
+
+                  <button
+                    type="submit"
+                    className="bg-primary-50 hover:bg-primary-70 duration-500 rounded-lg p-2 py-1 text-white"
+                  >
+                    save
+                  </button>
+                </form>
+              ) : (
+                <section className="flex gap-3">
+                  <section className="flex gap-3 items-center font-semibold">
+                    <h3>Nilai Akhir</h3>
+                    <p className="border-2 border-secondary-10 text-success-30 rounded-md p-2 py-1">
+                      {finalScore}
+                    </p>
+                  </section>
+
+                  <button
+                    onClick={() => setIsFillFinalScore(true)}
+                    className="bg-success-50 hover:bg-success-70 duration-500 rounded-lg p-2 py-1 text-white"
+                  >
+                    edit
+                  </button>
+                </section>
+              )}
             </section>
           </section>
 
