@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import ArrowPath from "../../atoms/Icons/ArrowPath.atom";
-import Camera from "../../atoms/Icons/camera.atom";
+import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useFormik } from "formik";
-import UploadFile from "../../atoms/Icons/UploadFile.atom";
-import CreateQuiz from "../../atoms/Icons/CreateQuiz.atom";
 import ValidationProduct from "../../molecules/ValidationProductChapter/ValidationProduct.molecule";
 import { Link } from "react-router-dom";
 import ArrowLink from "../../atoms/Icons/ArrowLink.atom";
+import CameraIcon from "../../atoms/Icons/CameraIcon.atom";
+import UploadFileIcon from "../../atoms/Icons/UploadFileIcon.atom";
+import CreateQuizIcon from "../../atoms/Icons/CreateQuizIcon.atom";
 
 const InfoAllCourse = () => {
   const [files, setFile] = useState();
@@ -57,7 +57,7 @@ const InfoAllCourse = () => {
           <p className="text-2xl">New Chapter</p>
 
           <div className="ml-2 transform-origin-center cursor-pointer hover:animate-spin">
-            <ArrowPath />
+            <ArrowPathIcon />
           </div>
         </div>
 
@@ -74,7 +74,7 @@ const InfoAllCourse = () => {
                     className="flex flex-col items-center justify-center w-full h-64 "
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Camera />
+                      <CameraIcon />
                     </div>
                     <input id="dropzone-file" type="file" className="hidden" />
                   </label>
@@ -132,7 +132,7 @@ const InfoAllCourse = () => {
                     className="flex flex-col items-center justify-center w-full h-64 "
                   >
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <UploadFile />
+                      <UploadFileIcon />
                     </div>
                     <input
                       type="file"
@@ -151,7 +151,7 @@ const InfoAllCourse = () => {
                 <div className="flex items-center justify-center">
                   <div className="flex items-center justify-center w-full">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <CreateQuiz />
+                      <CreateQuizIcon />
                     </div>
                   </div>
                 </div>
