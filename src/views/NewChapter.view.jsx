@@ -1,7 +1,7 @@
 import React from "react";
 import CreateNewChapter from "../components/organism/CreateNewChapter/CreateNewChapter.organism";
 
-function NewChapter() {
+function CreateNewChapterView() {
   return (
     <div>
       <CreateNewChapter />
@@ -9,4 +9,4 @@ function NewChapter() {
   );
 }
 
-export default NewChapter;
+export default CreateNewChapterView;

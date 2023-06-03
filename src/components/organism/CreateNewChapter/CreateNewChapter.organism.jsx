@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import ArrowPath from "../../atoms/Icons/ArrowPath.atom";
 import Camera from "../../atoms/Icons/camera.atom";
 import { useFormik } from "formik";
 import UploadFile from "../../atoms/Icons/UploadFile.atom";
 import CreateQuiz from "../../atoms/Icons/CreateQuiz.atom";
-import Media from "../../atoms/Icons/Media.atom";
 import ValidationProduct from "../../molecules/ValidationProductChapter/ValidationProduct.molecule";
+import { Link } from "react-router-dom";
+import ArrowLink from "../../atoms/Icons/ArrowLink.atom";
 
 const InfoAllCourse = () => {
+  const [files, setFile] = useState();
+  const [url, setUrl] = useState();
+
+  const handleChange = (event) => {
+    setFile(event.target.files);
+  };
+
+  const handleUrlChange = (event) => {
+    setUrl(event.target.value);
+  };
+
+  function handleUpload() {
+    const formData = new FormData();
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append(`images[${i}]`, files[0]);
+    }
+
+    formData.append("url", url);
+    fetch("https://httpbin.org/post", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  }
+
   const formik = useFormik({
     initialValues: {
       courseName: "",
@@ -106,29 +135,30 @@ const InfoAllCourse = () => {
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <UploadFile />
                     </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
+                    <input
+                      type="file"
+                      multiple
+                      onChange={handleChange}
+                      className="hidden"
+                    />
                   </label>
                 </div>
               </div>
             </div>
           </div>
-          <div className="w-80 mt-8 ">
-            <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
-              <div className="flex items-center justify-center">
-                <div className="flex items-center justify-center w-full">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 "
-                  >
+          <Link to="/course/:id_course/chapter/new_quiz">
+            <div className="w-80 mt-8 ">
+              <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
+                <div className="flex items-center justify-center">
+                  <div className="flex items-center justify-center w-full">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                       <CreateQuiz />
                     </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
-                  </label>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
           <div className="w-80 mr-8">
             <div className="mb-2  flex items-center">
               <p className="font-bold">Uploaded Videos</p>
@@ -136,14 +166,11 @@ const InfoAllCourse = () => {
             <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
               <div className="image-container">
                 <div className="flex items-center justify-center w-full">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 "
-                  >
+                  <label className="flex flex-col items-center justify-center w-full h-64 ">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <Media />
+                      <ArrowLink />
                     </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
+                    <input type="text" value={url} onChange={handleUrlChange} />
                   </label>
                 </div>
               </div>
@@ -156,6 +183,7 @@ const InfoAllCourse = () => {
             Back
           </button>
           <button
+            onClick={handleUpload}
             type="submit"
             className="justify-end ml-auto mr-8 bg-warning-10 text-black py-2 px-6 rounded-lg text-sm"
           >

@@ -8,7 +8,8 @@ import UploadFileIcon from "../../atoms/Icons/UploadFileIcon.atom";
 import CreateQuizIcon from "../../atoms/Icons/CreateQuizIcon.atom";
 import CameraIcon from "../../atoms/Icons/CameraIcon.atom";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
-import MediaIcon from "../../atoms/Icons/MediaIcon.atom";
+import { Link } from "react-router-dom";
+import ArrowLink from "../../atoms/Icons/ArrowLink.atom";
 
 const NewChapterForm = ({ createNewChapter, data = {} }) => {
   const initData = useMemo(() =>
@@ -115,23 +116,25 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
             </div>
           </div>
         </div>
-        <div className="w-80 mt-8">
-          <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
-            <div className="flex items-center justify-center">
-              <div className="flex items-center justify-center w-full">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64"
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <CreateQuizIcon />
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
-                </label>
+        <Link to="/course/:id_course/chapter/new_quiz">
+          <div className="w-80 mt-8">
+            <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
+              <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center w-full">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex flex-col items-center justify-center w-full h-64"
+                  >
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <CreateQuizIcon />
+                    </div>
+                    <input id="dropzone-file" type="file" className="hidden" />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
         <div className="w-80 mr-8">
           <div className="mb-2  flex items-center">
             <p className="font-bold">Uploaded Videos</p>
@@ -144,7 +147,7 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
                   className="flex flex-col items-center justify-center w-full h-64 "
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <MediaIcon />
+                    <ArrowLink />
                   </div>
                   <input id="dropzone-file" type="file" className="hidden" />
                 </label>

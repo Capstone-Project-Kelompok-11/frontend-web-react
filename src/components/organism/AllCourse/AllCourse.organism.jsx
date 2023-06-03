@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AllCourseCard from "../AllCourseCard/AllCourseCard.organism";
+import { listAllCourseCard } from "../AllCourseCard/dummyData";
 
 function AllCourse() {
   return (
@@ -13,9 +15,17 @@ function AllCourse() {
           New Course
         </Link>
       </div>
-      <p className="text-center mt-12 text-gray-500">
-        create a new course if you don't have a course yet
-      </p>
+      {listAllCourseCard.length ? (
+        <div className="grid grid-cols-2 gap-7 h-32 mt-12 pr-10 mr-10 justify-center">
+          {listAllCourseCard.map((list) => (
+            <AllCourseCard key={list.id} {...list} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center mt-12 text-gray-500">
+          create a new course if you don't have a course yet
+        </p>
+      )}
     </div>
   );
 }
