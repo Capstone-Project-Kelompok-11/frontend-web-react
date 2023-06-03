@@ -23,3 +23,17 @@ export const getRandomBorderColor = () => {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 };
+
+export const getSimpleName = (input, title) => {
+  const raw = input.split(" ");
+
+  if (title === "Responsible") {
+    return raw[0];
+  }
+
+  if (raw.length > 1) {
+    return `${raw[0]} ${raw[1]}`;
+  }
+
+  return raw;
+};

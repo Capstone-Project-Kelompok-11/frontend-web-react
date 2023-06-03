@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/templates/Navbar.template";
+import Navbar from "../../components/templates/Navbar.template";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);

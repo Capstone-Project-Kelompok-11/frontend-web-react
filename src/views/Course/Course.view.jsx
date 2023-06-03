@@ -1,6 +1,5 @@
 import React from "react";
-
-import AllCourse from "../components/organism/AllCourse/AllCourse.organism";
+import AllCourse from "../../components/organism/AllCourse/AllCourse.organism";
 
 function CourseView() {
   return <AllCourse />;
