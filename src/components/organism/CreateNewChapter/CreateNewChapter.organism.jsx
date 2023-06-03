@@ -26,7 +26,6 @@ const InfoAllCourse = () => {
     for (let i = 0; i < files.length; i++) {
       formData.append(`images[${i}]`, files[0]);
     }
-
     formData.append("url", url);
     fetch("https://httpbin.org/post", {
       method: "POST",
