@@ -13,7 +13,7 @@ function DetailChapter() {
       <h2 className="text-xl">My Chapter</h2>
 
       <div className="bg-warning-10 font-bold mt-6 text-3xl p-4 px-4 rounded-xl mr-8">
-        <h1 className="px-4">Pengenalan tentang Desain Antar muka Pengguna</h1>
+        <h1 className="px-4">Pengenalan tentang Desain Antarmuka Pengguna</h1>
       </div>
 
       <h1 className="font-bold text-xl mt-6 mb-2">Pengantar</h1>
