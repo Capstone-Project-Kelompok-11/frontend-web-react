@@ -24,12 +24,12 @@ function DetailChapter() {
       <h1 className="font-bold text-xl mt-6 mb-2">
         Prinsip-prinsip desain antarmuka pengguna
       </h1>
-      <div className="mx-3 ml-2 px-2">
+      <div className="mx-3 ml-2 px-2 ">
         <div className="flex justify-between ml-2">
           <div>
             <p className="mr-2">1.</p>
           </div>
-          <p className="ml-2">
+          <p className="ml-2 mr-5">
             Keterbacaan: Desain antarmuka pengguna harus mudah dibaca dan
             dipahami oleh pengguna. Ini meliputi penggunaan font yang jelas dan
             mudah dibaca, tata letak yang jelas dan terorganisir, serta warna
@@ -56,7 +56,7 @@ function DetailChapter() {
             font, dan interaksi pengguna.
           </p>
         </div>
-        <div className="flex justify-between ml-2">
+        <div className="flex justify-between mx-2">
           <div>
             <p className="mr-1">4.</p>
           </div>
