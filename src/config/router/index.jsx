@@ -13,7 +13,7 @@ import NewCourseView from "../../views/Course/NewCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
 import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 import ReportingUserView from "../../views/Reporting/ReportingUser.view";
-import DetailChapter from "../../views/DetailChapter.view";
+import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 
 function RootRouter() {

@@ -1,17 +1,18 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-export default function Modal({ isOpen, setIsOpen, title, content }) {
-  const closeModal = () => setIsOpen(false);
-  const handleDelete = () => {
-    alert("button yes delete has been clicked!");
-    closeModal();
-    //TODO: finish this logic
-  };
-
+export default function Modal({
+  isOpen,
+  header,
+  children,
+  primaryButtonName,
+  handlePrimary,
+  handleSecondary,
+  btnPrimaryClassName,
+}) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-30" onClose={closeModal}>
+      <Dialog as="div" className="relative z-30" onClose={handleSecondary}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -40,30 +41,26 @@ export default function Modal({ isOpen, setIsOpen, title, content }) {
                   as="h3"
                   className="text-lg font-bold leading-6 text-gray-900"
                 >
-                  {title}
+                  {header}
                 </Dialog.Title>
-                <section className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Are you sure want to delete chapter{" "}
-                    <span className="font-semibold">{content}</span>?
-                  </p>
-                </section>
+
+                {children}
 
                 <section className="flex justify-end gap-3 mt-5">
                   <button
                     type="button"
                     className="inline-flex justify-center rounded-lg border border-transparent bg-dark-10 px-4 py-2 text-sm font-medium text-white hover:bg-dark-30 duration-500"
-                    onClick={closeModal}
+                    onClick={handleSecondary}
                   >
                     Cancel
                   </button>
 
                   <button
                     type="button"
-                    className="inline-flex justify-center rounded-lg border border-transparent bg-danger-70 px-4 py-2 text-sm font-medium text-white hover:bg-danger-90 duration-500"
-                    onClick={handleDelete}
+                    className={`inline-flex justify-center rounded-lg border border-transparent px-4 py-2 text-sm font-medium text-white duration-500 ${btnPrimaryClassName}`}
+                    onClick={handlePrimary}
                   >
-                    Delete
+                    {primaryButtonName}
                   </button>
                 </section>
               </Dialog.Panel>
