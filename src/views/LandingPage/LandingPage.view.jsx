@@ -32,14 +32,12 @@ function LandingPage() {
                 className="opacity-90 absolute top-0 mt-10 -ml-120"
               />
             </div>
-            <div>
-              <Link
-                to="/login"
-                className="bg-primary-50 text-white rounded-full font-semibold text-lg p-2 px-7 mr-36 absolute bottom-0 right-0  mb-14"
-              >
-                Sign In
-              </Link>
-            </div>
+            <Link
+              to="/login"
+              className="bg-primary-50 hover:bg-primary-50/75 duration-500 drop-shadow-xl text-white rounded-full font-semibold text-lg p-2 px-7 mr-36 absolute bottom-0 right-0 mb-14"
+            >
+              Sign In
+            </Link>
           </div>
         </div>
       </div>
