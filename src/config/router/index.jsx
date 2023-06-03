@@ -13,9 +13,8 @@ import NewCourseView from "../../views/Course/NewCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
 import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 import ReportingUserView from "../../views/Reporting/ReportingUser.view";
-import NewChapterView from "../../views/Chapter/NewChapter.view";
+import CreateNewChapterView from "../../views/Chapter/CreateNewChapter.view";
 import NewChapter from "../../views/Chapter/NewChapter.view";
-import CreateNewChapterView from "../../views/NewChapter.view";
 
 function RootRouter() {
   return (
