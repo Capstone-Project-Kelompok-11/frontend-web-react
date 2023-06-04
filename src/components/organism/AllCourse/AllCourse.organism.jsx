@@ -16,7 +16,7 @@ function AllCourse() {
         </Link>
       </div>
       {listAllCourseCard.length ? (
-        <div className="grid grid-cols-2 gap-7 h-32 mt-12 pr-10 mr-10 justify-center">
+        <div className="grid grid-cols-2 gap-7 h-100 mt-12 pr-10 mr-10 mb-12 justify-center overflow-y-auto">
           {listAllCourseCard.map((list) => (
             <AllCourseCard key={list.id} {...list} />
           ))}
