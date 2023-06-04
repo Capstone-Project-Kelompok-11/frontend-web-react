@@ -6,8 +6,8 @@ import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
 
 function ChapterCard({
-  courseName,
-  courseDes,
+  chapterName,
+  chapterDes,
   courseId,
   score,
   onClick,
@@ -32,7 +32,7 @@ function ChapterCard({
 
     // TODO: navigate to create new chapter form!
     navigate(`/course/${courseId}/new-chapter`, {
-      state: { createNewChapter: false, data: { courseName, courseDes } },
+      state: { createNewChapter: false, data: { chapterName, chapterDes } },
     });
   };
 
@@ -41,7 +41,7 @@ function ChapterCard({
       onClick={onClick}
       className="relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
     >
-      <h2>{courseName}</h2>
+      <h2>{chapterName}</h2>
       {isReporting ? (
         <p className="font-bold text-success-30 mr-10">{score}</p>
       ) : (
@@ -91,7 +91,7 @@ function ChapterCard({
             <section className="mt-2">
               <p className="text-sm text-gray-500">
                 Are you sure want to delete chapter{" "}
-                <span className="font-semibold">{courseName}</span>?
+                <span className="font-semibold">{chapterName}</span>?
               </p>
             </section>
           </Modal>
