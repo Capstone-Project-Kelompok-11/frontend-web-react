@@ -28,7 +28,10 @@ function AllCourseCard({ name, category, attendees, views }) {
           <p>views</p>
         </div>
         <div className="flex ml-auto">
-          <Link to="/" className="bg-success-10 p-2 rounded-lg px-4  ">
+          <Link
+            to="/course/detail"
+            className="bg-success-10 p-2 rounded-lg px-4  "
+          >
             View
           </Link>
         </div>
