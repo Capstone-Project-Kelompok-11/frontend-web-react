@@ -6,7 +6,7 @@ import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
 
 function DetailCourseView() {
-  const { id: id_course } = useParams();
+  const { id_course } = useParams();
   const navigate = useNavigate();
   // TODO: fetch data
 

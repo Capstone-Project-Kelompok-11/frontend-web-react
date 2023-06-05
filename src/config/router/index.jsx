@@ -44,7 +44,7 @@ function RootRouter() {
             path="/course/:id_course/chapter/:id_chapter"
             element={<DetailChapter />}
           />
-          <Route path="/course/:id" element={<DetailCourseView />} />
+          <Route path="/course/:id_course" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route
             path="/reporting/:course_name"
