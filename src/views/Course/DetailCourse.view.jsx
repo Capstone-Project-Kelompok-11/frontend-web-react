@@ -8,7 +8,7 @@ import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
 function DetailCourseView() {
   const { id: id_course } = useParams();
   const navigate = useNavigate();
-  // TODO: fetch data by id
+  // TODO: fetch data
 
   const handleAddChapter = () => {
     navigate(`/course/${id_course}/new-chapter`, {
