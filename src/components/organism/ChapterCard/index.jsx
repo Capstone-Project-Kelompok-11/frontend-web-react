@@ -39,7 +39,9 @@ function ChapterCard({
   return (
     <section
       onClick={onClick}
-      className="relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
+      className={`relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl ${
+        onClick ? "cursor-pointer" : "cursor-default"
+      }`}
     >
       <h2>{courseName}</h2>
       {isReporting ? (
