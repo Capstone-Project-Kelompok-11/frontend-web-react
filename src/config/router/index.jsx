@@ -13,6 +13,7 @@ import NewCourseView from "../../views/Course/NewCourse.view";
 import Quiz from "../../views/Quiz/Quiz.view";
 import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 import ReportingUserView from "../../views/Reporting/ReportingUser.view";
+import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 
 function RootRouter() {
@@ -39,7 +40,11 @@ function RootRouter() {
             path="/course/:id_course/chapter/:id_chapter/update_quiz"
             element={<Quiz />}
           />
-          <Route path="/course/:id" element={<DetailCourseView />} />
+          <Route
+            path="/course/:id_course/chapter/:id_chapter"
+            element={<DetailChapter />}
+          />
+          <Route path="/course/:id_course" element={<DetailCourseView />} />
           <Route path="/reporting" element={<ReportingView />} />
           <Route
             path="/reporting/:course_name"
