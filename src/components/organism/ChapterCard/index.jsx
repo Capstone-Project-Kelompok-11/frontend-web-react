@@ -1,11 +1,28 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
+import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
-import DeleteModal from "../../molecules/Modal/DeleteModal.molecul";
+import Modal from "../../molecules/Modal/Modal.molecul";
 
-function ChapterCard({ title, onClick, isReporting, score }) {
+function ChapterCard({
+  courseName,
+  courseDes,
+  courseId,
+  score,
+  onClick,
+  isReporting = false,
+}) {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => setIsOpen(false);
+
+  const handleDelete = () => {
+    alert("button yes delete has been clicked!");
+    closeModal();
+    //TODO: finish this logic
+  };
 
   const handleClick = (value) => {
     if (value === "Delete") {
@@ -13,7 +30,10 @@ function ChapterCard({ title, onClick, isReporting, score }) {
       return;
     }
 
-    alert("Updated is clicked!");
+    // TODO: navigate to create new chapter form!
+    navigate(`/course/${courseId}/new-chapter`, {
+      state: { createNewChapter: false, data: { courseName, courseDes } },
+    });
   };
 
   return (
@@ -21,7 +41,7 @@ function ChapterCard({ title, onClick, isReporting, score }) {
       onClick={onClick}
       className="relative flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl cursor-pointer"
     >
-      <h2>{title}</h2>
+      <h2>{courseName}</h2>
       {isReporting ? (
         <p className="font-bold text-success-30 mr-10">{score}</p>
       ) : (
@@ -60,12 +80,21 @@ function ChapterCard({ title, onClick, isReporting, score }) {
             </Transition>
           </Menu>
 
-          <DeleteModal
+          <Modal
             isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            title="Delete Confirmation"
-            content={title}
-          />
+            header="Delete Confirmation"
+            primaryButtonName="Delete"
+            handleSecondary={closeModal}
+            handlePrimary={handleDelete}
+            btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
+          >
+            <section className="mt-2">
+              <p className="text-sm text-gray-500">
+                Are you sure want to delete chapter{" "}
+                <span className="font-semibold">{courseName}</span>?
+              </p>
+            </section>
+          </Modal>
         </>
       )}
     </section>

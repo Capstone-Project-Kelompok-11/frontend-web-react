@@ -1,9 +1,9 @@
 import React from "react";
-import MyCourse from "../components/organism/MyCourse/MyCourse.organism";
-import RatingCourse from "../components/organism/RatingCourse/RatingCourse.organism";
-import HeaderProfile from "../components/organism/HeaderProfile/HeaderProfile.molecul";
-import Calendar from "../components/organism/Calender/Calender.organism";
-import TodaysEvent from "../components/organism/TodaysEvent/TodaysEvent.organism";
+import MyCourse from "../../components/organism/MyCourse/MyCourse.organism";
+import RatingCourse from "../../components/organism/RatingCourse/RatingCourse.organism";
+import HeaderProfile from "../../components/organism/HeaderProfile/HeaderProfile.molecul";
+import Calendar from "../../components/organism/Calender/Calender.organism";
+import TodaysEvent from "../../components/organism/TodaysEvent/TodaysEvent.organism";
 
 function ContentProfile() {
   return (
