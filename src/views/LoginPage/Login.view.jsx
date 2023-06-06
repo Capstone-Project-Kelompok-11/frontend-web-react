@@ -6,11 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
+import useSWR from "swr";
+import { useDispatch } from "react-redux";
 
-function Login() {
+function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -19,6 +22,7 @@ function Login() {
     },
     onSubmit: (values) => {
       console.log(values);
+
       setLoginSuccess(true);
     },
     validate: (values) => {
@@ -52,7 +56,7 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar isLogged={props.isLogged} />
       <ToastContainer position="top-center" autoClose={1000} />
       <div className="container mx-auto bg-[url('./assets/bgLanding.png')] min-h-screen">
         <div className="flex justify-center items-center h-screen text-base">
