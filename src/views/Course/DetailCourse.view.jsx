@@ -6,7 +6,7 @@ import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
 
 function DetailCourseView() {
-  const { id: id_course } = useParams();
+  const { id_course } = useParams();
   const navigate = useNavigate();
   // TODO: fetch data
 
@@ -45,7 +45,7 @@ function DetailCourseView() {
               <PlusIcon width={30} height={30} onClick={handleAddChapter} />
             </section>
 
-            <section className="h-96 overflow-y-auto">
+            <section className="h-96 overflow-y-auto mb-4">
               <section className="flex flex-col gap-3 px-2 py-3">
                 {dummyData.length ? (
                   dummyData.map((item) => (

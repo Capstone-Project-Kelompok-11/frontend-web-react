@@ -99,7 +99,7 @@ function ReportingSummary() {
           <section className="flex flex-col gap-2">
             <h3 className="font-medium text-xl">Nilai Chapter</h3>
 
-            <section className="h-96 overflow-y-auto">
+            <section className="h-96 overflow-y-auto mb-4">
               <section className="flex flex-col gap-3 px-2 py-3">
                 {dummyData.length ? (
                   dummyData.map((item) => (
