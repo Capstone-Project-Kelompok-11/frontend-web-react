@@ -48,7 +48,7 @@ function RootRouter() {
               path="/course/:id_course/chapter/:id_chapter"
               element={<DetailChapter />}
             />
-            <Route path="/course/:id" element={<DetailCourseView />} />
+            <Route path="/course/:id_course" element={<DetailCourseView />} />
             <Route path="/reporting" element={<ReportingView />} />
             <Route
               path="/reporting/:course_name"
@@ -62,10 +62,7 @@ function RootRouter() {
             <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
           </Route>
         ) : (
-          <Route
-            path="*"
-            element={<Navigate to="/login" replace={true} />} // Alihkan ke halaman login jika tidak ada token
-          />
+          <Route path="*" element={<Navigate to="/login" replace={true} />} />
         )}
       </Routes>
     </BrowserRouter>
