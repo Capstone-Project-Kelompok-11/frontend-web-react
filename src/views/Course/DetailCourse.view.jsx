@@ -61,23 +61,6 @@ function DetailCourseView() {
                     Create a new chapter if there is no material chapter
                   </p>
                 )}
-                <section className="h-96 overflow-y-auto">
-                  <section className="flex flex-col gap-3 px-2 py-3">
-                    {dummyData.length ? (
-                      dummyData.map((item) => (
-                        <ChapterCard
-                          {...item}
-                          key={item.id}
-                          courseId={item.id}
-                        />
-                      ))
-                    ) : (
-                      <p className="text-light-90 text-center">
-                        Create a new chapter if there is no material chapter
-                      </p>
-                    )}
-                  </section>
-                </section>
               </section>
             </section>
           </section>
