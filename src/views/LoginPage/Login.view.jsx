@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
-import useSWR from "swr";
 import { useDispatch } from "react-redux";
+import { fetchLogin } from "../../utils/fetcherMethod";
 
 function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +22,7 @@ function Login(props) {
     },
     onSubmit: (values) => {
       console.log(values);
-
+      fetchLogin(values);
       setLoginSuccess(true);
     },
     validate: (values) => {
