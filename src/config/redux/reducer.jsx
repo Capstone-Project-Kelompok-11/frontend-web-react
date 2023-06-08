@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import quizSlice from "./Quiz/quizSlice";
-import sessionSlice from "./Session/sessionSlice";
+import sessionSlice from "./session/sessionSlice/sessionSlice";
 
 const reducer = combineReducers({
   quiz: quizSlice.reducer,
