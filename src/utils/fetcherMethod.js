@@ -10,19 +10,22 @@ const config = {
   },
 };
 
-export const fetcher = async (url) => {
+export const getResource = async (url) => {
   try {
-    const res = await axios.get(`https://skfw.net/${url}`, config);
+    const res = await axios.get(
+      `${import.meta.env.VITE_API_URL}${url}`,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const fetchLogin = (value) => {
+export const login = (value) => {
   try {
     const res = axios
-      .post(`https://skfw.net/api/v1/users/login`, {
+      .post(`${import.meta.env.VITE_API_URL}api/v1/users/login`, {
         username: "admin",
         ...value,
       })
@@ -34,25 +37,36 @@ export const fetchLogin = (value) => {
     console.error(error);
   }
 };
-export const fetchPost = async (url, value) => {
+export const sendPostRequest = async (url, value) => {
   try {
-    const res = await axios.post(`https://skfw.net/${url}`, value, config);
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}${url}`,
+      value,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
-export const fetchUpdate = (url, value) => {
+export const updateResource = (url, value) => {
   try {
-    const res = axios.put(`https://skfw.net/${url}`, value, config);
+    const res = axios.put(
+      `${import.meta.env.VITE_API_URL}${url}`,
+      value,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
-export const fetchDelete = async (url) => {
+export const deleteRequest = async (url) => {
   try {
-    const res = await axios.delete(`https://skfw.net/${url}`, config);
+    const res = await axios.delete(
+      `${import.meta.env.VITE_API_URL}${url}`,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
