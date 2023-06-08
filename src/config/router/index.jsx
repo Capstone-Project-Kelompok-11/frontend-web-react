@@ -15,10 +15,10 @@ import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
+import Cookies from "js-cookie";
 
 function RootRouter() {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODYxMzE4NzY3MTEsImlhdCI6MTY4NjA0NTQ3Njc4NSwidWlkIjoiODY5NDc2YWY0Zjk4NDcyZGI3Zjk3YTljZmU1ZGE0NmYifQ.M057r96A-hehdZsqV0650Horz6V4a4ftIytFxQlMInQ";
+  const token = Cookies.get("token");
 
   const isAuthenticated = !!token;
 
