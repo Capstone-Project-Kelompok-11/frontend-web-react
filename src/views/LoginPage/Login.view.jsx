@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
 import { useDispatch } from "react-redux";
-import { fetchLogin } from "../../utils/fetcherMethod";
+import { login } from "../../utils/fetcherMethod";
 
 function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -21,8 +21,7 @@ function Login(props) {
       password: "",
     },
     onSubmit: (values) => {
-      console.log(values);
-      fetchLogin(values);
+      login(values);
       setLoginSuccess(true);
     },
     validate: (values) => {
