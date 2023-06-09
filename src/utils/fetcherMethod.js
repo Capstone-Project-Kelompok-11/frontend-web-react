@@ -25,13 +25,12 @@ export const getRequest = async (url) => {
 export const login = async (value) => {
   try {
     await axios
-      .post(`${import.meta.env.VITE_API_URL}api/v1/users/login`, {
+      .post(`${import.meta.env.VITE_API_URL}/api/v1/users/login`, {
         username: "admin",
         ...value,
       })
       .then((res) => {
         Cookies.set("token", res.data.data.token);
-        return res.data.data.token;
       });
   } catch (error) {
     console.error(error);
