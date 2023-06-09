@@ -19,14 +19,12 @@ import Cookies from "js-cookie";
 
 function RootRouter() {
   const token = Cookies.get("token");
-
   const isAuthenticated = !!token;
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
         {isAuthenticated ? (
           <Route element={<DashboardTemplate />}>
             <Route path="/dashboard" element={<DashboardView />} />
@@ -60,9 +58,16 @@ function RootRouter() {
             />
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
+            <Route
+              path="*"
+              element={<Navigate to="/dashboard" replace={true} />}
+            />
           </Route>
         ) : (
-          <Route path="*" element={<Navigate to="/login" replace={true} />} />
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Navigate to="/login" replace={true} />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>
