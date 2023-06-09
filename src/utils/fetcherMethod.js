@@ -10,7 +10,7 @@ const config = {
   },
 };
 
-export const getResource = async (url) => {
+export const getRequest = async (url) => {
   try {
     const res = await axios.get(
       `${import.meta.env.VITE_API_URL}${url}`,
@@ -22,9 +22,9 @@ export const getResource = async (url) => {
   }
 };
 
-export const login = (value) => {
+export const login = async (value) => {
   try {
-    const res = axios
+    await axios
       .post(`${import.meta.env.VITE_API_URL}api/v1/users/login`, {
         username: "admin",
         ...value,
@@ -37,7 +37,8 @@ export const login = (value) => {
     console.error(error);
   }
 };
-export const sendPostRequest = async (url, value) => {
+
+export const postRequest = async (url, value) => {
   try {
     const res = await axios.post(
       `${import.meta.env.VITE_API_URL}${url}`,
@@ -49,7 +50,8 @@ export const sendPostRequest = async (url, value) => {
     console.error(error);
   }
 };
-export const updateResource = (url, value) => {
+
+export const updateRequest = (url, value) => {
   try {
     const res = axios.put(
       `${import.meta.env.VITE_API_URL}${url}`,
@@ -61,6 +63,7 @@ export const updateResource = (url, value) => {
     console.error(error);
   }
 };
+
 export const deleteRequest = async (url) => {
   try {
     const res = await axios.delete(
