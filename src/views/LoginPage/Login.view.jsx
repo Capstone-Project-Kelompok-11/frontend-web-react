@@ -6,23 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
-import { useDispatch } from "react-redux";
 import { login } from "../../utils/fetcherMethod";
 
 function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      login(values);
-      setLoginSuccess(true);
+    onSubmit: async (values) => {
+      try {
+        await login(values);
+        setLoginSuccess(true);
+      } catch (error) {
+        console.log("Login error:", error);
+      }
     },
     validate: (values) => {
       const errors = {};
