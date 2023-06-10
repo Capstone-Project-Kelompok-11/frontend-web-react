@@ -15,7 +15,7 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
       dispatch(
         quizSlice.actions.setGambarSoal(URL.createObjectURL(e.target.files[0]))
       );
-      setFieldValue;
+      setFieldValue(e.target.files[0]);
     }
   };
 
@@ -63,14 +63,18 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
                     </label>
                   </div>
                 </div>
-
+                {console.log("index check", index, values.question[index])}
                 <div className="flex flex-col items-start gap-3 py-4 px-5">
                   <div className="flex justify-items-center gap-4">
                     <Field
-                      name={`question.${index}.jawaban${index}`}
+                      name={`question.${index}.jawaban`}
                       type="radio"
                       value={values.question[index].input1}
                       className="w-5"
+                      checked={
+                        values.question[index].input1 ===
+                        values.question[index].jawaban
+                      }
                     />
                     <Field
                       name={`question.${index}.input1`}
@@ -81,10 +85,14 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
 
                   <div className="flex justify-items-center gap-4">
                     <Field
-                      name={`question.${index}.jawaban${index}`}
+                      name={`question.${index}.jawaban`}
                       type="radio"
                       value={values.question[index].input2}
                       className="w-5"
+                      checked={
+                        values.question[index].input2 ===
+                        values.question[index].jawaban
+                      }
                     />
                     <Field
                       name={`question.${index}.input2`}
@@ -95,10 +103,14 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
 
                   <div className="flex justify-items-center gap-4">
                     <Field
-                      name={`question.${index}.jawaban${index}`}
+                      name={`question.${index}.jawaban`}
                       type="radio"
                       value={values.question[index].input3}
                       className="w-5"
+                      checked={
+                        values.question[index].input3 ===
+                        values.question[index].jawaban
+                      }
                     />
                     <Field
                       name={`question.${index}.input3`}
@@ -109,10 +121,14 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
 
                   <div className="flex justify-items-center gap-4">
                     <Field
-                      name={`question.${index}.jawaban${index}`}
+                      name={`question.${index}.jawaban`}
                       type="radio"
                       value={values.question[index].input4}
                       className="w-5"
+                      checked={
+                        values.question[index].input4 ===
+                        values.question[index].jawaban
+                      }
                     />
                     <Field
                       name={`question.${index}.input4`}
@@ -132,7 +148,15 @@ function QuizInput({ arrayHelpers, values, setFieldValue }) {
               </button>
               <button
                 type="button"
-                onClick={() => arrayHelpers.push(index + 1, {})} // insert an empty string at a position
+                onClick={() =>
+                  arrayHelpers.push({
+                    input1: "",
+                    input2: "",
+                    input3: "",
+                    input4: "",
+                    jawaban: null,
+                  })
+                } // insert an empty string at a position
               >
                 <PlusIcon width={24} height={26} />
               </button>

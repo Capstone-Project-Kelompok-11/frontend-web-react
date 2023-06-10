@@ -37,6 +37,8 @@ function Quiz() {
                               input2: "",
                               input3: "",
                               input4: "",
+                              soalImage: null,
+                              jawaban: null,
                             })
                           }
                         />
