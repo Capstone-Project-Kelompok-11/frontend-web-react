@@ -5,9 +5,11 @@ export const makeRupiahValue = (price) =>
     maximumSignificantDigits: 1,
   }).format(price);
 
-export const transformDate = (date, dateStyle = "medium") =>
-  Intl.DateTimeFormat("en-us", {
-    dateStyle,
+export const transformDate = (date) =>
+  Intl.DateTimeFormat("en-gb", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
   }).format(new Date(date));
 
 export const getRandomBorderColor = () => {
@@ -25,13 +27,13 @@ export const getRandomBorderColor = () => {
 };
 
 export const getSimpleName = (input, title) => {
-  const raw = input.split(" ");
+  const raw = input?.split(" ") || "";
 
   if (title === "Responsible") {
     return raw[0];
   }
 
-  if (raw.length > 1) {
+  if (raw?.length > 1) {
     return `${raw[0]} ${raw[1]}`;
   }
 
