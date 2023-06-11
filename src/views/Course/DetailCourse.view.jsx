@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getRequest } from "../../utils/fetcherMethod";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
@@ -12,7 +12,7 @@ function DetailCourseView() {
   const { data, isLoading } = useSWR(
     `/api/v1/admin/course?id=${id_course}`,
     getRequest,
-    { refreshInterval: 5000 }
+    { refreshInterval: 2000 }
   );
 
   if (isLoading) {
