@@ -1,38 +1,49 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { dummyData, thumbnailCourseContent } from "./dummy";
+import { getRequest } from "../../utils/fetcherMethod";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
 import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
+import useSWR from "swr";
 
 function DetailCourseView() {
-  const { id } = useParams();
+  const { id_course } = useParams();
   const navigate = useNavigate();
-  // TODO: fetch data by id
+  const { data, isLoading } = useSWR(
+    `/api/v1/admin/course?id=${id_course}`,
+    getRequest,
+    { refreshInterval: 2000 }
+  );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
   const handleAddChapter = () => {
-    navigate(`/course/${id}/new-chapter`, {
+    navigate(`/course/${id_course}/new-chapter`, {
       state: { createNewChapter: true },
+    });
+  };
+
+  const handleChapterClick = (item) => {
+    navigate(`/course/${id_course}/chapter/${item.id}`, {
+      state: {
+        data: item,
+      },
     });
   };
 
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
-      <p className="text-xl">My Course {id}</p>
+      <p className="text-xl">My Course</p>
 
       <section className="relative p-10 rounded-2xl bg-warning-10 h-48">
-        <CourseThumbnailCard data={thumbnailCourseContent} />
+        <CourseThumbnailCard data={data?.data} />
 
-        <section className="flex flex-col gap-20 float-right w-[70%]">
-          <section>
-            <h2 className="font-bold text-3xl">UI Design</h2>
-            <p className="text-sm">
-              User interface design (UI design) is an important part of
-              developing effective digital products. UI design involves
-              designing an easy-to-use and attractive user interface, and paying
-              attention to aspects such as navigation, layout, interaction and
-              visual aesthetics.
-            </p>
+        <section className="flex flex-col gap-8 float-right w-[70%]">
+          <section className="flex flex-col gap-2">
+            <h2 className="font-bold text-3xl">{data?.data?.name}</h2>
+            <p className="text-sm h-24">{data?.data?.description}</p>
           </section>
 
           <section className="flex flex-col gap-3">
@@ -41,12 +52,19 @@ function DetailCourseView() {
               <PlusIcon width={30} height={30} onClick={handleAddChapter} />
             </section>
 
-            <section className="h-96 overflow-y-auto">
+            <section className="h-96 overflow-y-auto mb-4">
               <section className="flex flex-col gap-3 px-2 py-3">
-                {dummyData.length ? (
-                  dummyData.map((item) => (
-                    <ChapterCard {...item} key={item.id} courseId={id} />
-                  ))
+                {data?.data?.modules?.length ? (
+                  data.data.modules.map((item) => {
+                    return (
+                      <ChapterCard
+                        {...item}
+                        key={item.id}
+                        courseId={id_course}
+                        onClick={() => handleChapterClick(item)}
+                      />
+                    );
+                  })
                 ) : (
                   <p className="text-light-90 text-center">
                     Create a new chapter if there is no material chapter
