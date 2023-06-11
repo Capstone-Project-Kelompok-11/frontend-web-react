@@ -23,12 +23,14 @@ export const LIST_COLUMN_ORDERS = [
   {
     Header: "Payment",
     accessor: "paid",
-    Cell: ({ row: { original } }) => (
-      <Badge
-        variant={original.cancel ? "cancel" : original.paid ? "paid" : "unpaid"}
-        text={original.cancel ? "cancel" : original.paid ? "paid" : "unpaid"}
-      />
-    ),
+    Cell: ({ row: { original } }) => {
+      const paidVal = original.cancel
+        ? "cancel"
+        : original.paid
+        ? "paid"
+        : "unpaid";
+      return <Badge variant={paidVal} text={paidVal} />;
+    },
   },
   {
     Header: "Total",
