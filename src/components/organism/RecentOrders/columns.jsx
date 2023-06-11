@@ -18,20 +18,23 @@ export const LIST_COLUMN_ORDERS = [
   },
   {
     Header: "Course",
-    accessor: "course",
+    accessor: "name",
   },
   {
     Header: "Payment",
-    accessor: "payment",
+    accessor: "paid",
     Cell: ({ row: { original } }) => (
-      <Badge variant={original.payment} text={original.payment} />
+      <Badge
+        variant={original.cancel ? "cancel" : original.paid ? "paid" : "unpaid"}
+        text={original.cancel ? "cancel" : original.paid ? "paid" : "unpaid"}
+      />
     ),
   },
   {
     Header: "Total",
     accessor: "total",
     Cell: ({ row: { original } }) => {
-      const price = makeRupiahValue(original.total);
+      const price = makeRupiahValue(original.price);
 
       return (
         <section className="flex justify-center gap-3 font-bold">
