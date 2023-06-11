@@ -6,7 +6,7 @@ import { listAllCourseCard } from "../AllCourseCard/dummyData";
 function AllCourse() {
   return (
     <div className="text-center">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 ">
         <p className="text-2xl">All Course</p>
         <Link
           to="/course/new-course"
@@ -16,7 +16,7 @@ function AllCourse() {
         </Link>
       </div>
       {listAllCourseCard.length ? (
-        <div className="grid grid-cols-2 gap-7 h-100 mt-12 pr-10 mr-10 mb-12 justify-center overflow-y-auto">
+        <div className="grid grid-cols-2 gap-7 h-[28rem] mt-8 pr-12 bottom-0 pb-10 mr-8 justify-center overflow-y-auto ">
           {listAllCourseCard.map((list) => (
             <AllCourseCard key={list.id} {...list} />
           ))}
