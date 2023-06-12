@@ -24,19 +24,20 @@ function ChapterCard({
 
   const handleDelete = async () => {
     try {
-      await deleteRequest(/api/v1/admin/module?id=${id});
+      await deleteRequest(`/api/v1/admin/module?id=${id}`);
     } catch (error) {
       console.log(error.message);
     }
     closeModal();
   };
+
   const handleClick = (value) => {
     if (value === "Delete") {
       setIsOpen(true);
       return;
     }
 
-    navigate(/course/${courseId}/new-chapter, {
+    navigate(`/course/${courseId}/new-chapter`, {
       state: {
         createNewChapter: false,
         data: {
@@ -50,6 +51,7 @@ function ChapterCard({
       },
     });
   };
+
   return (
     <section className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl">
       <section
@@ -84,9 +86,9 @@ function ChapterCard({
                       {({ active }) => (
                         <button
                           type="button"
-                          className={text-center cursor-pointer rounded-md ${
-                            active && text-white ${getBgColor(value)}
-                          }}
+                          className={`text-center cursor-pointer rounded-md ${
+                            active && `text-white ${getBgColor(value)}`
+                          }`}
                           onClick={() => handleClick(value)}
                         >
                           {value}
@@ -97,27 +99,27 @@ function ChapterCard({
                 </Menu.Items>
               </Transition>
             </Menu>
-            </section>
+
             <Modal
-            isOpen={isOpen}
-            header="Delete Confirmation"
-            primaryButtonName="Delete"
-            handleSecondary={closeModal}
-            handlePrimary={handleDelete}
-            btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
-          >
-            <section className="mt-2">
-              <p className="text-sm text-gray-500">
-                Are you sure want to delete chapter{" "}
-                <span className="font-semibold">{name}</span>?
-              </p>
-            </section>
-          </Modal>
-        </>
-      )}
+              isOpen={isOpen}
+              header="Delete Confirmation"
+              primaryButtonName="Delete"
+              handleSecondary={closeModal}
+              handlePrimary={handleDelete}
+              btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
+            >
+              <section className="mt-2">
+                <p className="text-sm text-gray-500">
+                  Are you sure want to delete chapter{" "}
+                  <span className="font-semibold">{name}</span>?
+                </p>
+              </section>
+            </Modal>
+          </>
+        )}
+      </section>
     </section>
-  </section>
-);
+  );
 }
 
 export default ChapterCard;
