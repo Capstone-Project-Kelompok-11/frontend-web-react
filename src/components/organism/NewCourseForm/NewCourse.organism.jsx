@@ -41,7 +41,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
       <div className="w-full flex flex-row gap-6">
         <div className="w-96">
           <div className="mb-2 flex items-center">
-            <p className="font-bold">Course Thumbnail</p>
+            <p className="font-semibold">Course Thumbnail</p>
           </div>
           <div className="w-full h-270 bg-gray-200 flex items-center  rounded-xl justify-center rounded-10">
             <div className="image-container">
@@ -64,7 +64,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             <label htmlFor="courseName ">
               <div className="flex items-center">
                 <p className=" font-semibold">Course Name</p>
-                <span className="text-red-500">*</span>
+                <span className="text-red-500 font-semibold">*</span>
               </div>
             </label>
             <input
@@ -80,8 +80,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           <div className="mb-4">
             <label htmlFor="createDes">
               <div className="flex items-center">
-                <label className=" font-bold">Create Description</label>
-                <span className="text-red-500">*</span>
+                <label className=" font-semibold">Create Description</label>
+                <span className="text-red-500 font-semibold">*</span>
               </div>
             </label>
             <textarea
@@ -100,8 +100,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
         <div className="w-full flex  flex-col gap-2">
           <label htmlFor="coursePrice ">
             <div className="flex items-center">
-              <p className="font-bold">Course Price</p>
-              <span className="text-red-500">*</span>
+              <p className="font-semibold">Course Price</p>
+              <span className="text-red-500 font-semibold">*</span>
             </div>
           </label>
           <input
@@ -117,8 +117,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
         <div className=" w-full flex flex-col p-2 ml-4 relative">
           <label htmlFor="levelCourse ">
             <div className="flex items-center">
-              <p className=" font-bold">Level Course</p>
-              <span className="text-red-500">*</span>
+              <p className=" font-semibold">Level Course</p>
+              <span className="text-red-500 font-semibold">*</span>
             </div>
           </label>
           <select
@@ -140,8 +140,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
         <div className="w-full flex flex-col p-2 ml-2 relative">
           <label htmlFor="courseCategory ">
             <div className="flex items-center">
-              <p className="font-bold">Course Category</p>
-              <span className="text-red-500">*</span>
+              <p className="font-semibold">Course Category</p>
+              <span className="text-red-500 font-semibold">*</span>
             </div>
           </label>
           <div>
@@ -163,7 +163,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </div>
         </div>
       </div>
-      <div className="flex font-bold mt-6">
+      <div className="flex font-semibold mt-6">
         <button className="justify-start  bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold">
           Back
         </button>

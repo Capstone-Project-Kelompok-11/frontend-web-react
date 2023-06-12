@@ -48,7 +48,7 @@ function ReportingSummary() {
       <section className="relative p-10 rounded-2xl bg-light-blue-10 h-48">
         <UserProfileThumbnailCard data={thumbnailCourseContent} />
 
-        <section className="flex flex-col gap-20 float-right w-[65%]">
+        <section className="flex flex-col gap-16 float-right w-[65%]">
           <section className="flex flex-col gap-3">
             <h2 className="font-bold text-3xl">Summary All Material</h2>
 
@@ -97,7 +97,7 @@ function ReportingSummary() {
             </section>
           </section>
 
-          <section className="flex flex-col gap-2">
+          <section className="flex flex-col gap-2 my-4">
             <h3 className="font-medium text-xl">Nilai Chapter</h3>
 
             <section className="h-96 overflow-y-auto mb-4">

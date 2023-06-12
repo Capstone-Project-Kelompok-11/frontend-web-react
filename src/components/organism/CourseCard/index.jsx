@@ -4,17 +4,13 @@ import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
-import { deleteRequest } from "../../../utils/fetcherMethod";
 
-function ChapterCard({
-  id,
-  name,
-  description,
-  thumbnail,
-  video,
-  document,
+function CourseCard({
+  courseName,
+  courseDes,
+  coursePrice,
+  score,
   onClick,
-  courseId,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -22,41 +18,34 @@ function ChapterCard({
 
   const closeModal = () => setIsOpen(false);
 
-  const handleDelete = async () => {
-    try {
-      await deleteRequest(/api/v1/admin/module?id=${id});
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleDelete = () => {
+    alert("button yes delete has been clicked!");
     closeModal();
+    //TODO: finish this logic
   };
+
   const handleClick = (value) => {
     if (value === "Delete") {
       setIsOpen(true);
       return;
     }
 
-    navigate(/course/${courseId}/new-chapter, {
+    // TODO: navigate to create new chapter form!
+    navigate(`/course/new-course`, {
       state: {
-        createNewChapter: false,
-        data: {
-          id,
-          courseName: name,
-          courseDes: description,
-          thumbnail,
-          video,
-          document,
-        },
+        createNewCourse: false,
+        data: { courseName, courseDes, coursePrice },
       },
     });
   };
+
   return (
-    <section className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl">
+    <section className="flex items-center ">
       <section
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
       >
-        <h2>{name}</h2>
+        <h2>{courseName}</h2>
       </section>
 
       <section className="relative flex items-center">
@@ -84,9 +73,9 @@ function ChapterCard({
                       {({ active }) => (
                         <button
                           type="button"
-                          className={text-center cursor-pointer rounded-md ${
-                            active && text-white ${getBgColor(value)}
-                          }}
+                          className={`text-center cursor-pointer rounded-md ${
+                            active && `text-white ${getBgColor(value)}`
+                          }`}
                           onClick={() => handleClick(value)}
                         >
                           {value}
@@ -97,27 +86,27 @@ function ChapterCard({
                 </Menu.Items>
               </Transition>
             </Menu>
-            </section>
+
             <Modal
-            isOpen={isOpen}
-            header="Delete Confirmation"
-            primaryButtonName="Delete"
-            handleSecondary={closeModal}
-            handlePrimary={handleDelete}
-            btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
-          >
-            <section className="mt-2">
-              <p className="text-sm text-gray-500">
-                Are you sure want to delete chapter{" "}
-                <span className="font-semibold">{name}</span>?
-              </p>
-            </section>
-          </Modal>
-        </>
-      )}
+              isOpen={isOpen}
+              header="Delete Confirmation"
+              primaryButtonName="Delete"
+              handleSecondary={closeModal}
+              handlePrimary={handleDelete}
+              btnPrimaryClassName="bg-danger-70 hover:bg-danger-90"
+            >
+              <section className="mt-2">
+                <p className="text-sm text-gray-500">
+                  Are you sure want to delete course{" "}
+                  <span className="font-semibold">{courseName}</span>?
+                </p>
+              </section>
+            </Modal>
+          </>
+        )}
+      </section>
     </section>
-  </section>
-);
+  );
 }
 
-export default ChapterCard;
+export default CourseCard;
