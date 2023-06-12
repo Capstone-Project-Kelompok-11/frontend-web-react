@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
+import { deleteRequest } from "../../../utils/fetcherMethod";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
-import { deleteRequest } from "../../../utils/fetcherMethod";
 
 function ChapterCard({
   id,
@@ -15,6 +15,7 @@ function ChapterCard({
   document,
   onClick,
   courseId,
+  score = null,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -63,7 +64,13 @@ function ChapterCard({
 
       <section className="relative flex items-center">
         {isReporting ? (
-          <p className="font-bold text-success-30 mr-10">{score}</p>
+          <p
+            className={`font-bold  mr-10 uppercase ${
+              score ? "text-success-30" : "text-danger-30"
+            }`}
+          >
+            {score ?? "no score"}
+          </p>
         ) : (
           <>
             <Menu>

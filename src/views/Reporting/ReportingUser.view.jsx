@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
-import UserListCourseCard from "../../components/organism/UserListCourseCard/UserListCourseCard.organism";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getRequest } from "../../utils/fetcherMethod";
+import UserListCourseCard from "../../components/organism/UserListCourseCard/UserListCourseCard.organism";
 import useSWR from "swr";
 
 function ReportingUserView() {
@@ -10,8 +10,9 @@ function ReportingUserView() {
     getRequest
   );
   const { course_name } = useParams();
+  const { state } = useLocation();
   const filteredData = data?.data?.find((user) => user.name === course_name);
-  
+
   return (
     <div>
       <h1 className="py-4 text-xl">{course_name}</h1>
@@ -26,7 +27,7 @@ function ReportingUserView() {
           <Link
             key={user.username}
             to={`/reporting/${course_name}/${user.name}`}
-            state={user}
+            state={{ user, ...state }}
           >
             <UserListCourseCard {...user} />
           </Link>
