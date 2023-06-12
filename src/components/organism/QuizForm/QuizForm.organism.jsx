@@ -27,6 +27,7 @@ function QuizForm({ values, arrayHelpers, setFieldValue }) {
           />
         </div>
       </section>
+      
     </div>
   );
 }
