@@ -21,7 +21,7 @@ function ReportingView() {
             <Link
               key={list.id}
               to={`/reporting/${list.name}`}
-              state={{ course_modules: list.modules }}
+              state={{ course_modules: list.modules, course_id: list.id }}
             >
               <UserListCard {...list} />
             </Link>
