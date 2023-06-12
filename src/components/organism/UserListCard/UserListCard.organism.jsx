@@ -3,11 +3,11 @@ import { getRandomBorderColor } from "../../../utils/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function UserListCard({
-  courseName,
-  totalMaterial,
+  name,
+  modules,
   totalCourse,
-  totalMember,
-  category,
+  member_count,
+  category_courses,
 }) {
   const randomBorderColor = getRandomBorderColor();
   return (
@@ -16,16 +16,16 @@ function UserListCard({
         className={`p-4 my-4 rounded-xl shadow-lg border-l-4 ${randomBorderColor}`}
       >
         <div className="grid grid-cols-3">
-          <h1 className="text-xl font-bold">{courseName}</h1>
+          <h1 className="text-xl font-bold">{name}</h1>
           <div className="flex items-center pt-5 pl-2">
             <AnonymousIcon />
-            <p className="text-2xl font-bold pt-1">{totalMember}</p>
+            <p className="text-2xl font-bold pt-1">{member_count}</p>
           </div>
 
-          <p className="pt-6">{category} </p>
+          <p className="pt-6">Category {category_courses} </p>
         </div>
         <div className="flex py-4 -mt-4 gap-5 text-gray-500 text-sm">
-          <p>{totalMaterial} Material</p>
+          <p>{modules?.length} Material</p>
           <p>{totalCourse} Content</p>
         </div>
       </div>
