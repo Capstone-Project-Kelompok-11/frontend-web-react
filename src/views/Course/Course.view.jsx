@@ -5,7 +5,6 @@ import useSWR from "swr";
 
 function CourseView() {
   const { data } = useSWR("/api/v1/admin/courses?size=8&page=1", getRequest);
-  console.log(data);
   return <AllCourse {...data} />;
 }
 
