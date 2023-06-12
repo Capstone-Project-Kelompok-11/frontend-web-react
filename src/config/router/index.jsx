@@ -15,18 +15,16 @@ import ReportingSummary from "../../views/Reporting/ReportingSummary.view";
 import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
+import Cookies from "js-cookie";
 
 function RootRouter() {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODYxMzE4NzY3MTEsImlhdCI6MTY4NjA0NTQ3Njc4NSwidWlkIjoiODY5NDc2YWY0Zjk4NDcyZGI3Zjk3YTljZmU1ZGE0NmYifQ.M057r96A-hehdZsqV0650Horz6V4a4ftIytFxQlMInQ";
-
+  const token = Cookies.get("token");
   const isAuthenticated = !!token;
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
         {isAuthenticated ? (
           <Route element={<DashboardTemplate />}>
             <Route path="/dashboard" element={<DashboardView />} />
@@ -60,9 +58,16 @@ function RootRouter() {
             />
             <Route path="/profile" element={<ProfileView />} />
             <Route path="/profile/mycourse" element={<ProfileMyCourse />} />
+            <Route
+              path="*"
+              element={<Navigate to="/dashboard" replace={true} />}
+            />
           </Route>
         ) : (
-          <Route path="*" element={<Navigate to="/login" replace={true} />} />
+          <>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Navigate to="/login" replace={true} />} />
+          </>
         )}
       </Routes>
     </BrowserRouter>

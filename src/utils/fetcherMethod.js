@@ -10,49 +10,65 @@ const config = {
   },
 };
 
-export const fetcher = async (url) => {
+export const getRequest = async (url) => {
   try {
-    const res = await axios.get(`https://skfw.net/${url}`, config);
+    const res = await axios.get(
+      `${import.meta.env.VITE_BASE_URL}${url}`,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const fetchLogin = (value) => {
+export const login = async (value) => {
   try {
-    const res = axios
-      .post(`https://skfw.net/api/v1/users/login`, {
+    await axios
+      .post(`${import.meta.env.VITE_BASE_URL}/api/v1/users/login`, {
         username: "admin",
         ...value,
       })
       .then((res) => {
         Cookies.set("token", res.data.data.token);
-        return res.data.data.token;
       });
   } catch (error) {
     console.error(error);
   }
 };
-export const fetchPost = async (url, value) => {
+
+export const postRequest = async (url, value) => {
   try {
-    const res = await axios.post(`https://skfw.net/${url}`, value, config);
+    const res = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}${url}`,
+      value,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
-export const fetchUpdate = (url, value) => {
+
+export const updateRequest = (url, value) => {
   try {
-    const res = axios.put(`https://skfw.net/${url}`, value, config);
+    const res = axios.put(
+      `${import.meta.env.VITE_BASE_URL}${url}`,
+      value,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
   }
 };
-export const fetchDelete = async (url) => {
+
+export const deleteRequest = async (url) => {
   try {
-    const res = await axios.delete(`https://skfw.net/${url}`, config);
+    const res = await axios.delete(
+      `${import.meta.env.VITE_BASE_URL}${url}`,
+      config
+    );
     return res.data;
   } catch (error) {
     console.error(error);
