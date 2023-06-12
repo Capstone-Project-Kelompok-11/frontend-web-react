@@ -1,11 +1,11 @@
 import React from "react";
-import { listAllCourse } from "./dummyData";
 import ListAllCourse from "../../molecules/ListAllCourse/ListAllCourse.molecul";
 
-function ListCourse() {
+function ListCourse({allCourse}) {
+ 
   return (
     <>
-      {listAllCourse.map((list) => (
+      {allCourse?.data?.map((list) => (
         <ListAllCourse key={list.id} course={list} />
       ))}
     </>
