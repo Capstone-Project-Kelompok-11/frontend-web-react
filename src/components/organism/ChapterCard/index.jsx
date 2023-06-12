@@ -15,6 +15,7 @@ function ChapterCard({
   document,
   onClick,
   courseId,
+  score = null,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -63,7 +64,13 @@ function ChapterCard({
 
       <section className="relative flex items-center">
         {isReporting ? (
-          <p className="font-bold text-success-30 mr-10">{score}</p>
+          <p
+            className={`font-bold  mr-10 uppercase ${
+              score ? "text-success-30" : "text-danger-30"
+            }`}
+          >
+            {score ?? "no score"}
+          </p>
         ) : (
           <>
             <Menu>
