@@ -1,10 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { getRequest } from "../../utils/fetcherMethod";
 import { getThumbnailCourseContent } from "./constant";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
-import Modal from "../../components/molecules/Modal/Modal.molecul";
 import useSWR from "swr";
 
 function ReportingSummary() {
@@ -14,29 +13,12 @@ function ReportingSummary() {
     `/api/v1/admin/course/resumes?size=50&page=1`,
     getRequest
   );
-  const [isOpen, setIsOpen] = useState(false);
-  const [finalScore, setFinalScore] = useState("");
-  const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
   let finalData;
 
   const thumbnailCourseContent = useMemo(
     () => getThumbnailCourseContent(state, detail_user),
     []
   );
-
-  const closeModal = () => setIsOpen(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (finalScore) {
-      setIsOpen(true);
-    }
-  };
-
-  const handleGiveFinalScore = () => {
-    setIsFillFinalScore(false);
-    closeModal();
-  };
 
   if (!isLoading) {
     finalData = rawData?.data?.find(
@@ -63,38 +45,23 @@ function ReportingSummary() {
             <section className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">Summary All Material</h2>
 
-              {isFillFinalScore ? (
-                <form onSubmit={(e) => handleSubmit(e)} className="flex gap-3">
-                  <section className="flex gap-3 items-center">
-                    <label htmlFor="nilai">Input Nilai</label>
-                    <input
-                      type="number"
-                      name="nilai"
-                      id="nilai"
-                      placeholder="00"
-                      min="0"
-                      max="100"
-                      value={finalScore}
-                      onChange={(e) => setFinalScore(e.target.value)}
-                      className="p-2 py-1 outline-none rounded-md border-2 border-secondary-10 w-12 text-center placeholder:text-center"
-                    />
-                  </section>
+              <section className="flex gap-3 items-center font-semibold">
+                <h3>Nilai Akhir</h3>
+                <p
+                  className={`border-2 border-secondary-10 rounded-md p-2 py-1 ${
+                    finalData?.report?.score
+                      ? "text-success-30"
+                      : "text-danger-30"
+                  }`}
+                >
+                  {finalData?.report?.score ?? 0}
+                </p>
+              </section>
 
-                  <button
-                    type="submit"
-                    className="bg-primary-50 hover:bg-primary-70 duration-500 rounded-lg p-2 py-1 text-white"
-                  >
-                    save
-                  </button>
-                </form>
-              ) : (
-                <section className="flex gap-3 items-center font-semibold">
-                  <h3>Nilai Akhir</h3>
-                  <p className="border-2 border-secondary-10 text-success-30 rounded-md p-2 py-1">
-                    {finalScore}
-                  </p>
-                </section>
-              )}
+              <p className="text-sm font-medium text-secondary-50">
+                Nilai akhir merupakan rata-rata dari kuis yang telah dikerjakan
+                pada setiap chapternya
+              </p>
             </section>
 
             <section className="flex flex-col gap-2">
@@ -120,20 +87,6 @@ function ReportingSummary() {
           </section>
         )}
       </section>
-
-      <Modal
-        isOpen={isOpen}
-        header="Save Confirmation"
-        primaryButtonName="Save"
-        handleSecondary={closeModal}
-        handlePrimary={handleGiveFinalScore}
-        btnPrimaryClassName="bg-primary-70 hover:bg-primary-90"
-      >
-        <section className="mt-2 text-sm text-gray-500">
-          <p>Are you sure want to save this final score?</p>
-          <p>If you click Save, you can not edit it!</p>
-        </section>
-      </Modal>
     </section>
   );
 }
