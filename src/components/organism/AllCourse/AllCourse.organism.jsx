@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AllCourseCard from "../AllCourseCard/AllCourseCard.organism";
 import { listAllCourseCard } from "../AllCourseCard/dummyData";
 
-function AllCourse() {
+function AllCourse({ data }) {
   return (
     <div className="text-center">
       <div className="flex items-center gap-4 ">
@@ -17,7 +17,7 @@ function AllCourse() {
       </div>
       {listAllCourseCard.length ? (
         <div className="grid grid-cols-2 gap-7 h-[28rem] mt-8 pr-12 bottom-0 pb-10 mr-8 justify-center overflow-y-auto ">
-          {listAllCourseCard.map((list) => (
+          {data?.map((list) => (
             <AllCourseCard key={list.id} {...list} />
           ))}
         </div>
