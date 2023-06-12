@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { dummyData } from "../Course/dummy";
+import { getRequest } from "../../utils/fetcherMethod";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
 import Modal from "../../components/molecules/Modal/Modal.molecul";
+import useSWR from "swr";
 
 function ReportingSummary() {
   const { detail_user } = useParams();
+  const { data: rawData, isLoading } = useSWR(
+    `/api/v1/admin/course/resumes?size=50&page=1`,
+    getRequest
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [finalScore, setFinalScore] = useState("");
   const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
-  const { state } = useLocation()
-  
+  const { state } = useLocation();
+  let finalData;
+
   const thumbnailCourseContent = [
     {
       title: "Name",
@@ -19,11 +25,11 @@ function ReportingSummary() {
     },
     {
       title: "Email",
-      content: state.email,
+      content: state.user.email,
     },
     {
       title: "Phone",
-      content: state.phone,
+      content: state.user.phone,
     },
   ];
 
@@ -41,26 +47,28 @@ function ReportingSummary() {
     closeModal();
   };
 
+  if (!isLoading) {
+    finalData = rawData?.data?.find(
+      (item) => item.user.email === state.user.email
+    );
+  }
+
   return (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
       <p className="text-3xl">{detail_user}</p>
 
       <section className="relative p-10 rounded-2xl bg-light-blue-10 h-48">
-        <UserProfileThumbnailCard data={thumbnailCourseContent} />
+        <UserProfileThumbnailCard
+          data={thumbnailCourseContent}
+          avatar={state.user.image}
+        />
 
-        <section className="flex flex-col gap-20 float-right w-[65%]">
-          <section className="flex flex-col gap-3">
-            <h2 className="font-bold text-3xl">Summary All Material</h2>
-
-            <section className="flex justify-between items-center">
-              <Link
-                to="/myfile.pdf"
-                target="_blank"
-                download
-                className=" bg-danger-10 hover:bg-danger-30 duration-500 p-4 py-2 rounded-lg font-semibold"
-              >
-                Download
-              </Link>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <section className="flex flex-col gap-20 float-right w-[65%]">
+            <section className="flex flex-col gap-3">
+              <h2 className="font-bold text-3xl">Summary All Material</h2>
 
               {isFillFinalScore ? (
                 <form onSubmit={(e) => handleSubmit(e)} className="flex gap-3">
@@ -95,26 +103,29 @@ function ReportingSummary() {
                 </section>
               )}
             </section>
-          </section>
 
-          <section className="flex flex-col gap-2">
-            <h3 className="font-medium text-xl">Nilai Chapter</h3>
+            <section className="flex flex-col gap-2">
+              <h3 className="font-medium text-xl">Nilai Chapter</h3>
 
-            <section className="h-96 overflow-y-auto mb-4">
-              <section className="flex flex-col gap-3 px-2 py-3">
-                {dummyData.length ? (
-                  dummyData.map((item) => (
-                    <ChapterCard {...item} key={item.id} isReporting />
-                  ))
-                ) : (
-                  <p className="text-light-90 text-center">
-                    There is no material chapter
-                  </p>
-                )}
+              <section className="h-96 overflow-y-auto mb-4">
+                <section className="flex flex-col gap-3 px-2 py-3">
+                  {finalData?.report?.modules?.length
+                    ? finalData.report.modules.map(({ module, score }) => (
+                        <ChapterCard
+                          score={score}
+                          key={module.id}
+                          name={module.name}
+                          isReporting
+                        />
+                      ))
+                    : state.course_modules.map((item) => (
+                        <ChapterCard key={item.id} {...item} isReporting />
+                      ))}
+                </section>
               </section>
             </section>
           </section>
-        </section>
+        )}
       </section>
 
       <Modal
