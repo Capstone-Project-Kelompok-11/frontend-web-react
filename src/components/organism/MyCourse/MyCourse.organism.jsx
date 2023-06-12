@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import ListMyCourse from "../../molecules/ListMyCourse/ListMyCourse.molecul";
 import { listMyCourse } from "./dummyData";
 
-function MyCourse() {
+function MyCourse({course}) {
+  
   return (
     <div className="bg-light-blue/20 p-6 rounded-xl drop-shadow-lg shadow-lg">
       <h1 className="font-bold text-base">My Course</h1>
-      {listMyCourse.map((course) => (
+      {course?.data?.map((course) => (
         <ListMyCourse key={course.id} course={course} />
       ))}
       <div>

@@ -4,13 +4,17 @@ import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import { deleteRequest } from "../../../utils/fetcherMethod";
 
 function ChapterCard({
-  courseName,
-  courseDes,
-  courseId,
-  score,
+  id,
+  name,
+  description,
+  thumbnail,
+  video,
+  document,
   onClick,
+  courseId,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -18,10 +22,13 @@ function ChapterCard({
 
   const closeModal = () => setIsOpen(false);
 
-  const handleDelete = () => {
-    alert("button yes delete has been clicked!");
+  const handleDelete = async () => {
+    try {
+      await deleteRequest(`/api/v1/admin/module?id=${id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
     closeModal();
-    //TODO: finish this logic
   };
 
   const handleClick = (value) => {
@@ -30,9 +37,18 @@ function ChapterCard({
       return;
     }
 
-    // TODO: navigate to create new chapter form!
     navigate(`/course/${courseId}/new-chapter`, {
-      state: { createNewChapter: false, data: { courseName, courseDes } },
+      state: {
+        createNewChapter: false,
+        data: {
+          id,
+          courseName: name,
+          courseDes: description,
+          thumbnail,
+          video,
+          document,
+        },
+      },
     });
   };
 
@@ -42,10 +58,10 @@ function ChapterCard({
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
       >
-        <h2>{courseName}</h2>
+        <h2>{name}</h2>
       </section>
 
-      <section className="flex items-center">
+      <section className="relative flex items-center">
         {isReporting ? (
           <p className="font-bold text-success-30 mr-10">{score}</p>
         ) : (
@@ -95,7 +111,7 @@ function ChapterCard({
               <section className="mt-2">
                 <p className="text-sm text-gray-500">
                   Are you sure want to delete chapter{" "}
-                  <span className="font-semibold">{courseName}</span>?
+                  <span className="font-semibold">{name}</span>?
                 </p>
               </section>
             </Modal>
