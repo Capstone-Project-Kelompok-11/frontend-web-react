@@ -10,9 +10,9 @@ function ReportingView() {
     getRequest
   );
   return (
-    <div>
+    <div className="me-8">
       <h1 className="text-xl">My Course</h1>
-      <div className="mr-4 my-4 h-[32rem] overflow-y-auto">
+      <div className="my-4 h-[32rem] overflow-y-auto pe-5">
         {course?.data?.map((list) => (
           <Link key={list.id} to={`/reporting/${list.name}`}>
             <UserListCard {...list} />
