@@ -1,10 +1,17 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { userListName } from "../../components/organism/UserListCourseCard/dummyData";
 import UserListCourseCard from "../../components/organism/UserListCourseCard/UserListCourseCard.organism";
+import { getRequest } from "../../utils/fetcherMethod";
+import useSWR from "swr";
 
 function ReportingUserView() {
+  const { data, isLoading } = useSWR(
+    "/api/v1/admin/who/courses/enrolled?size=20&page=1",
+    getRequest
+  );
   const { course_name } = useParams();
+  const filteredData = data?.data?.find((user) => user.name === course_name);
+  
   return (
     <div>
       <h1 className="py-4 text-xl">{course_name}</h1>
@@ -12,11 +19,19 @@ function ReportingUserView() {
         <p>Name</p>
         <p>Aktivitas</p>
       </div>
-      {userListName.map((user) => (
-        <Link key={user.id} to={`/reporting/${course_name}/${user.name}`}>
-          <UserListCourseCard {...user} />
-        </Link>
-      ))}
+      {isLoading ? (
+        <p>Loading users...</p>
+      ) : (
+        filteredData?.users?.map((user) => (
+          <Link
+            key={user.username}
+            to={`/reporting/${course_name}/${user.name}`}
+            state={user}
+          >
+            <UserListCourseCard {...user} />
+          </Link>
+        ))
+      )}
     </div>
   );
 }

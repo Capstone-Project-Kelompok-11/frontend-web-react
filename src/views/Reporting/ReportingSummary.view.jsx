@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { dummyData } from "../Course/dummy";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
@@ -10,7 +10,8 @@ function ReportingSummary() {
   const [isOpen, setIsOpen] = useState(false);
   const [finalScore, setFinalScore] = useState("");
   const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
-
+  const { state } = useLocation()
+  
   const thumbnailCourseContent = [
     {
       title: "Name",
@@ -18,11 +19,11 @@ function ReportingSummary() {
     },
     {
       title: "Email",
-      content: "nandadepeel@gmail.com",
+      content: state.email,
     },
     {
       title: "Phone",
-      content: "+6285700871372",
+      content: state.phone,
     },
   ];
 
