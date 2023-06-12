@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
+import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
 
