@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import { getRequest } from "../../utils/fetcherMethod";
+import { getThumbnailCourseContent } from "./constant";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
 import Modal from "../../components/molecules/Modal/Modal.molecul";
@@ -8,6 +9,7 @@ import useSWR from "swr";
 
 function ReportingSummary() {
   const { detail_user } = useParams();
+  const { state } = useLocation();
   const { data: rawData, isLoading } = useSWR(
     `/api/v1/admin/course/resumes?size=50&page=1`,
     getRequest
@@ -15,23 +17,12 @@ function ReportingSummary() {
   const [isOpen, setIsOpen] = useState(false);
   const [finalScore, setFinalScore] = useState("");
   const [isFillFinalScore, setIsFillFinalScore] = useState(!finalScore);
-  const { state } = useLocation();
   let finalData;
 
-  const thumbnailCourseContent = [
-    {
-      title: "Name",
-      content: detail_user,
-    },
-    {
-      title: "Email",
-      content: state.user.email,
-    },
-    {
-      title: "Phone",
-      content: state.user.phone,
-    },
-  ];
+  const thumbnailCourseContent = useMemo(
+    () => getThumbnailCourseContent(state, detail_user),
+    []
+  );
 
   const closeModal = () => setIsOpen(false);
 
