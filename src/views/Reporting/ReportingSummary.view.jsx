@@ -40,7 +40,9 @@ function ReportingSummary() {
 
   if (!isLoading) {
     finalData = rawData?.data?.find(
-      (item) => item.user.email === state.user.email
+      (item) =>
+        item.user.email === state.user.email &&
+        item.report.course.id === state.course_id
     );
   }
 
