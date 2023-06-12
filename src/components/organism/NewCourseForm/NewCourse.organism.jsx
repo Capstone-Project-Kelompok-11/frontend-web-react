@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useFormik } from "formik";
 import {
   initCreateNewCourseValue,
@@ -7,15 +7,24 @@ import {
 import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
+import { useLocation } from "react-router-dom";
 
-const NewCourseForm = () => {
+const NewCourseForm = ({ createNewCourse, data = {} }) => {
+  const initData = useMemo(() =>
+    createNewCourse ? initCreateNewCourseValue : data
+  );
+  const { state } = useLocation();
+  console.log(state);
+
   const formik = useFormik({
-    initialValues: initCreateNewCourseValue,
+    initialValues: initData,
     validationSchema: validationCreateNewCourse,
     onSubmit: (values) => {
-      console.log(values);
-      alert("Succes");
-      formik.resetForm();
+      if (values) {
+        console.log(values);
+        alert("Succes");
+        formik.resetForm();
+      }
     },
   });
 
