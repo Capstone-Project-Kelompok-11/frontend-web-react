@@ -3,7 +3,8 @@ import { Menu, Transition } from "@headlessui/react";
 import BellIcon from "../../atoms/Icons/BellIcon.atom";
 import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
-import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -47,26 +48,26 @@ function NavigationBar() {
             <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 {({ active }) => (
-                  <Link
-                    to="/profile"
+                  <a
+                    href="/profile"
                     className={classNames(
-                      active && "bg-gray-100 font-semibold",
+                      active ? "bg-gray-100" : "",
                       "block px-4 py-2 text-sm text-gray-700"
                     )}
                   >
                     My Profile
-                  </Link>
+                  </a>
                 )}
               </Menu.Item>
 
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={handleLogout}
                     className={classNames(
-                      active && "bg-gray-100 font-semibold",
-                      "block px-4 py-2 text-sm text-gray-700"
+                      active ? "bg-gray-100" : "",
+                      "block px-4 py-2 text-sm text-gray-700 w-full text-start "
                     )}
-                    onClick={() => alert("logout has been clicked!")}
                   >
                     Sign out
                   </button>
