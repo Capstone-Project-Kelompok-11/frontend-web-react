@@ -8,15 +8,15 @@ import OrdersTable from "../../components/organism/RecentOrders/OrdersTable.orga
 
 function DashboardView() {
   const { data: dataStats, isLoading: dataStatsLoading } = useSWR(
-    "api/v1/admin/stats",
+    "/api/v1/admin/stats",
     getRequest
   );
   const { data: dataHistory, isLoading: dataHistoryLoading } = useSWR(
-    "api/v1/admin/checkout/history?size=8&page=1",
+    "/api/v1/admin/checkout/history?size=8&page=1",
     getRequest
   );
   const { data: dataCourses, isLoading: dataCoursesLoading } = useSWR(
-    "api/v1/admin/courses?size=20&page=1",
+    "/api/v1/admin/courses?size=20&page=1",
     getRequest
   );
 
