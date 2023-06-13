@@ -7,11 +7,16 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
 import { login } from "../../utils/fetcherMethod";
+import { useDispatch } from "react-redux";
+import sessionSlice from "../../config/redux/session/sessionSlice/sessionSlice";
+import Cookies from "js-cookie";
 
 function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const token = Cookies.get("token");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -20,8 +25,10 @@ function Login(props) {
     },
     onSubmit: async (values) => {
       try {
-        await login(values);
+        const result = await login(values);
         setLoginSuccess(true);
+        dispatch(sessionSlice.actions.updateToken(result));
+        navigate("/dashboard");
       } catch (error) {
         console.log("Login error:", error);
       }
