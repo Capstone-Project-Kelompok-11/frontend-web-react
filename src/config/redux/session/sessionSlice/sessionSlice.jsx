@@ -12,6 +12,10 @@ const sessionSlice = createSlice({
       ...state,
       token: action.payload,
     }),
+    removeToken: (state, action) => ({
+      ...state,
+      token: "",
+    }),
   },
 });
 
