@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DashboardTemplate from "../../components/templates/Dashboard.template";
 import DashboardView from "../../views/Dashboard/Dashboard.view";
@@ -16,10 +16,19 @@ import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import sessionSlice from "../redux/session/sessionSlice/sessionSlice";
+import { useSelector } from "react-redux";
 
 function RootRouter() {
   const token = Cookies.get("token");
-  const isAuthenticated = !!token;
+  const tokenState = useSelector((state) => state.session.token);
+  const isAuthenticated = !!tokenState;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(sessionSlice.actions.updateToken(token));
+  }, []);
 
   return (
     <BrowserRouter>
@@ -66,7 +75,6 @@ function RootRouter() {
         ) : (
           <>
             <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Navigate to="/login" replace={true} />} />
           </>
         )}
       </Routes>
