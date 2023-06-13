@@ -45,17 +45,30 @@ function ReportingSummary() {
             <section className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">Summary All Material</h2>
 
-              <section className="flex gap-3 items-center font-semibold">
-                <h3>Nilai Akhir</h3>
-                <p
-                  className={`border-2 border-secondary-10 rounded-md p-2 py-1 ${
-                    finalData?.report?.score
-                      ? "text-success-30"
-                      : "text-danger-30"
-                  }`}
-                >
-                  {finalData?.report?.score ?? 0}
-                </p>
+              <section className="flex justify-between">
+                <section className="flex gap-3 items-center font-semibold">
+                  <h3>Nilai Akhir</h3>
+                  <p
+                    className={`border-2 border-secondary-10 rounded-md p-2 py-1 ${
+                      finalData?.report?.score
+                        ? "text-success-30"
+                        : "text-danger-30"
+                    }`}
+                  >
+                    {finalData?.report?.score ?? 0}
+                  </p>
+                </section>
+
+                {finalData?.document && (
+                  <Link
+                    to={finalData.document}
+                    target="_blank"
+                    download
+                    className="bg-danger-10 hover:bg-danger-30 duration-500 p-4 py-2 rounded-lg font-semibold"
+                  >
+                    Download
+                  </Link>
+                )}
               </section>
 
               <p className="text-sm font-medium text-secondary-50">
