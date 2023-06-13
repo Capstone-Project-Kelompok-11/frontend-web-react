@@ -8,20 +8,26 @@ import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
 import { useLocation } from "react-router-dom";
+import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
   const initData = useMemo(() =>
     createNewCourse ? initCreateNewCourseValue : data
   );
-  const { state } = useLocation();
-  console.log(state);
 
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewCourse,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (values) {
-        console.log(values);
+        try {
+          const fetchData = createNewCourse
+            ? postRequest(`/api/v1/admin/course`, values)
+            : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
+          await fetchData;
+        } catch (error) {
+          console.log(error.message);
+        }
         alert("Succes");
         formik.resetForm();
       }
@@ -61,7 +67,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
         </div>
         <div className="w-5/6 mr-10 ">
           <div className=" mb-2 ">
-            <label htmlFor="courseName ">
+            <label htmlFor="name ">
               <div className="flex items-center">
                 <p className=" font-semibold">Course Name</p>
                 <span className="text-red-500 font-semibold">*</span>
@@ -69,25 +75,25 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             </label>
             <input
               type="text"
-              id="courseName"
-              value={formik.values.courseName}
+              id="name"
+              value={formik.values.name}
               onChange={formik.handleChange}
-              name="courseName"
+              name="name"
               className="w-full h-12 mt-3 bg-gray-200 p-5  rounded-lg border border-gray-500"
               placeholder="e.g. “Capstone Project 11”"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="createDes">
+            <label htmlFor="description">
               <div className="flex items-center">
                 <label className=" font-semibold">Create Description</label>
                 <span className="text-red-500 font-semibold">*</span>
               </div>
             </label>
             <textarea
-              name="createDes"
-              id="createDes"
-              value={formik.values.createDes}
+              name="description"
+              id="description"
+              value={formik.values.description}
               onChange={formik.handleChange}
               className="resize-y w-full h-40 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="Type here..."
@@ -98,7 +104,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
       </div>
       <div className="  mr-10 flex flex-row items-center ">
         <div className="w-full flex  flex-col gap-2">
-          <label htmlFor="coursePrice ">
+          <label htmlFor="price ">
             <div className="flex items-center">
               <p className="font-semibold">Course Price</p>
               <span className="text-red-500 font-semibold">*</span>
@@ -106,26 +112,26 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </label>
           <input
             type="text"
-            id="coursePrice"
-            value={formik.values.coursePrice}
+            id="price"
+            value={formik.values.price}
             onChange={formik.handleChange}
-            name="coursePrice"
+            name="price"
             className="w-80 h-12 mt-1 bg-gray-200 p-5 rounded-lg border border-gray-500"
             placeholder="00000"
           />
         </div>
         <div className=" w-full flex flex-col p-2 ml-4 relative">
-          <label htmlFor="levelCourse ">
+          <label htmlFor="level ">
             <div className="flex items-center">
               <p className=" font-semibold">Level Course</p>
               <span className="text-red-500 font-semibold">*</span>
             </div>
           </label>
           <select
-            name="levelCourse"
-            value={formik.values.levelCourse}
+            name="level"
+            value={formik.values.level}
             onChange={formik.handleChange}
-            id="leveCourse"
+            id="level"
             className="wblock appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8  border-solid border "
           >
             <option value="">select level course</option>
@@ -138,7 +144,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </span>
         </div>
         <div className="w-full flex flex-col p-2 ml-2 relative">
-          <label htmlFor="courseCategory ">
+          <label htmlFor="category_courses ">
             <div className="flex items-center">
               <p className="font-semibold">Course Category</p>
               <span className="text-red-500 font-semibold">*</span>
@@ -146,8 +152,8 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </label>
           <div>
             <select
-              name="courseCategory"
-              value={formik.values.courseCategory}
+              name="category_courses"
+              value={formik.values.category_courses}
               onChange={formik.handleChange}
               id=""
               className="wblock appearance-none w-80 h-12 mt-3  rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8  border-solid border "
