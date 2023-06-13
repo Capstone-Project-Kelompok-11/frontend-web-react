@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { getRandomBorderColor } from "../../../utils/helperMethod";
 import CourseCard from "../CourseCard";
 
-function AllCourseCard({ id, name, category_courses, finished, member_count }) {
+function AllCourseCard({ data }) {
   const randomColorBorder = getRandomBorderColor();
-
+  const { id, name, category_courses, finished, member_count } = data;
   return (
     <div
       className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg `}
@@ -13,7 +13,7 @@ function AllCourseCard({ id, name, category_courses, finished, member_count }) {
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold">{name}</h1>
 
-        <CourseCard />
+        <CourseCard {...data} />
       </div>
       <div className="flex flex-row gap-2 py-4 pb-14">
         <h1>Category :</h1>
