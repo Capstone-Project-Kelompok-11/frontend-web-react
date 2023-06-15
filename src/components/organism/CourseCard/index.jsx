@@ -30,7 +30,6 @@ function CourseCard({
       console.log(error.message);
     }
     closeModal();
-    //TODO: finish this logic
   };
 
   const handleClick = (value) => {
@@ -38,8 +37,6 @@ function CourseCard({
       setIsOpen(true);
       return;
     }
-
-    // TODO: navigate to create new chapter form!
     navigate(`/course/new-course`, {
       state: {
         createNewCourse: false,
