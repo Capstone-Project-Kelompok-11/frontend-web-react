@@ -31,11 +31,11 @@ function RootRouter() {
             <Route path="/course" element={<CourseView />} />
             <Route path="/course/new-course" element={<NewCourseView />} />
             <Route
-              path="/course/:course_name/new-chapter"
+              path="/course/:id_course/new-chapter"
               element={<NewChapterView />}
             />
             <Route
-              path="/course/:id_course/chapter/new_quiz"
+              path="/course/:id_course/chapter/:id_chapter/new_quiz"
               element={<Quiz />}
             />
             <Route
