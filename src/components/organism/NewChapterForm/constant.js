@@ -1,11 +1,11 @@
 import * as Yup from "yup";
 
 export const initCreateNewChapterValue = {
-  courseName: "",
-  courseDes: "",
+  chapterName: "",
+  chapterDes: "",
 };
 
 export const validationCreateNewChapter = Yup.object().shape({
-  courseName: Yup.string().required(),
-  courseDes: Yup.string().required(),
+  chapterName: Yup.string().required(),
+  chapterDes: Yup.string().required(),
 });

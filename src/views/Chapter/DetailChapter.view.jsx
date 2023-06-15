@@ -1,83 +1,53 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable react/button-has-type */
-import React, { useState } from "react";
+import React from "react";
+import { Link, useLocation } from "react-router-dom";
+import courseThumbnail from "../../assets/courseThumbnail.svg";
+import ReactPlayer from "react-player";
 
 function DetailChapter() {
-  const [] = useState(false);
-  const [introContent] = useState(
-    "Desain antarmuka pengguna (UI design) adalah bagian penting dari pengembangan produk digital yang efektif. UI design melibatkan merancang antarmuka pengguna yang mudah digunakan dan menarik, serta memperhatikan aspek-aspek seperti navigasi, tata letak, interaksi, dan estetika visual. Kursus ini akan memberikan pengantar tentang UI design dan membahas prinsip-prinsip desain antarmuka pengguna yang baik."
-  );
+  const { state } = useLocation();
+  const data = state?.data || {};
 
   return (
-    <div className="-ml-2">
+    <section className="flex flex-col gap-5 me-8">
       <h2 className="text-xl">My Chapter</h2>
 
-      <div className="bg-warning-10 font-bold mt-6 text-3xl p-4 px-4 rounded-xl mr-8">
-        <h1 className="px-4">Pengenalan tentang Desain Antarmuka Pengguna</h1>
-      </div>
+      <section className="bg-warning-10 font-bold text-3xl p-4 rounded-xl">
+        <h1 className="px-4">{data?.name}</h1>
+      </section>
 
-      <h1 className="font-bold text-xl mt-6 mb-2">Pengantar</h1>
-      <div className="mx-2">
-        <p className="mx-1 ml-2 mr-7">{introContent}</p>
-      </div>
+      <section>
+        <img
+          src={data?.thumbnail || courseThumbnail}
+          className="h-44"
+          alt="course thumbnail"
+        />
+      </section>
 
-      <h1 className="font-bold text-xl mt-6 mb-2">
-        Prinsip-prinsip desain antarmuka pengguna
-      </h1>
-      <div className="mx-3 ml-2 px-2 ">
-        <div className="flex justify-between ml-2">
-          <div>
-            <p className="mr-2">1.</p>
-          </div>
-          <p className="ml-2 mr-5">
-            Keterbacaan: Desain antarmuka pengguna harus mudah dibaca dan
-            dipahami oleh pengguna. Ini meliputi penggunaan font yang jelas dan
-            mudah dibaca, tata letak yang jelas dan terorganisir, serta warna
-            yang mudah dibaca dan kontras.
-          </p>
-        </div>
-        <div className="flex justify-between ml-2">
-          <div>
-            <p className="mr-1">2.</p>
-          </div>
-          <p className="ml-2">
-            Navigasi yang mudah: Antarmuka pengguna harus memiliki navigasi yang
-            mudah dipahami dan dapat membantu pengguna mencapai tujuan mereka
-            dengan cepat dan efisien.
-          </p>
-        </div>
-        <div className="flex justify-between ml-2">
-          <div>
-            <p className="mr-1">3.</p>
-          </div>
-          <p className="ml-2">
-            Konsistensi: Desain antarmuka pengguna harus konsisten dalam seluruh
-            produk digital. Ini termasuk konsistensi dalam tata letak, warna,
-            font, dan interaksi pengguna.
-          </p>
-        </div>
-        <div className="flex justify-between mx-2">
-          <div>
-            <p className="mr-1">4.</p>
-          </div>
-          <p className="ml-2">
-            Estetika visual: Antarmuka pengguna harus menarik secara visual dan
-            menunjukkan identitas merek yang jelas. Ini dapat dicapai melalui
-            penggunaan warna, gambar, dan ilustrasi yang menarik.
-          </p>
-        </div>
-        <div className="flex justify-between ml-2">
-          <div>
-            <p className="mr-1">5.</p>
-          </div>
-          <p className="ml-2">
-            Responsivitas: Desain antarmuka pengguna harus responsif dan dapat
-            menyesuaikan dengan berbagai ukuran layar, baik di desktop maupun di
-            perangkat mobile.
-          </p>
-        </div>
-      </div>
-    </div>
+      <section className="flex flex-col gap-2">
+        <h1 className="font-semibold text-xl">Deskripsi</h1>
+        <p className="ml-4">{data?.description}</p>
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h1 className="font-semibold text-xl">Video</h1>
+        {data?.video ? (
+          <ReactPlayer controls url={data.video} />
+        ) : (
+          <p className="ml-4">Belum ada video saat ini</p>
+        )}
+      </section>
+
+      <section className="flex flex-col gap-2">
+        <h1 className="font-semibold text-xl">Dokumen</h1>
+        {data?.document ? (
+          <Link target="_blank" className="ml-4">
+            {data.document}
+          </Link>
+        ) : (
+          <p className="ml-4">Belum ada dokumen saat ini</p>
+        )}
+      </section>
+    </section>
   );
 }
 
