@@ -10,9 +10,11 @@ import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
 import { useLocation } from "react-router-dom";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
-  const initData = useMemo(() =>
-    createNewCourse ? initCreateNewCourseValue : data
+  const initData = useMemo(
+    () => (createNewCourse ? initCreateNewCourseValue : data),
+    []
   );
+
   const { state } = useLocation();
   console.log(state);
 
