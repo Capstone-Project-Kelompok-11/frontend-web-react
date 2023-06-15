@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AllCourseCard from "../AllCourseCard/AllCourseCard.organism";
+import { listAllCourseCard } from "../AllCourseCard/dummyData";
 
-function AllCourse() {
+function AllCourse({ data }) {
   return (
     <div className="text-center">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 ">
         <p className="text-2xl">All Course</p>
         <Link
           to="/course/new-course"
@@ -13,9 +15,17 @@ function AllCourse() {
           New Course
         </Link>
       </div>
-      <p className="text-center mt-12 text-gray-500">
-        create a new course if you don't have a course yet
-      </p>
+      {listAllCourseCard.length ? (
+        <div className="grid grid-cols-2 gap-7 h-[28rem] mt-8 pr-12 bottom-0 pb-10 mr-8 justify-center overflow-y-auto ">
+          {data?.map((list) => (
+            <AllCourseCard key={list.id} {...list} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center mt-12 text-gray-500">
+          create a new course if you don't have a course yet
+        </p>
+      )}
     </div>
   );
 }

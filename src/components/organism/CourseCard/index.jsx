@@ -1,21 +1,16 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
-import { deleteRequest } from "../../../utils/fetcherMethod";
+import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
 
-function ChapterCard({
-  id,
-  name,
-  description,
-  thumbnail,
-  video,
-  document,
+function CourseCard({
+  courseName,
+  courseDes,
+  coursePrice,
+  score,
   onClick,
-  courseId,
-  score = null,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -23,13 +18,10 @@ function ChapterCard({
 
   const closeModal = () => setIsOpen(false);
 
-  const handleDelete = async () => {
-    try {
-      await deleteRequest(`/api/v1/admin/module?id=${id}`);
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleDelete = () => {
+    alert("button yes delete has been clicked!");
     closeModal();
+    //TODO: finish this logic
   };
 
   const handleClick = (value) => {
@@ -38,39 +30,27 @@ function ChapterCard({
       return;
     }
 
-    navigate(`/course/${courseId}/new-chapter`, {
+    // TODO: navigate to create new chapter form!
+    navigate(`/course/new-course`, {
       state: {
-        createNewChapter: false,
-        data: {
-          id,
-          chapterName: name,
-          chapterDes: description,
-          thumbnail,
-          video,
-          document,
-        },
+        createNewCourse: false,
+        data: { courseName, courseDes, coursePrice },
       },
     });
   };
 
   return (
-    <section className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl">
+    <section className="flex items-center ">
       <section
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
       >
-        <h2>{name}</h2>
+        <h2>{courseName}</h2>
       </section>
 
       <section className="relative flex items-center">
         {isReporting ? (
-          <p
-            className={`font-bold  mr-10 uppercase ${
-              score ? "text-success-30" : "text-danger-30"
-            }`}
-          >
-            {score ?? "no score"}
-          </p>
+          <p className="font-bold text-success-30 mr-10">{score}</p>
         ) : (
           <>
             <Menu>
@@ -117,8 +97,8 @@ function ChapterCard({
             >
               <section className="mt-2">
                 <p className="text-sm text-gray-500">
-                  Are you sure want to delete chapter{" "}
-                  <span className="font-semibold">{name}</span>?
+                  Are you sure want to delete course{" "}
+                  <span className="font-semibold">{courseName}</span>?
                 </p>
               </section>
             </Modal>
@@ -129,4 +109,4 @@ function ChapterCard({
   );
 }
 
-export default ChapterCard;
+export default CourseCard;

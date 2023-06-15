@@ -1,16 +1,20 @@
 import React from "react";
 import DetailCardInfo from "../../molecules/DetailCardInfo";
-import Avatar from "../../../assets/Avatar.png";
+import LocalAvatar from "../../../assets/Avatar.png";
 
-function UserProfileThumbnailCard({ data }) {
+function UserProfileThumbnailCard({ data, avatar }) {
   return (
-    <section className="absolute flex flex-col gap-6 bg-white h-[500px] rounded-t-2xl">
+    <section className="absolute w-80 flex flex-col gap-6 bg-white h-[500px] rounded-t-2xl">
       <h1 className="font-bold bg-primary-10 rounded-t-2xl text-center py-2">
         Profile
       </h1>
       <img
-        src={Avatar}
-        alt="course thumbnail"
+        src={
+          avatar
+            ? `${import.meta.env.VITE_BASE_URL}/api/v1/public/image/${avatar}`
+            : LocalAvatar
+        }
+        alt="user thumbnail"
         className="w-[8rem] h-[8rem] mx-auto"
       />
 
