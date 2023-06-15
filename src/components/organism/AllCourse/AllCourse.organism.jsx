@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AllCourseCard from "../AllCourseCard/AllCourseCard.organism";
-import { listAllCourseCard } from "../AllCourseCard/dummyData";
 
 function AllCourse({ data }) {
   return (
@@ -10,15 +9,16 @@ function AllCourse({ data }) {
         <p className="text-2xl">All Course</p>
         <Link
           to="/course/new-course"
+          state={{ createNewCourse: true }}
           className="bg-primary-50 hover:bg-primary-70 duration-500 inline-flex text-white  py-2 px-6 rounded-lg text-sm"
         >
           New Course
         </Link>
       </div>
-      {listAllCourseCard.length ? (
+      {data?.length ? (
         <div className="grid grid-cols-2 gap-7 h-[28rem] mt-8 pr-12 bottom-0 pb-10 mr-8 justify-center overflow-y-auto ">
           {data?.map((list) => (
-            <AllCourseCard key={list.id} {...list} />
+            <AllCourseCard key={list.id} data={list} />
           ))}
         </div>
       ) : (
