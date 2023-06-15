@@ -26,9 +26,14 @@ function Login(props) {
     onSubmit: async (values) => {
       try {
         const result = await login(values);
-        setLoginSuccess(true);
-        dispatch(sessionSlice.actions.updateToken(result));
-        navigate("/dashboard");
+        if (result) {
+          setLoginSuccess(true);
+          dispatch(sessionSlice.actions.updateToken(result));
+          navigate("/dashboard");
+        } else {
+          formik.errors.email = "email/password salah";
+          formik.errors.password = "email/password salah";
+        }
       } catch (error) {
         console.log("Login error:", error);
       }
