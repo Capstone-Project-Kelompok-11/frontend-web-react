@@ -13,7 +13,7 @@ import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
   const initData = useMemo(() =>
     createNewCourse ? initCreateNewCourseValue : data
-  );
+  ,[]);
 
   const formik = useFormik({
     initialValues: initData,
