@@ -5,15 +5,18 @@ import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import sessionSlice from "../../../config/redux/session/sessionSlice/sessionSlice";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function NavigationBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleLogout = () => {
     Cookies.remove("token");
+    dispatch(sessionSlice.actions.removeToken());
     navigate("/");
   };
   return (
