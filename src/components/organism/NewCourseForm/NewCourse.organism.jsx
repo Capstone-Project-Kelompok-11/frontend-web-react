@@ -49,7 +49,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           <div className="mb-2 flex items-center">
             <p className="font-semibold">Course Thumbnail</p>
           </div>
-          <div className="w-full h-270 bg-gray-200 flex items-center  rounded-xl justify-center rounded-10">
+          <div className="w-full h-270 bg-gray-200 flex items-center rounded-xl justify-center rounded-10">
             <div className="image-container">
               <div className="flex items-center justify-center w-full">
                 <label
@@ -79,7 +79,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
               value={formik.values.name}
               onChange={formik.handleChange}
               name="name"
-              className="w-full h-12 mt-3 bg-gray-200 p-5  rounded-lg border border-gray-500"
+              className="w-full h-12 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="e.g. “Capstone Project 11”"
             />
           </div>
@@ -132,7 +132,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             value={formik.values.level}
             onChange={formik.handleChange}
             id="level"
-            className="wblock appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8  border-solid border"
+            className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
           >
             <option value="">select level course</option>
             <option value="beginner">beginner</option>
@@ -156,7 +156,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
               value={formik.values.category_courses}
               onChange={formik.handleChange}
               id=""
-              className="wblock appearance-none w-80 h-12 mt-3  rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8  border-solid border"
+              className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
             >
               <option value="">course category</option>
               <option value="Design">Design</option>
@@ -170,7 +170,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
         </div>
       </div>
       <div className="flex font-semibold mt-6">
-        <button className="justify-start  bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold">
+        <button className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold">
           Back
         </button>
         <button
