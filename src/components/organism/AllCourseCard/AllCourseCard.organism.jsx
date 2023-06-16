@@ -7,9 +7,7 @@ function AllCourseCard({ data }) {
   const randomColorBorder = getRandomBorderColor();
   const { id, name, category_courses, finished, member_count } = data;
   return (
-    <div
-      className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg `}
-    >
+    <div className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg`}>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold">{name}</h1>
 
@@ -31,7 +29,7 @@ function AllCourseCard({ data }) {
         <div className="flex ml-auto">
           <Link
             to={`/course/${id}`}
-            className="bg-success-10 p-2 rounded-lg px-4  "
+            className="bg-success-10 p-2 rounded-lg px-4"
           >
             View
           </Link>
