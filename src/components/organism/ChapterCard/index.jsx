@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { deleteRequest } from "../../../utils/fetcherMethod";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
-import { deleteRequest } from "../../../utils/fetcherMethod";
 
 function ChapterCard({
   id,
