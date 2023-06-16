@@ -31,8 +31,8 @@ function Login(props) {
           dispatch(sessionSlice.actions.updateToken(result));
           navigate("/dashboard");
         } else {
-          formik.errors.email = "email/password salah";
-          formik.errors.password = "email/password salah";
+          formik.errors.email = "Incorrect Email !";
+          formik.errors.password = "Incorrect Password !";
         }
       } catch (error) {
         console.log("Login error:", error);
