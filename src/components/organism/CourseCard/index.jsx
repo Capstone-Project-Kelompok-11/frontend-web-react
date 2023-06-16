@@ -4,12 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import { deleteRequest } from "../../../utils/fetcherMethod";
 
 function CourseCard({
-  courseName,
-  courseDes,
-  coursePrice,
+  id,
+  name,
+  description,
+  price,
   score,
+  level,
+  category_courses,
+  thumbnail,
   onClick,
   isReporting = false,
 }) {
@@ -18,10 +23,13 @@ function CourseCard({
 
   const closeModal = () => setIsOpen(false);
 
-  const handleDelete = () => {
-    alert("button yes delete has been clicked!");
+  const handleDelete = async () => {
+    try {
+      await deleteRequest(`/api/v1/admin/course?id=${id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
     closeModal();
-    //TODO: finish this logic
   };
 
   const handleClick = (value) => {
@@ -29,12 +37,18 @@ function CourseCard({
       setIsOpen(true);
       return;
     }
-
-    // TODO: navigate to create new chapter form!
     navigate(`/course/new-course`, {
       state: {
         createNewCourse: false,
-        data: { courseName, courseDes, coursePrice },
+        data: {
+          id,
+          name,
+          description,
+          price,
+          level,
+          category_courses,
+          thumbnail,
+        },
       },
     });
   };
@@ -44,9 +58,7 @@ function CourseCard({
       <section
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
-      >
-        <h2>{courseName}</h2>
-      </section>
+      ></section>
 
       <section className="relative flex items-center">
         {isReporting ? (
@@ -98,7 +110,7 @@ function CourseCard({
               <section className="mt-2">
                 <p className="text-sm text-gray-500">
                   Are you sure want to delete course{" "}
-                  <span className="font-semibold">{courseName}</span>?
+                  <span className="font-semibold">{name}</span>?
                 </p>
               </section>
             </Modal>
