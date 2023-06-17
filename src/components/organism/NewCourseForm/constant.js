@@ -1,15 +1,15 @@
 import * as Yup from "yup";
 
 export const initCreateNewCourseValue = {
-  courseName: "",
-  createDes: "",
-  coursePrice: "",
-  levelCourse: "",
-  courseCategory: "",
+  name: "",
+  description: "",
+  price: "",
+  level: "",
+  category_courses: "",
 };
 
 export const validationCreateNewCourse = Yup.object().shape({
-  courseName: Yup.string().required(),
-  createDes: Yup.string().required(),
-  coursePrice: Yup.string().required(),
+  name: Yup.string().required(),
+  description: Yup.string().required(),
+  price: Yup.string().required(),
 });
