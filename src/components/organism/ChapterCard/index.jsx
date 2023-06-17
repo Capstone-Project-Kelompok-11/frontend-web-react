@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteRequest } from "../../../utils/fetcherMethod";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
@@ -20,9 +20,7 @@ function ChapterCard({
 }) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-
   const closeModal = () => setIsOpen(false);
-
   const handleDelete = async () => {
     try {
       await deleteRequest(`/api/v1/admin/module?id=${id}`);
@@ -38,19 +36,25 @@ function ChapterCard({
       return;
     }
 
-    navigate(`/course/${courseId}/new-chapter`, {
-      state: {
-        createNewChapter: false,
-        data: {
-          id,
-          chapterName: name,
-          chapterDes: description,
-          thumbnail,
-          video,
-          document,
+    if (value === "Quiz") {
+      navigate(`/course/${courseId}/chapter/${id}/quiz`);
+    }
+
+    if (value === "Update") {
+      navigate(`/course/${courseId}/new-chapter`, {
+        state: {
+          createNewChapter: false,
+          data: {
+            id,
+            chapterName: name,
+            chapterDes: description,
+            thumbnail,
+            video,
+            document,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   return (
