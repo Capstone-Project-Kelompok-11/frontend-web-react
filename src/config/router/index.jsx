@@ -44,11 +44,7 @@ function RootRouter() {
               element={<NewChapterView />}
             />
             <Route
-              path="/course/:id_course/chapter/:id_chapter/new_quiz"
-              element={<Quiz />}
-            />
-            <Route
-              path="/course/:id_course/chapter/:id_chapter/update_quiz"
+              path="/course/:id_course/chapter/:id_chapter/quiz"
               element={<Quiz />}
             />
             <Route
