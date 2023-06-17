@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
 import { useFormik } from "formik";
+import { useState } from "react";
+import { storage } from "../../../config/firebase/firebase";
+import { getDownloadURL } from "firebase/storage";
 import {
   initCreateNewChapterValue,
   validationCreateNewChapter,
 } from "./constant";
-import { Link } from "react-router-dom";
-import UploadFileIcon from "../../atoms/Icons/UploadFileIcon.atom";
-import CreateQuizIcon from "../../atoms/Icons/CreateQuizIcon.atom";
-import CameraIcon from "../../atoms/Icons/CameraIcon.atom";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
-import ArrowLinkIcon from "../../atoms/Icons/ArrowLinkIcon.atom";
+import { useNavigate } from "react-router-dom";
 
 const NewChapterForm = ({ createNewChapter, data = {} }) => {
+  const navigate = useNavigate();
   const initData = useMemo(() =>
     createNewChapter ? initCreateNewChapterValue : data
   );
@@ -26,6 +26,32 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
     },
   });
 
+  const [file, setFile] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFile(file);
+  };
+  const handleUpload = () => {
+    if (file == null) return;
+
+    const fileRef = storage
+      .ref("/videos/" + file.name)
+      .put(file)
+      .then((snapshot) => {
+        console.log("Video uploaded successfully");
+
+        getDownloadURL(snapshot.ref)
+          .then((downloadURL) => {
+            console.log("Download URL:", downloadURL);
+          })
+          .catch((error) => {
+            console.error("Error getting download URL:", error);
+          });
+        console.log(file);
+      });
+  };
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-8 flex items-center">
@@ -37,27 +63,7 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
       </div>
 
       <div className="w-full flex flex-row gap-6">
-        <div className="w-96">
-          <div className="mb-3 flex items-center">
-            <p className="font-semibold">Chapter Thumbnail</p>
-          </div>
-          <div className="w-full h-270 bg-gray-200 flex items-center  rounded-xl justify-center rounded-10">
-            <div className="image-container">
-              <div className="flex items-center justify-center w-full">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64"
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <CameraIcon />
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-5/6 mr-10">
+        <div className="w-full mr-10">
           <div className="mb-2">
             <label htmlFor="chapterName">
               <div className="flex items-center">
@@ -96,45 +102,6 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
         </div>
       </div>
       <div className="w-full flex flex-row gap-6">
-        <div className="w-80">
-          <div className="mb-2 flex items-center">
-            <p className="font-semibold">Task Quiz</p>
-          </div>
-          <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
-            <div className="flex items-center justify-center">
-              <div className="flex items-center justify-center w-full">
-                <label
-                  htmlFor="dropzone-file"
-                  className="flex flex-col items-center justify-center w-full h-64"
-                >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <UploadFileIcon />
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <Link to="/course/:id_course/chapter/new_quiz">
-          <div className="w-80 mt-8">
-            <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded-lg">
-              <div className="flex items-center justify-center">
-                <div className="flex items-center justify-center w-full">
-                  <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64"
-                  >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                      <CreateQuizIcon />
-                    </div>
-                    <input id="dropzone-file" type="file" className="hidden" />
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Link>
         <div className="w-80 mr-8">
           <div className="mb-2  flex items-center">
             <p className="font-semibold">Uploaded Videos</p>
@@ -146,10 +113,16 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
                   htmlFor="dropzone-file"
                   className="flex flex-col items-center justify-center w-full h-64 "
                 >
-                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <ArrowLinkIcon />
+                  <div className="flex flex-col items-center justify-center pt-5 pb-5">
+                    <span className="text-center  text-gray-500">Link</span>
                   </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    onChange={handleFileChange}
+                    className="absolute w-48 h-10 overflow-hidden opacity-0 "
+                    accept="video/*"
+                  />
                 </label>
               </div>
             </div>
@@ -158,10 +131,15 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
       </div>
 
       <div className="flex font-semibold mt-6">
-        <button className="justify-start  bg-warning-10 hover:bg-warning-30 text-black py-2 px-6 rounded-lg text-sm fw-bold">
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="justify-start  bg-warning-10 hover:bg-warning-30 text-black py-2 px-6 rounded-lg text-sm fw-bold"
+        >
           Back
         </button>
         <button
+          onClick={handleUpload}
           type="submit"
           className="justify-end ml-auto mr-8 bg-warning-10 hover:bg-warning-30 text-black py-2 px-6 rounded-lg text-sm"
         >
