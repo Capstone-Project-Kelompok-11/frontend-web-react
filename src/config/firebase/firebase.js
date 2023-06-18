@@ -2,12 +2,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDCcy63OGRgNfzx6vwvOotxjfy4kYGqavo",
-  authDomain: "uploadfile-react.firebaseapp.com",
-  projectId: "uploadfile-react",
-  storageBucket: "uploadfile-react.appspot.com",
-  messagingSenderId: "472825142321",
-  appId: "1:472825142321:web:99a70e7de4597987a74910",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
