@@ -17,7 +17,7 @@ function DetailCourseView() {
 
   const handleAddChapter = useCallback(() => {
     navigate(`/course/${id_course}/new-chapter`, {
-      state: { createNewChapter: true },
+      state: { createNewChapter: true, id: id_course },
     });
   }, []);
 
