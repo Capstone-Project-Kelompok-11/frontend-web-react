@@ -9,24 +9,41 @@ import {
 } from "./constant";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useNavigate } from "react-router-dom";
+import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
 
-const NewChapterForm = ({ createNewChapter, data = {} }) => {
+const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   const navigate = useNavigate();
-  const initData = useMemo(() =>
-    createNewChapter ? initCreateNewChapterValue : data
+  const initData = useMemo(
+    () => (createNewChapter ? initCreateNewChapterValue : data),
+    []
   );
+  const [url, setUrl] = useState("");
+  const [file, setFile] = useState("");
+
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewChapter,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       if (values) {
-        console.log(values);
+        try {
+          const fetchData = createNewChapter
+            ? postRequest(`/api/v1/admin/module?id=${id}`, {
+                ...values,
+                video: url,
+              })
+            : updateRequest(`/api/v1/admin/module?id=${data.id}`, {
+                ...values,
+                video: url,
+              });
+          await fetchData;
+        } catch (error) {
+          console.log(error.message);
+        }
+        alert("Succes");
         formik.resetForm();
       }
     },
   });
-
-  const [file, setFile] = useState("");
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -39,16 +56,13 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
       .ref("/videos/" + file.name)
       .put(file)
       .then((snapshot) => {
-        console.log("Video uploaded successfully");
-
         getDownloadURL(snapshot.ref)
           .then((downloadURL) => {
-            console.log("Download URL:", downloadURL);
+            setUrl(downloadURL);
           })
           .catch((error) => {
             console.error("Error getting download URL:", error);
           });
-        console.log(file);
       });
   };
 
@@ -72,13 +86,13 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
               </div>
             </label>
             <input
-              id="chapterName"
-              name="chapterName"
+              id="name"
+              name="name"
               type="text"
               autoFocus
               className="w-full h-12 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="e.g. “Capstone Project 11”"
-              value={formik.values.chapterName}
+              value={formik.values.name}
               onChange={formik.handleChange}
             />
           </div>
@@ -90,12 +104,12 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
               </div>
             </label>
             <textarea
-              id="chapterDes"
-              name="chapterDes"
+              id="description"
+              name="description"
               className="resize-y w-full h-40 mt-3 bg-gray-200 p-5 rounded-lg border border-gray-500"
               placeholder="Type here..."
               rows="5"
-              value={formik.values.chapterDes}
+              value={formik.values.description}
               onChange={formik.handleChange}
             ></textarea>
           </div>
@@ -117,8 +131,9 @@ const NewChapterForm = ({ createNewChapter, data = {} }) => {
                     <span className="text-center  text-gray-500">Link</span>
                   </div>
                   <input
-                    id="dropzone-file"
+                    id="video"
                     type="file"
+                    value={formik.values.video}
                     onChange={handleFileChange}
                     className="absolute w-48 h-10 overflow-hidden opacity-0 "
                     accept="video/*"
