@@ -50,7 +50,6 @@ function Quiz() {
   // }, []);
 
   const handleSubmit = async (values, { resetForm }) => {
-    console.log(values);
     const data = {
       quizzes: values.quizzes.map((quiz) => ({
         question: quiz.question,
