@@ -41,8 +41,8 @@ function ChapterCard({
         createNewChapter: false,
         data: {
           id,
-          chapterName: name,
-          chapterDes: description,
+          name: name,
+          description: description,
           video,
         },
       },
