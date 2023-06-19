@@ -3,12 +3,22 @@ import { Menu, Transition } from "@headlessui/react";
 import BellIcon from "../../atoms/Icons/BellIcon.atom";
 import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import sessionSlice from "../../../config/redux/session/sessionSlice/sessionSlice";
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 function NavigationBar() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    Cookies.remove("token");
+    dispatch(sessionSlice.actions.removeToken());
+    navigate("/");
+  };
   return (
     <section className="flex sticky top-4 z-20 max-w-8xl mx-8 my-4 px-10 bg-warning-10 h-16 shadow-xl rounded-2xl">
       <IconAcademade />
@@ -55,15 +65,15 @@ function NavigationBar() {
 
               <Menu.Item>
                 {({ active }) => (
-                  <a
-                    href="/logout"
+                  <button
+                    onClick={handleLogout}
                     className={classNames(
                       active ? "bg-gray-100" : "",
-                      "block px-4 py-2 text-sm text-gray-700"
+                      "block px-4 py-2 text-sm text-gray-700 w-full text-start "
                     )}
                   >
                     Sign out
-                  </a>
+                  </button>
                 )}
               </Menu.Item>
             </Menu.Items>

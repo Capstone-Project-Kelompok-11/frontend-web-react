@@ -1,19 +1,21 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
-import { deleteRequest } from "../../../utils/fetcherMethod";
+import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import { deleteRequest } from "../../../utils/fetcherMethod";
 
-function ChapterCard({
+function CourseCard({
   id,
   name,
   description,
-  video,
+  price,
+  score,
+  level,
+  category_courses,
+  thumbnail,
   onClick,
-  courseId,
-  score = null,
   isReporting = false,
 }) {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ function ChapterCard({
 
   const handleDelete = async () => {
     try {
-      await deleteRequest(`/api/v1/admin/module?id=${id}`);
+      await deleteRequest(`/api/v1/admin/course?id=${id}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -35,38 +37,32 @@ function ChapterCard({
       setIsOpen(true);
       return;
     }
-
-    navigate(`/course/${courseId}/new-chapter`, {
+    navigate(`/course/new-course`, {
       state: {
-        createNewChapter: false,
+        createNewCourse: false,
         data: {
           id,
-          chapterName: name,
-          chapterDes: description,
-          video,
+          name,
+          description,
+          price,
+          level,
+          category_courses,
+          thumbnail,
         },
       },
     });
   };
 
   return (
-    <section className="flex items-center justify-between p-3 bg-light-blue-10 shadow-gray-600 shadow-md rounded-xl">
+    <section className="flex items-center ">
       <section
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
-      >
-        <h2>{name}</h2>
-      </section>
+      ></section>
 
       <section className="relative flex items-center">
         {isReporting ? (
-          <p
-            className={`font-bold  mr-10 uppercase ${
-              score ? "text-success-30" : "text-danger-30"
-            }`}
-          >
-            {score ?? "no score"}
-          </p>
+          <p className="font-bold text-success-30 mr-10">{score}</p>
         ) : (
           <>
             <Menu>
@@ -113,7 +109,7 @@ function ChapterCard({
             >
               <section className="mt-2">
                 <p className="text-sm text-gray-500">
-                  Are you sure want to delete chapter{" "}
+                  Are you sure want to delete course{" "}
                   <span className="font-semibold">{name}</span>?
                 </p>
               </section>
@@ -125,4 +121,4 @@ function ChapterCard({
   );
 }
 
-export default ChapterCard;
+export default CourseCard;

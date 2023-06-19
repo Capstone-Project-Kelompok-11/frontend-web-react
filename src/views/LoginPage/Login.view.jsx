@@ -6,20 +6,37 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/templates/Navbar.template";
+import { login } from "../../utils/fetcherMethod";
+import { useDispatch } from "react-redux";
+import sessionSlice from "../../config/redux/session/sessionSlice/sessionSlice";
+import Cookies from "js-cookie";
 
-function Login() {
+function Login(props) {
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const token = Cookies.get("token");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
-      setLoginSuccess(true);
+    onSubmit: async (values) => {
+      try {
+        const result = await login(values);
+        if (result) {
+          setLoginSuccess(true);
+          dispatch(sessionSlice.actions.updateToken(result));
+          navigate("/dashboard");
+        } else {
+          formik.errors.email = "Incorrect Email !";
+          formik.errors.password = "Incorrect Password !";
+        }
+      } catch (error) {
+        console.log("Login error:", error);
+      }
     },
     validate: (values) => {
       const errors = {};
@@ -52,9 +69,9 @@ function Login() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar isLogged={props.isLogged} />
       <ToastContainer position="top-center" autoClose={1000} />
-      <div className="container mx-auto bg-[url('./assets/bgLanding.png')] min-h-screen">
+      <div className="bg-[url('./assets/bgLanding.png')] bg-cover min-h-screen">
         <div className="flex justify-center items-center h-screen text-base">
           <div className="bg-white p-20 rounded-xl shadow-md m-2">
             <form onSubmit={formik.handleSubmit}>
