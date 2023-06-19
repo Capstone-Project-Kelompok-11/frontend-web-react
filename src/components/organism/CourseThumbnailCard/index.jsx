@@ -10,7 +10,7 @@ function CourseThumbnailCard({ data }) {
   );
 
   return (
-    <section className="absolute flex flex-col gap-3 bg-white h-[500px] rounded-t-2xl">
+    <section className="absolute flex flex-col gap-3 w-80 bg-white h-[500px] rounded-t-2xl">
       <img
         src={data?.thumbnail || courseThumbnail}
         className="h-[10rem]"
