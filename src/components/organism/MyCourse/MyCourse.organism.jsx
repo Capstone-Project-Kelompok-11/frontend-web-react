@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import ListMyCourse from "../../molecules/ListMyCourse/ListMyCourse.molecul";
 import { listMyCourse } from "./dummyData";
 
-function MyCourse({course}) {
-  
+function MyCourse({ course }) {
   return (
     <div className="bg-light-blue/20 p-6 rounded-xl drop-shadow-lg shadow-lg">
       <h1 className="font-bold text-base">My Course</h1>

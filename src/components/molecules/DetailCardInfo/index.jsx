@@ -1,5 +1,5 @@
 import React from "react";
-import { getSimpleName } from "../../../utils/helperMethod";
+import { getSimpleName } from "../../../utils/helper/helperMethod";
 
 function DetailCardInfo({ title, content, fromCourse }) {
   const needAdjustment = ["Responsible", "Name"].includes(title);

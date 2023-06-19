@@ -5,9 +5,10 @@ import HeaderProfile from "../../components/organism/HeaderProfile/HeaderProfile
 import Calendar from "../../components/organism/Calender/Calender.organism";
 import TodaysEvent from "../../components/organism/TodaysEvent/TodaysEvent.organism";
 import useSWR from "swr";
-import { getRequest } from "../../utils/fetcherMethod";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function ContentProfile() {
+  const { getRequest } = useHTTP();
   const { data: course, isLoading: courseLoading } = useSWR(
     "/api/v1/admin/courses?size=3&page=1",
     getRequest
@@ -15,7 +16,7 @@ function ContentProfile() {
 
   return (
     <div className="py-4 mr-4">
-     <HeaderProfile />
+      <HeaderProfile />
       <div className="grid grid-cols-2 gap-8 px-2 py-6 mr-4">
         <div>
           {courseLoading ? (

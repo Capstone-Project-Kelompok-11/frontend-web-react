@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
-import { deleteRequest } from "../../../utils/fetcherMethod";
+import useHTTP from "../../../utils/hooks/useHTTP";
 
 function CourseCard({
   id,
@@ -18,6 +18,7 @@ function CourseCard({
   onClick,
   isReporting = false,
 }) {
+  const { deleteRequest } = useHTTP();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
