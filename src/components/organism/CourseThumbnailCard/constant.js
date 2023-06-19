@@ -1,4 +1,7 @@
-import { makeRupiahValue, transformDate } from "../../../utils/helperMethod";
+import {
+  makeRupiahValue,
+  transformDate,
+} from "../../../utils/helper/helperMethod";
 
 export const getDetailCardInfoContent = (data) => {
   return [

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { makeRupiahValue } from "../../../utils/helperMethod";
+import { makeRupiahValue } from "../../../utils/helper/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function ListAllCourse({ course }) {
