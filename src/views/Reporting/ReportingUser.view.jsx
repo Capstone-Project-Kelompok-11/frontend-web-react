@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { getRequest } from "../../utils/fetcherMethod";
 import UserListCourseCard from "../../components/organism/UserListCourseCard/UserListCourseCard.organism";
 import useSWR from "swr";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function ReportingUserView() {
+  const { getRequest } = useHTTP();
   const { data, isLoading } = useSWR(
     "/api/v1/admin/who/courses/enrolled?size=20&page=1",
     getRequest
