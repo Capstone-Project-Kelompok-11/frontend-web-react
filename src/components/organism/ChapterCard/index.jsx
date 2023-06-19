@@ -2,30 +2,33 @@ import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
-import { deleteRequest } from "../../../utils/fetcherMethod";
+import { toast } from "react-toastify";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import useHTTP from "../../../utils/hooks/useHTTP";
 
 function ChapterCard({
   id,
   name,
   description,
-  thumbnail,
   video,
-  document,
   onClick,
   courseId,
   score = null,
   isReporting = false,
 }) {
+  const { deleteRequest } = useHTTP();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
 
   const handleDelete = async () => {
+    toast.loading(`Deleting ${name} module...`);
     try {
       await deleteRequest(`/api/v1/admin/module?id=${id}`);
+      toast.dismiss();
+      toast.info(`Succesfully deleted ${name} module!`, { autoClose: 1500 });
     } catch (error) {
       console.log(error.message);
     }
@@ -45,9 +48,7 @@ function ChapterCard({
           id,
           chapterName: name,
           chapterDes: description,
-          thumbnail,
           video,
-          document,
         },
       },
     });

@@ -1,5 +1,5 @@
 import React from "react";
-import { makeRupiahValue } from "../../../utils/helperMethod";
+import { makeRupiahValue } from "../../../utils/helper/helperMethod";
 function Earning({ balance }) {
   const price = makeRupiahValue(balance);
   return (

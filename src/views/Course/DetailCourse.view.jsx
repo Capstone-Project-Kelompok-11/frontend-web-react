@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getRequest } from "../../utils/fetcherMethod";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
 import ChapterCard from "../../components/organism/ChapterCard";
 import CourseThumbnailCard from "../../components/organism/CourseThumbnailCard";
 import useSWR from "swr";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function DetailCourseView() {
+  const { getRequest } = useHTTP();
   const { id_course } = useParams();
   const navigate = useNavigate();
   const { data, isLoading } = useSWR(
@@ -15,32 +16,30 @@ function DetailCourseView() {
     { refreshInterval: 2000 }
   );
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
-  const handleAddChapter = () => {
+  const handleAddChapter = useCallback(() => {
     navigate(`/course/${id_course}/new-chapter`, {
       state: { createNewChapter: true },
     });
-  };
+  }, []);
 
-  const handleChapterClick = (item) => {
+  const handleChapterClick = useCallback((item) => {
     navigate(`/course/${id_course}/chapter/${item.id}`, {
       state: {
         data: item,
       },
     });
-  };
+  }, []);
 
-  return (
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
     <section className="flex flex-col gap-5 me-8 min-h-screen">
       <p className="text-xl">My Course</p>
 
       <section className="relative p-10 rounded-2xl bg-warning-10 h-48">
         <CourseThumbnailCard data={data?.data} />
 
-        <section className="flex flex-col gap-8 float-right w-[70%]">
+        <section className="flex flex-col gap-8 float-right w-[65%]">
           <section className="flex flex-col gap-2">
             <h2 className="font-bold text-3xl">{data?.data?.name}</h2>
             <p className="text-sm h-24">{data?.data?.description}</p>
