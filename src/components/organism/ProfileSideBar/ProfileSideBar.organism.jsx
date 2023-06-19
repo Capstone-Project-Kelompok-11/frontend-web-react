@@ -11,7 +11,7 @@ import { transformDate } from "../../../utils/helperMethod";
 
 function ProfileSideBar() {
   const { data , isLoading } = useSWR("/api/v1/users/info", getRequest);
-  const date = transformDate(new Date(data?.data?.bod || "2023-05-04"))
+  const date = transformDate(data?.data?.bod || "2023-05-04")
   
   return (
     <div className="fixed block inset-x-0 top-0 py-24 bg-primary-30 w-72 h-screen ">
