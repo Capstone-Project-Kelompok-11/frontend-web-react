@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteRequest } from "../../../utils/fetcherMethod";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import { toast } from "react-toastify";
 
 function ChapterCard({
   id,
@@ -22,8 +23,11 @@ function ChapterCard({
   const closeModal = () => setIsOpen(false);
 
   const handleDelete = async () => {
+    toast.loading(`Deleting ${name} module...`);
     try {
       await deleteRequest(`/api/v1/admin/module?id=${id}`);
+      toast.dismiss();
+      toast.info(`Succesfully deleted ${name} module!`, { autoClose: 1500 });
     } catch (error) {
       console.log(error.message);
     }
