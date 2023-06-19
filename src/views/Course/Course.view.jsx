@@ -4,10 +4,10 @@ import { getRequest } from "../../utils/fetcherMethod";
 import useSWR from "swr";
 
 function CourseView() {
-  const { data } = useSWR("/api/v1/admin/courses?size=8&page=1", getRequest, {
+  const { data, isLoading } = useSWR("/api/v1/admin/courses?size=8&page=1", getRequest, {
     refreshInterval: 3000,
   });
-  return <AllCourse {...data} />;
+  return isLoading ? <p>Loading Data..</p> :  <AllCourse {...data} />;
 }
 
 export default CourseView;
