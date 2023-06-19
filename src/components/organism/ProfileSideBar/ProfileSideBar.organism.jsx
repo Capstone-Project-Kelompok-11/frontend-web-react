@@ -7,9 +7,11 @@ import GenderDash from "../../molecules/ProfileDashSidebar/GenderDash.molecule";
 import WebsiteDash from "../../molecules/ProfileDashSidebar/WebsiteDash.molecule";
 import  useSWR  from "swr";
 import { getRequest } from "../../../utils/fetcherMethod";
+import { transformDate } from "../../../utils/helperMethod";
 
 function ProfileSideBar() {
   const { data , isLoading } = useSWR("/api/v1/users/info", getRequest);
+  const date = transformDate(new Date(data?.data?.bod || "2023-05-04"))
   
   return (
     <div className="fixed block inset-x-0 top-0 py-24 bg-primary-30 w-72 h-screen ">
@@ -19,8 +21,8 @@ function ProfileSideBar() {
           <h1 className="font-bold text-sm py-1 ">Contact Information</h1>
           <EmailDash text={data?.data?.email} />
           <PhoneDash phone={data?.data?.phone} />
-          <DateOfBirthDash birthDate={data?.data?.bod} />
-          <GenderDash gender={data?.data?.gender} />
+          <DateOfBirthDash birthDate={date} />
+          <GenderDash gender={data?.data?.gender && "Male"} />
           <WebsiteDash website={"www.lms.co.id"} />
         </div>
         <div className="border-t border-black">
