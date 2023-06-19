@@ -6,9 +6,10 @@ import DateOfBirthDash from "../../molecules/ProfileDashSidebar/DateOfBirth.mole
 import GenderDash from "../../molecules/ProfileDashSidebar/GenderDash.molecule";
 import WebsiteDash from "../../molecules/ProfileDashSidebar/WebsiteDash.molecule";
 import useSWR from "swr";
-import { getRequest } from "../../../utils/fetcherMethod";
+import useHTTP from "../../../utils/hooks/useHTTP";
 
 function ProfileSideBar() {
+  const { getRequest } = useHTTP();
   const { data, isLoading } = useSWR("/api/v1/users/info", getRequest);
 
   return (

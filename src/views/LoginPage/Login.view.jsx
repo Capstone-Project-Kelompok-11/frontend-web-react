@@ -4,12 +4,13 @@ import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../utils/fetcherMethod";
 import { useDispatch } from "react-redux";
 import Navbar from "../../components/templates/Navbar.template";
 import sessionSlice from "../../config/redux/session/sessionSlice/sessionSlice";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function Login(props) {
+  const { login } = useHTTP();
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const navigate = useNavigate();

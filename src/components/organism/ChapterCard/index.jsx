@@ -2,10 +2,10 @@ import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { getBgColor, option } from "./constant";
 import { useNavigate } from "react-router-dom";
-import { deleteRequest } from "../../../utils/fetcherMethod";
+import { toast } from "react-toastify";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
-import { toast } from "react-toastify";
+import useHTTP from "../../../utils/hooks/useHTTP";
 
 function ChapterCard({
   id,
@@ -17,6 +17,7 @@ function ChapterCard({
   score = null,
   isReporting = false,
 }) {
+  const { deleteRequest } = useHTTP();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 

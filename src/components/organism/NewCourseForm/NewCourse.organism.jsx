@@ -7,9 +7,10 @@ import {
 import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
-import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
+import useHTTP from "../../../utils/hooks/useHTTP.jsx";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
+  const { postRequest, updateRequest } = useHTTP();
   const initData = useMemo(
     () => (createNewCourse ? initCreateNewCourseValue : data),
     []
