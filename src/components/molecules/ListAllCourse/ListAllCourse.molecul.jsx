@@ -4,7 +4,6 @@ import { makeRupiahValue } from "../../../utils/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function ListAllCourse({ course }) {
- 
   const price = makeRupiahValue(course.price);
   return (
     <div className="border border-black rounded-xl text-sm px-8 mr-5 py-2 my-4">

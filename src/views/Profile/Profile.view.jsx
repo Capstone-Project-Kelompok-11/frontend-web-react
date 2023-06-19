@@ -15,7 +15,7 @@ function ContentProfile() {
 
   return (
     <div className="py-4 mr-4">
-     <HeaderProfile />
+      <HeaderProfile />
       <div className="grid grid-cols-2 gap-8 px-2 py-6 mr-4">
         <div>
           {courseLoading ? (
