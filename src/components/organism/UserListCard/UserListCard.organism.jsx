@@ -1,5 +1,5 @@
 import React from "react";
-import { getRandomBorderColor } from "../../../utils/helperMethod";
+import { getRandomBorderColor } from "../../../utils/helper/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function UserListCard({

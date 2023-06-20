@@ -1,12 +1,13 @@
 import React from "react";
 import useSWR from "swr";
-import { getRequest } from "../../utils/fetcherMethod";
-import { transformDate } from "../../utils/helperMethod";
+import { transformDate } from "../../utils/helper/helperMethod";
 import FavoriteCourse from "../../components/organism/FavoriteCourse/FavoriteCourse.organism";
 import HeaderDashboard from "../../components/organism/HeaderDashboard/HeaderDashboard.organism";
 import OrdersTable from "../../components/organism/RecentOrders/OrdersTable.organism";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function DashboardView() {
+  const { getRequest } = useHTTP();
   const { data: dataStats, isLoading: dataStatsLoading } = useSWR(
     "/api/v1/admin/stats",
     getRequest
@@ -42,6 +43,7 @@ function DashboardView() {
         ) : (
           orderData && <OrdersTable newData={orderData} />
         )}
+
         {dataCoursesLoading ? (
           <p>Loading favorite courses...</p>
         ) : (
