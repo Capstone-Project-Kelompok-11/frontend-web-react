@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import BellIcon from "../../atoms/Icons/BellIcon.atom";
-import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
 import Cookies from "js-cookie";
 import sessionSlice from "../../../config/redux/session/sessionSlice/sessionSlice";
@@ -24,11 +22,6 @@ function NavigationBar() {
   return (
     <section className="flex sticky top-4 z-20 max-w-8xl mx-8 my-4 px-10 bg-warning-10 h-16 shadow-xl rounded-2xl">
       <IconAcademade />
-      {/* Notification and Whatsapp Icon */}
-      <section className="absolute gap-4 inset-y-0 right-12 mx-8 flex items-center pr-36 ">
-        <WhatsappIcon style={{ width: 30 }} />
-        <BellIcon style={{ width: 30 }} />
-      </section>
       {/* Dropdown Icon */}
       <section className="absolute inset-y-0 right-0 flex items-center pr-10">
         <Menu as="div" className="relative mx-4">
