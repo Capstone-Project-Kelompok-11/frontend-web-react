@@ -6,12 +6,14 @@ import {
   initCreateNewChapterValue,
   validationCreateNewChapter,
 } from "./constant";
-import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useNavigate } from "react-router-dom";
 import { handleUpdateOrCreateChapter } from "../../../utils/helper/updateOrCreateChapter";
 import { toast } from "react-toastify";
+import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
+import useHTTP from "../../../utils/hooks/useHTTP";
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
+  const { postRequest, updateRequest } = useHTTP();
   const navigate = useNavigate();
   const initData = useMemo(
     () => (createNewChapter ? initCreateNewChapterValue : data),
@@ -36,7 +38,7 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   };
 
   const handleUpload = (values) => {
-    const fileRef = storage
+    storage
       .ref("/videos/" + file.name)
       .put(file)
       .then((snapshot) => {
@@ -50,16 +52,24 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
                 id,
                 data,
                 link_url,
+                postRequest,
+                updateRequest,
+                toast,
               });
-              toast.success("Successfully create module!");
-              formik.resetForm();
               navigate(`/course/${data.id_course || id}`);
+              toast.success(
+                `Successfully ${
+                  createNewChapter ? "created new" : "updated"
+                } module!`,
+                { autoClose: 1000 }
+              );
+              formik.resetForm();
             } catch (error) {
               console.log(error);
             }
           })
           .catch((error) => {
-            console.error("Error getting download URL:", error);
+            console.error("Error while getting download URL:", error);
           });
       });
   };
