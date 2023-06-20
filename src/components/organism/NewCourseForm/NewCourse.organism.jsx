@@ -169,7 +169,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
               <option value="business">business</option>
               <option value="software">software</option>
             </select>
-            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2 ">
+            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
               <ArrowIcon />
             </span>
           </div>
