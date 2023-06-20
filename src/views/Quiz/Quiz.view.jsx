@@ -26,7 +26,6 @@ const formatData = (data) => {
 function Quiz() {
   const { getRequest, postRequest, updateRequest } = useHTTP();
   const { id_chapter } = useParams();
-  const navigate = useNavigate();
   const [initialValues, setInitialValues] = React.useState({
     quizzes: [
       {
@@ -42,7 +41,8 @@ function Quiz() {
 
   const { data: existingData } = useSWR(
     `/api/v1/admin/module/quiz?id=${id_chapter}`,
-    getRequest
+    getRequest,
+    { refreshInterval: 2000 }
   );
 
   React.useEffect(() => {
@@ -85,7 +85,6 @@ function Quiz() {
         );
         toast.success("Create quiz success", { autoClose: 1000 });
       }
-      existingData?.data();
     } catch (error) {
       console.log(error);
     }
