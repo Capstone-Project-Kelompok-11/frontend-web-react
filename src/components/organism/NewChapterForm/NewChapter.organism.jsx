@@ -8,7 +8,7 @@ import {
 } from "./constant";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useNavigate } from "react-router-dom";
-import { handleUpdateOrCreateChapter } from "../../../utils/hooks/uploadVideo";
+import { handleUpdateOrCreateChapter } from "../../../utils/helper/updateOrCreateChapter";
 import { toast } from "react-toastify";
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
