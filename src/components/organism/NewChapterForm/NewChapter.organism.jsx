@@ -54,7 +54,6 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
                 link_url,
                 postRequest,
                 updateRequest,
-                toast,
               });
               navigate(`/course/${data.id_course || id}`);
               toast.success(
