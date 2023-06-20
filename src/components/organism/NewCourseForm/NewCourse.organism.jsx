@@ -30,12 +30,12 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             ? postRequest(`/api/v1/admin/course`, values)
             : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
           await fetchData;
-          toast.success("Upload successful!"); // Display success toast
+          toast.success("Upload successful!");
           formik.resetForm();
-          navigate("/course"); // Redirect to "/course"
+          navigate("/course");
         } catch (error) {
           console.log(error.message);
-          toast.error("Upload failed. Please try again."); // Display error toast
+          toast.error("Upload failed. Please try again.");
         }
       }
     },
@@ -190,7 +190,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           {createNewCourse ? "Upload" : "Update"}
         </button>
       </div>
-      <ToastContainer /> {/* ToastContainer for displaying toasts */}
+      <ToastContainer />
     </form>
   );
 };
