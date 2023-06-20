@@ -11,7 +11,7 @@ import { transformDate } from "../../../utils/helper/helperMethod";
 
 function ProfileSideBar() {
   const { getRequest } = useHTTP();
-  const { data, isLoading } = useSWR("/api/v1/users/info", getRequest);
+  const { data } = useSWR("/api/v1/users/info", getRequest);
   const date = transformDate(data?.data?.bod || "2023-06-10")
   
   return (
@@ -23,7 +23,7 @@ function ProfileSideBar() {
           <EmailDash text={data?.data?.email} />
           <PhoneDash phone={data?.data?.phone} />
           <DateOfBirthDash birthDate={date} />
-          <GenderDash gender={data?.data?.gender && "Male"} />
+          <GenderDash gender={data?.data?.gender === "M" ? "Male" : "Female"} />
           <WebsiteDash website={"www.lms.co.id"} />
         </div>
         <div className="border-t border-black">
