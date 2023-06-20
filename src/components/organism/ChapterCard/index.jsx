@@ -48,9 +48,10 @@ function ChapterCard({
         state: {
           createNewChapter: false,
           data: {
+          id_course: courseId,
             id,
-            chapterName: name,
-            chapterDes: description,
+            name,
+            description,
             thumbnail,
             video,
             document,
