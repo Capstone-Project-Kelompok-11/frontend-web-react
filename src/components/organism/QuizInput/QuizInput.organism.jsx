@@ -116,7 +116,7 @@ function QuizInput({ arrayHelpers, values }) {
                     text2: "",
                     text3: "",
                     text4: "",
-                    valid: "",
+                    valid: false,
                   })
                 }
               >

@@ -1,22 +1,33 @@
 import * as React from "react";
 import { Formik, Form, FieldArray } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  getRequest,
-  postRequest,
-  updateRequest,
-} from "../../utils/fetcherMethod";
+import useHTTP from "../../utils/hooks/useHTTP";
 import QuizHeader from "../../components/molecules/QuizHeader/QuizHeader.molecule";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
 import QuizForm from "../../components/organism/QuizForm/QuizForm.organism";
 
+const formatData = (data) => {
+  const formattedData = {
+    quizzes: data.map((item) => ({
+      question: item.question,
+      text1: item.choices[0].text,
+      text2: item.choices[1].text,
+      text3: item.choices[2].text,
+      text4: item.choices[3].text,
+      valid: item.choices.find((choice) => choice.valid === true).text,
+    })),
+  };
+  return formattedData;
+};
+
 function Quiz() {
-  // const { setValues } = Formik;
+  const { getRequest, postRequest, updateRequest } = useHTTP();
   const { id_chapter } = useParams();
-  const initialValues = {
+  const navigate = useNavigate();
+  const [initialValues, setInitialValues] = React.useState({
     quizzes: [
       {
         question: "",
@@ -24,30 +35,28 @@ function Quiz() {
         text2: "",
         text3: "",
         text4: "",
-        valid: "",
+        valid: false,
       },
     ],
-  };
+  });
 
   const { data: existingData } = useSWR(
     `/api/v1/admin/module/quiz?id=${id_chapter}`,
     getRequest
   );
 
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       console.log("data exist", existingData?.data);
-
-  //       if (existingData?.data) {
-  //         setValues(initialState)
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (existingData?.data) {
+          setInitialValues(formatData(existingData?.data));
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [existingData?.data]);
 
   const handleSubmit = async (values, { resetForm }) => {
     const data = {
@@ -67,17 +76,16 @@ function Quiz() {
           `/api/v1/admin/module/quiz?id=${id_chapter}`,
           JSON.stringify(data)
         );
-        toast.success("Edit quiz success");
+        toast.success("Edit quiz success", { autoClose: 1000 });
       }
       if (existingData === undefined) {
         const response = await postRequest(
           `/api/v1/admin/module/quiz?id=${id_chapter}`,
           JSON.stringify(data)
         );
-        toast.success("Create quiz success");
+        toast.success("Create quiz success", { autoClose: 1000 });
       }
-
-      resetForm();
+      existingData?.data();
     } catch (error) {
       console.log(error);
     }
@@ -86,7 +94,7 @@ function Quiz() {
   return (
     <Formik
       initialValues={initialValues}
-      enableReinitialize:true
+      enableReinitialize={true}
       onSubmit={handleSubmit}
       render={({ values }) => (
         <Form>
@@ -114,7 +122,7 @@ function Quiz() {
                               text2: "",
                               text3: "",
                               text4: "",
-                              valid: "",
+                              valud: false,
                             })
                           }
                         />
