@@ -1,6 +1,6 @@
 import useHTTP from "./useHTTP";
 const { postRequest, updateRequest } = useHTTP();
-export const handleUploadVIdeo = async ({
+export const handleUpdateOrCreateChapter = async ({
   createNewChapter,
   values,
   id,
