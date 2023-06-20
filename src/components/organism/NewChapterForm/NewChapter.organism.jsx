@@ -8,7 +8,7 @@ import {
 } from "./constant";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useNavigate } from "react-router-dom";
-import { handleUploadVIdeo } from "../../../utils/hooks/uploadVideo";
+import { handleUpdateOrCreateChapter } from "../../../utils/hooks/uploadVideo";
 import { toast } from "react-toastify";
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
@@ -22,7 +22,9 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
     initialValues: initData,
     validationSchema: validationCreateNewChapter,
     onSubmit: (values) => {
-      handleUpload(values);
+      if (values) {
+        handleUpload(values);
+      }
     },
   });
   const handleRefresh = () => {
@@ -34,7 +36,6 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   };
 
   const handleUpload = (values) => {
-    if (file == null) return;
     const fileRef = storage
       .ref("/videos/" + file.name)
       .put(file)
@@ -43,15 +44,14 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
           .then(async (downloadURL) => {
             try {
               const link_url = await downloadURL;
-              await handleUploadVIdeo({
+              await handleUpdateOrCreateChapter({
                 createNewChapter,
                 values,
                 id,
                 data,
                 link_url,
               });
-              toast.dismiss();
-              toast.success(`Succesfully Create Module`);
+              toast.success("Successfully create module!");
               formik.resetForm();
               navigate(`/course/${data.id_course || id}`);
             } catch (error) {
@@ -157,7 +157,7 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
           type="submit"
           className="justify-end ml-auto mr-8 bg-warning-10 hover:bg-warning-30 text-black py-2 px-6 rounded-lg text-sm"
         >
-          Upload
+          {createNewChapter ? "Upload" : "Update"}
         </button>
       </div>
     </form>
