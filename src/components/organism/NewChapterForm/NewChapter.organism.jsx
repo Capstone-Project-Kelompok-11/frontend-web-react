@@ -8,7 +8,8 @@ import {
 } from "./constant";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import { useNavigate } from "react-router-dom";
-import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
+import { handleUploadVIdeo } from "../../../utils/hooks/uploadVideo";
+import { toast } from "react-toastify";
 
 const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   const navigate = useNavigate();
@@ -24,7 +25,9 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
       handleUpload(values);
     },
   });
-
+  const handleRefresh = () => {
+    formik.resetForm();
+  };
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setFile(file);
@@ -40,16 +43,17 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
           .then(async (downloadURL) => {
             try {
               const link_url = await downloadURL;
-              const fetchData = createNewChapter
-                ? postRequest(`/api/v1/admin/module?id=${id}`, {
-                    ...values,
-                    video: link_url,
-                  })
-                : updateRequest(`/api/v1/admin/module?id=${data.id}`, {
-                    ...values,
-                    video: link_url,
-                  });
-              await fetchData;
+              await handleUploadVIdeo({
+                createNewChapter,
+                values,
+                id,
+                data,
+                link_url,
+              });
+              toast.dismiss();
+              toast.success(`Succesfully Create Module`);
+              formik.resetForm();
+              navigate(`/course/${data.id_course || id}`);
             } catch (error) {
               console.log(error);
             }
@@ -63,7 +67,10 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-8 flex items-center">
         <p className="text-2xl">New Chapter</p>
-        <div className="ml-2 transform-origin-center cursor-pointer hover:animate-spin">
+        <div
+          className="ml-2 transform-origin-center cursor-pointer"
+          onClick={handleRefresh}
+        >
           <ArrowPathIcon />
         </div>
       </div>
@@ -119,14 +126,16 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
                   className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-5">
-                    <span className="text-center text-gray-500">Link</span>
+                    <span className="text-center text-gray-500 truncate ... w-36">
+                      {file ? file.name : data.video || "Link"}
+                    </span>
                   </div>
                   <input
                     id="video"
                     type="file"
-                    value={formik.values.video}
+                    value={formik.values.video && ""}
                     onChange={handleFileChange}
-                    className="absolute w-48 h-10 overflow-hidden opacity-0 "
+                    className="absolute w-48 h-10 overflow-hidden opacity-0"
                     accept="video/*"
                   />
                 </label>
