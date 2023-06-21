@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Formik, Form, FieldArray } from "formik";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,20 +8,7 @@ import useHTTP from "../../utils/hooks/useHTTP";
 import QuizHeader from "../../components/molecules/QuizHeader/QuizHeader.molecule";
 import PlusIcon from "../../components/atoms/Icons/PlusIcon.atom";
 import QuizForm from "../../components/organism/QuizForm/QuizForm.organism";
-
-const formatData = (data) => {
-  const formattedData = {
-    quizzes: data.map((item) => ({
-      question: item.question,
-      text1: item.choices[0].text,
-      text2: item.choices[1].text,
-      text3: item.choices[2].text,
-      text4: item.choices[3].text,
-      valid: item.choices.find((choice) => choice.valid === true).text,
-    })),
-  };
-  return formattedData;
-};
+import { formatData } from "../../utils/helper/quizFormated";
 
 function Quiz() {
   const { getRequest, postRequest, updateRequest } = useHTTP();
@@ -121,7 +108,7 @@ function Quiz() {
                               text2: "",
                               text3: "",
                               text4: "",
-                              valud: false,
+                              valid: false,
                             })
                           }
                         />
