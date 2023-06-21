@@ -5,11 +5,12 @@ import useHTTP from "../../utils/hooks/useHTTP";
 
 function CourseView() {
   const { getRequest } = useHTTP();
-  const { data } = useSWR("/api/v1/admin/courses?size=8&page=1", getRequest, {
-    refreshInterval: 3000,
-  });
+  const { data, isLoading } = useSWR(
+    "/api/v1/admin/courses?size=8&page=1",
+    getRequest
+  );
 
-  return <AllCourse {...data} />;
+  return isLoading ? <div>Loading Course...</div> : <AllCourse {...data} />;
 }
 
 export default CourseView;
