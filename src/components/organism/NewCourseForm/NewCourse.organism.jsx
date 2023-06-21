@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   initCreateNewCourseValue,
   validationCreateNewCourse,
@@ -8,13 +10,19 @@ import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
 import useHTTP from "../../../utils/hooks/useHTTP.jsx";
+import { useNavigate } from "react-router-dom";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
+  const navigate = useNavigate();
   const { postRequest, updateRequest } = useHTTP();
   const initData = useMemo(
     () => (createNewCourse ? initCreateNewCourseValue : data),
     []
   );
+
+  const handleRefresh = () => {
+    formik.resetForm();
+  };
 
   const formik = useFormik({
     initialValues: initData,
@@ -26,11 +34,12 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             ? postRequest(`/api/v1/admin/course`, values)
             : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
           await fetchData;
+          toast.success("Upload successful!");
+          navigate("/course");
         } catch (error) {
           console.log(error.message);
+          toast.error("Upload failed. Please try again.");
         }
-        alert("Succes");
-        formik.resetForm();
       }
     },
   });
@@ -40,11 +49,10 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
       <div className="mb-8 flex items-center">
         <p className="text-2xl">New Course</p>
 
-        <div className="ml-2 cursor-pointer hover:animate-spin">
+        <div className="ml-2 cursor-pointer" onClick={handleRefresh}>
           <ArrowPathIcon />
         </div>
       </div>
-
       <div className="w-full flex flex-row gap-6">
         <div className="w-96">
           <div className="mb-2 flex items-center">
@@ -164,23 +172,28 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
               <option value="business">business</option>
               <option value="software">software</option>
             </select>
-            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2 ">
+            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
               <ArrowIcon />
             </span>
           </div>
         </div>
       </div>
       <div className="flex font-semibold mt-6">
-        <button className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold">
+        <button
+          type="button"
+          onClick={() => navigate("/course")}
+          className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold"
+        >
           Back
         </button>
         <button
           type="submit"
           className="justify-end ml-auto mr-10 bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm"
         >
-          Upload
+          {createNewCourse ? "Upload" : "Update"}
         </button>
       </div>
+      <ToastContainer />
     </form>
   );
 };

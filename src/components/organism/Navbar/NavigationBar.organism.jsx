@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import BellIcon from "../../atoms/Icons/BellIcon.atom";
-import WhatsappIcon from "../../atoms/Icons/WhatsappIcon.atom";
 import IconAcademade from "../../molecules/IconAcademade/IconAcademade.molecul";
 import Cookies from "js-cookie";
 import sessionSlice from "../../../config/redux/session/sessionSlice/sessionSlice";
