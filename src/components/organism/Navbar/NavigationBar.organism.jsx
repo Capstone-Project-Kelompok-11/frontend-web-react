@@ -64,7 +64,7 @@ function NavigationBar() {
                           <p className="block px-4 py-2 text-sm">
                             {list.user.name}
                           </p>
-                          <p className="block px-4 py-2 -mt-3 w-72 text-xs truncate ...">
+                          <p className="block px-4 py-2 -mt-3 text-xs">
                             "{list.event.description}"
                           </p>
                         </div>
