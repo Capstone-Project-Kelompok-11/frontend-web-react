@@ -20,6 +20,10 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
     []
   );
 
+  const handleRefresh = () => {
+    formik.resetForm();
+  };
+
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewCourse,
@@ -31,7 +35,6 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
           await fetchData;
           toast.success("Upload successful!");
-          formik.resetForm();
           navigate("/course");
         } catch (error) {
           console.log(error.message);
@@ -46,7 +49,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
       <div className="mb-8 flex items-center">
         <p className="text-2xl">New Course</p>
 
-        <div className="ml-2 cursor-pointer hover:animate-spin">
+        <div className="ml-2 cursor-pointer" onClick={handleRefresh}>
           <ArrowPathIcon />
         </div>
       </div>
