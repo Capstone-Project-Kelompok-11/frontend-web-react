@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Formik, Form, FieldArray } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,7 +12,8 @@ import { formatData } from "../../utils/helper/quizFormated";
 
 function Quiz() {
   const { getRequest, postRequest, updateRequest } = useHTTP();
-  const { id_chapter } = useParams();
+  const { id_chapter, id_course } = useParams();
+  const navigate = useNavigate();
   const [initialValues, setInitialValues] = React.useState({
     quizzes: [
       {
@@ -72,6 +73,7 @@ function Quiz() {
         );
         toast.success("Create quiz success", { autoClose: 1000 });
       }
+      navigate(`/course/${id_course}`);
     } catch (error) {
       console.log(error);
     }
@@ -119,7 +121,11 @@ function Quiz() {
                     </div>
                   </section>
                 )}
-                <QuizForm arrayHelpers={arrayHelpers} values={values} />
+                <QuizForm
+                  arrayHelpers={arrayHelpers}
+                  values={values}
+                  existingData={existingData}
+                />
               </div>
             )}
           />
