@@ -46,7 +46,7 @@ function NavigationBar() {
           >
             <Menu.Items className="absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md text-gray-700 bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               {data?.data?.length ? (
-                data?.data?.map((list, i) => (
+                data?.data?.map((list) => (
                   <Menu.Item key={list.event.description}>
                     {({ active }) => (
                       <div
