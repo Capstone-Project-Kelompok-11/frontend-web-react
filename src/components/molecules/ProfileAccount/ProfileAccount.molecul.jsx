@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProfileAccount({ username }) {
+function ProfileAccount({ name }) {
   return (
     <div>
       <img
@@ -9,7 +9,7 @@ function ProfileAccount({ username }) {
         className="h-20 w-20 rounded-full mx-auto"
       />
       <p className="font-normal py-4 border-black border-b text-lg">
-        {username}
+        {name}
       </p>
     </div>
   );
