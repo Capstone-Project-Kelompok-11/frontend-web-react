@@ -23,7 +23,7 @@ function ListAllCourse({ course }) {
         </Link>
       </div>
       <div className="flex gap-3 text-gray-400 text-sm -mt-3">
-        <p>{course?.finished} Material</p>
+        <p>{course?.modules?.length} Material</p>
         <p>{course?.modules?.length} Course</p>
       </div>
     </div>
