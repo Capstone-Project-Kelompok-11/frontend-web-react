@@ -5,7 +5,7 @@ import AllCourseCard from "../AllCourseCard/AllCourseCard.organism";
 function AllCourse({ data }) {
   return (
     <div className="text-center">
-      <div className="flex items-center gap-4 ">
+      <div className="flex items-center gap-4">
         <p className="text-2xl">All Course</p>
         <Link
           to="/course/new-course"
