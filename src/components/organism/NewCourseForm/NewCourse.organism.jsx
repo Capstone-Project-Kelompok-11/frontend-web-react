@@ -144,16 +144,16 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
           >
             <option value="">select level course</option>
-            <option value="beginner">beginner</option>
-            <option value="intermediate">intermediate</option>
-            <option value="advanced">advanced</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
           </select>
           <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
             <ArrowIcon />
           </span>
         </div>
         <div className="w-full flex flex-col p-2 ml-2 relative">
-          <label htmlFor="category_courses">
+          <label htmlFor="category">
             <div className="flex items-center">
               <p className="font-semibold">Course Category</p>
               <span className="text-red-500 font-semibold">*</span>
@@ -161,16 +161,16 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </label>
           <div>
             <select
-              name="category_courses"
-              value={formik.values.category_courses}
+              name="category"
+              value={formik.values.category}
               onChange={formik.handleChange}
               id=""
               className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
             >
               <option value="">course category</option>
               <option value="Design">Design</option>
-              <option value="business">business</option>
-              <option value="software">software</option>
+              <option value="Business">Business</option>
+              <option value="Software">Software</option>
             </select>
             <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
               <ArrowIcon />
@@ -183,9 +183,9 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           type="button"
           onClick={() => navigate("/course")}
           className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold"
-        >
+          >
           Back
-        </button>
+          </button>
         <button
           type="submit"
           className="justify-end ml-auto mr-10 bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm"

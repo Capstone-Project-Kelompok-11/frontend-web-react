@@ -14,6 +14,11 @@ function ContentProfile() {
     getRequest
   );
 
+  const { data: comment, isLoading: commentLoading } = useSWR(
+    "/api/v1/admin/events?size=6&page=1",
+    getRequest
+  );
+
   return (
     <div className="py-4 mr-4">
       <HeaderProfile />
@@ -25,9 +30,9 @@ function ContentProfile() {
             <MyCourse course={course} />
           )}
         </div>
-        <RatingCourse />
+      {commentLoading ? <p>Loading Comment...</p> :  <RatingCourse comment={comment} />} 
       </div>
-      <div className="grid grid-cols-4 absolute bottom-0 pb-10 px-2 gap-4 mr-10 ">
+      <div className="grid grid-cols-4 absolute bottom-0 pb-10 px-2 gap-4 mr-10">
         <Calendar />
         <TodaysEvent />
       </div>

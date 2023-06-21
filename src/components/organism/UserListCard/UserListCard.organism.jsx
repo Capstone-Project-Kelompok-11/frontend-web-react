@@ -5,7 +5,6 @@ import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 function UserListCard({
   name,
   modules,
-  totalCourse,
   member_count,
   category_courses,
 }) {
@@ -26,7 +25,7 @@ function UserListCard({
         </div>
         <div className="flex py-4 -mt-4 gap-5 text-gray-500 text-sm">
           <p>{modules?.length} Material</p>
-          <p>{totalCourse} Content</p>
+          <p>{modules?.length} Content</p>
         </div>
       </div>
     </>
