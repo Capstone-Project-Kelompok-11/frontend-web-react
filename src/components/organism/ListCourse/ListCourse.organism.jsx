@@ -1,8 +1,7 @@
 import React from "react";
 import ListAllCourse from "../../molecules/ListAllCourse/ListAllCourse.molecul";
 
-function ListCourse({allCourse}) {
- 
+function ListCourse({ allCourse }) {
   return (
     <>
       {allCourse?.data?.map((list) => (

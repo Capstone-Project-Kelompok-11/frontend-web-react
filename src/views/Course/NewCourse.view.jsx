@@ -1,6 +1,6 @@
 import React from "react";
-import NewCourseForm from "../../components/organism/NewCourseForm/NewCourse.organism";
 import { useLocation } from "react-router-dom";
+import NewCourseForm from "../../components/organism/NewCourseForm/NewCourse.organism";
 
 function NewCourse() {
   const { state } = useLocation();

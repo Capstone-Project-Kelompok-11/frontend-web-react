@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getRandomBorderColor } from "../../../utils/helperMethod";
+import { getRandomBorderColor } from "../../../utils/helper/helperMethod";
 import CourseCard from "../CourseCard";
 
 function AllCourseCard({ data }) {

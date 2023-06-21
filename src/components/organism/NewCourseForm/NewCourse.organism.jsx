@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   initCreateNewCourseValue,
   validationCreateNewCourse,
@@ -7,13 +9,20 @@ import {
 import CameraIcon from "../../atoms/Icons/CameraIcon.atom.jsx";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
-import { postRequest, updateRequest } from "../../../utils/fetcherMethod.js";
+import useHTTP from "../../../utils/hooks/useHTTP.jsx";
+import { useNavigate } from "react-router-dom";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
+  const navigate = useNavigate();
+  const { postRequest, updateRequest } = useHTTP();
   const initData = useMemo(
     () => (createNewCourse ? initCreateNewCourseValue : data),
     []
   );
+
+  const handleRefresh = () => {
+    formik.resetForm();
+  };
 
   const formik = useFormik({
     initialValues: initData,
@@ -25,11 +34,12 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             ? postRequest(`/api/v1/admin/course`, values)
             : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
           await fetchData;
+          toast.success("Upload successful!");
+          navigate("/course");
         } catch (error) {
           console.log(error.message);
+          toast.error("Upload failed. Please try again.");
         }
-        alert("Succes");
-        formik.resetForm();
       }
     },
   });
@@ -39,11 +49,10 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
       <div className="mb-8 flex items-center">
         <p className="text-2xl">New Course</p>
 
-        <div className="ml-2 cursor-pointer hover:animate-spin">
+        <div className="ml-2 cursor-pointer" onClick={handleRefresh}>
           <ArrowPathIcon />
         </div>
       </div>
-
       <div className="w-full flex flex-row gap-6">
         <div className="w-96">
           <div className="mb-2 flex items-center">
@@ -135,16 +144,16 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
             className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
           >
             <option value="">select level course</option>
-            <option value="beginner">beginner</option>
-            <option value="intermediate">intermediate</option>
-            <option value="advanced">advanced</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
           </select>
           <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
             <ArrowIcon />
           </span>
         </div>
         <div className="w-full flex flex-col p-2 ml-2 relative">
-          <label htmlFor="category_courses">
+          <label htmlFor="category">
             <div className="flex items-center">
               <p className="font-semibold">Course Category</p>
               <span className="text-red-500 font-semibold">*</span>
@@ -152,34 +161,39 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           </label>
           <div>
             <select
-              name="category_courses"
-              value={formik.values.category_courses}
+              name="category"
+              value={formik.values.category}
               onChange={formik.handleChange}
               id=""
               className="appearance-none w-80 h-12 mt-3 rounded-lg bg-gray-200 border-gray-500 text-gray-700 py-3 px-4 pr-8 border-solid border"
             >
               <option value="">course category</option>
               <option value="Design">Design</option>
-              <option value="business">business</option>
-              <option value="software">software</option>
+              <option value="Business">Business</option>
+              <option value="Software">Software</option>
             </select>
-            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2 ">
+            <span className="absolute inset-y-0 right-7 top-9 flex items-center px-2">
               <ArrowIcon />
             </span>
           </div>
         </div>
       </div>
       <div className="flex font-semibold mt-6">
-        <button className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold">
+        <button
+          type="button"
+          onClick={() => navigate("/course")}
+          className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold"
+          >
           Back
-        </button>
+          </button>
         <button
           type="submit"
           className="justify-end ml-auto mr-10 bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm"
         >
-          Upload
+          {createNewCourse ? "Upload" : "Update"}
         </button>
       </div>
+      <ToastContainer />
     </form>
   );
 };

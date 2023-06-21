@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { getRequest } from "../../utils/fetcherMethod";
 import { getThumbnailCourseContent } from "./constant";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
 import useSWR from "swr";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function ReportingSummary() {
+  const { getRequest } = useHTTP();
   const { detail_user } = useParams();
   const { state } = useLocation();
   const { data: rawData, isLoading } = useSWR(

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/templates/Navbar.template";
-import { login } from "../../utils/fetcherMethod";
 import { useDispatch } from "react-redux";
+import Navbar from "../../components/templates/Navbar.template";
 import sessionSlice from "../../config/redux/session/sessionSlice/sessionSlice";
-import Cookies from "js-cookie";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function Login(props) {
+  const { login } = useHTTP();
   const [showPassword, setShowPassword] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const token = Cookies.get("token");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,9 +22,12 @@ function Login(props) {
       password: "",
     },
     onSubmit: async (values) => {
+      toast.loading("Signing in to your account...");
       try {
         const result = await login(values);
         if (result) {
+          toast.dismiss();
+          toast.success("Welcome back!", { autoClose: 1000 });
           setLoginSuccess(true);
           dispatch(sessionSlice.actions.updateToken(result));
           navigate("/dashboard");
@@ -55,7 +56,7 @@ function Login(props) {
 
   useEffect(() => {
     if (loginSuccess) {
-      toast.success("Login berhasil", {
+      toast.success("Welcome back!", {
         onClose: () => {
           navigate("/dashboard");
         },
@@ -70,7 +71,6 @@ function Login(props) {
   return (
     <div>
       <Navbar isLogged={props.isLogged} />
-      <ToastContainer position="top-center" autoClose={1000} />
       <div className="bg-[url('./assets/bgLanding.png')] bg-cover min-h-screen">
         <div className="flex justify-center items-center h-screen text-base">
           <div className="bg-white p-20 rounded-xl shadow-md m-2">

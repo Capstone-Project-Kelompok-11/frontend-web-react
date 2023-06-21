@@ -15,7 +15,7 @@ function UserProfileThumbnailCard({ data, avatar }) {
             : LocalAvatar
         }
         alt="user thumbnail"
-        className="w-[8rem] h-[8rem] mx-auto"
+        className="w-[8rem] h-[8rem] mx-auto rounded-full scale-110"
       />
 
       <section className="flex flex-col gap-5 p-3 pb-10 rounded-2xl shadow-lg">

@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { makeRupiahValue } from "../../../utils/helperMethod";
+import { makeRupiahValue } from "../../../utils/helper/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function ListAllCourse({ course }) {
- 
   const price = makeRupiahValue(course.price);
   return (
     <div className="border border-black rounded-xl text-sm px-8 mr-5 py-2 my-4">
@@ -24,7 +23,7 @@ function ListAllCourse({ course }) {
         </Link>
       </div>
       <div className="flex gap-3 text-gray-400 text-sm -mt-3">
-        <p>{course?.finished} Material</p>
+        <p>{course?.modules?.length} Material</p>
         <p>{course?.modules?.length} Course</p>
       </div>
     </div>
