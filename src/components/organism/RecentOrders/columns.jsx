@@ -16,7 +16,7 @@ export const LIST_COLUMN_ORDERS = [
     Header: "Date",
     accessor: "date",
     Cell: ({ row: { original } }) => (
-      <section>{transformDate(original.date)}</section>
+      <section>{original.date}</section>
     ),
   },
   {

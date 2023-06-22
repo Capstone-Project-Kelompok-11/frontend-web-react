@@ -6,7 +6,7 @@ function UserListCard({
   name,
   modules,
   member_count,
-  category_courses,
+  categories,
 }) {
   const randomBorderColor = getRandomBorderColor();
   return (
@@ -21,7 +21,7 @@ function UserListCard({
             <p className="text-2xl font-bold pt-1">{member_count}</p>
           </div>
 
-          <p className="pt-6">Category {category_courses} </p>
+          <p className="pt-6">Category {categories.toString()} </p>
         </div>
         <div className="flex py-4 -mt-4 gap-5 text-gray-500 text-sm">
           <p>{modules?.length} Material</p>
