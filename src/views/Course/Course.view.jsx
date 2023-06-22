@@ -8,7 +8,7 @@ function CourseView() {
   const { data, isLoading } = useSWR(
     "/api/v1/admin/courses?size=20&page=1",
     getRequest,
-    { refreshInterval: 3000 }
+    { refreshInterval: 2000 }
   );
 
   return isLoading ? <div>Loading Course...</div> : <AllCourse {...data} />;
