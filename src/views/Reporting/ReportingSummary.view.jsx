@@ -42,7 +42,7 @@ function ReportingSummary() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <section className="flex flex-col gap-20 float-right w-[65%]">
+          <section className="flex flex-col gap-20 pl-8 float-right w-[65%]">
             <section className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">Summary All Material</h2>
 
