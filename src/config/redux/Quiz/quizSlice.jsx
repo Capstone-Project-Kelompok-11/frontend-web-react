@@ -2,16 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   gambarSoal: null,
-  forms: [
+  quizzes: [
     {
       question: "",
-      answers: {
-        a: "",
-        b: "",
-        c: "",
-        d: "",
-      },
-      keyAnswer: "",
+      choices: [
+        {
+          text: "",
+          valid: false,
+        },
+      ],
     },
   ],
 };
@@ -25,14 +24,9 @@ const quizSlice = createSlice({
       gambarSoal: action.payload,
     }),
 
-    setShowForm: (state, action) => ({
-      ...state,
-      showForm: action.payload,
-    }),
-
     setForms: (state, action) => ({
       ...state,
-      forms: action.payload,
+      quizzes: action.payload,
     }),
   },
 });
