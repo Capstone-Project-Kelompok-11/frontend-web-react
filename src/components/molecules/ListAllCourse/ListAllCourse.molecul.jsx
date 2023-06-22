@@ -14,16 +14,16 @@ function ListAllCourse({ course }) {
           <AnonymousIcon />
           <p className="font-bold text-lg ml-4 pt-2">{course.member_count}</p>
         </div>
-        <p className="pt-4">{course.name}</p>
+        <p className="pt-4">Category {course.categories.toString()}</p>
         <Link
           to={`/course/${course.id}`}
-          className="mx-auto py-2 px-6 mt-2 rounded-xl font-bold bg-primary-50 "
+          className="mx-auto py-2 px-6 mt-2 rounded-xl font-bold bg-primary-50"
         >
           Detail
         </Link>
       </div>
       <div className="flex gap-3 text-gray-400 text-sm -mt-3">
-        <p>{course?.finished} Material</p>
+        <p>{course?.modules?.length} Material</p>
         <p>{course?.modules?.length} Course</p>
       </div>
     </div>

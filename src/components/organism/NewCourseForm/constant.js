@@ -5,7 +5,7 @@ export const initCreateNewCourseValue = {
   description: "",
   price: "",
   level: "",
-  category_courses: "",
+  category: "",
 };
 
 export const validationCreateNewCourse = Yup.object().shape({

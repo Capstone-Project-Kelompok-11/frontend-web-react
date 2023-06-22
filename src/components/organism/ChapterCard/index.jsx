@@ -52,9 +52,7 @@ function ChapterCard({
             id,
             name,
             description,
-            thumbnail,
             video,
-            document,
           },
         },
       });

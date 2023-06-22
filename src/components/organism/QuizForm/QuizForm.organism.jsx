@@ -2,7 +2,7 @@ import React from "react";
 import QuizInput from "../QuizInput/QuizInput.organism";
 import QuizHeader from "../../molecules/QuizHeader/QuizHeader.molecule";
 
-function QuizForm({ values, arrayHelpers }) {
+function QuizForm({ values, arrayHelpers, existingData }) {
   if (values.quizzes.length < 1) {
     return undefined;
   }
@@ -15,7 +15,7 @@ function QuizForm({ values, arrayHelpers }) {
           type="submit"
           className="bg-primary-10 px-5 py-2 rounded-lg font-bold outline-none"
         >
-          SUBMIT
+          {existingData ? "UPDATE" : "SUBMIT"}
         </button>
       </div>
       <section className="shadow-sm shadow-gray-500 p-3 min-h-fit me-10 my-6 ">

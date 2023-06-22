@@ -6,8 +6,9 @@ import useHTTP from "../../utils/hooks/useHTTP";
 function CourseView() {
   const { getRequest } = useHTTP();
   const { data, isLoading } = useSWR(
-    "/api/v1/admin/courses?size=8&page=1",
-    getRequest
+    "/api/v1/admin/courses?size=20&page=1",
+    getRequest,
+    { refreshInterval: 2000 }
   );
 
   return isLoading ? <div>Loading Course...</div> : <AllCourse {...data} />;
