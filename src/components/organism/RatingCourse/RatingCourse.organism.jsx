@@ -1,5 +1,4 @@
 import React from "react";
-import { listRating } from "./dummyData";
 import RatingCourseCard from "../RatingCourseCard/RatingCourseCard.organism";
 
 function RatingCourse({comment}) {
