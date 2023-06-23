@@ -22,7 +22,6 @@ function Login(props) {
       password: "",
     },
     onSubmit: async (values) => {
-      toast.loading("Signing in to your account...");
       try {
         const result = await login(values);
         if (result) {
