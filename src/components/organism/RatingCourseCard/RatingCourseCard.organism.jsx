@@ -7,11 +7,11 @@ function RatingCourseCard({ list }) {
     <div>
       <div className="flex justify-between p-2 py-3">
         <img
-          src={list.imageURL}
+          src={list?.user?.image}
           alt=""
           className="h-8 w-8 rounded-full inline-flex mt-1"
         />
-        <p className="px-4 flex flex-1 text-base items-center">{list.name}</p>
+        <p className="px-4 flex flex-1 text-base items-center">{list?.user?.name}</p>
         <div className="rating rating-sm flex flex-row justify-between px-1 py-2">
           <RatingsStars />
           <p className="text-sm flex pr-10 mx-5">{list.rating}</p>
