@@ -22,11 +22,11 @@ export const handleUpdateOrCreateChapter = async ({
 
 const handleUploadImage = async (res, file, uploadImage) => {
   await uploadImage(
-    `/api/v1/admin/course/thumbnail/upload?id=${res.data.id}`,
+    `/api/v1/admin/course/thumbnail/upload?id=${res?.data?.id || res}`,
     file
   );
   await uploadImage(
-    `/api/v1/admin/course/thumbnail/upload?id=${res.data.id}`,
+    `/api/v1/admin/course/thumbnail/upload?id=${res?.data?.id || res}`,
     file
   );
 };
@@ -44,9 +44,9 @@ export const handleUpdateOrCreateCourse = async ({
     const res = await postRequest("/api/v1/admin/course", values);
     await handleUploadImage(res, file, uploadImage);
   }
-  const resUpdate = await updateRequest(
+  await updateRequest(
     `/api/v1/admin/course?id=${id}`,
     values
   );
-  await handleUploadImage(resUpdate, file, uploadImage);
+  await handleUploadImage(id, file, uploadImage);
 };
