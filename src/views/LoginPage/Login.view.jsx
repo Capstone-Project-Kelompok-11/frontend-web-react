@@ -33,6 +33,7 @@ function Login(props) {
         } else {
           formik.errors.email = "Incorrect Email !";
           formik.errors.password = "Incorrect Password !";
+          toast.error("Incorrect email or password");
         }
       } catch (error) {
         console.log("Login error:", error);
