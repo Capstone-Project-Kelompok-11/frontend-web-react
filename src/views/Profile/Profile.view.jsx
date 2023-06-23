@@ -13,14 +13,17 @@ function ContentProfile() {
     "/api/v1/admin/courses?size=3&page=1",
     getRequest
   );
-
+  const { data: profile, isLoading: profileLoading } = useSWR(
+    "/api/v1/admin/stats",
+    getRequest
+  );
   const { data: comment, isLoading: commentLoading } = useSWR(
     "/api/v1/public/course/reviews?size=6&page=1",
     getRequest
   );
   return (
     <div className="py-4 mr-4">
-      <HeaderProfile />
+    {profileLoading ? <p>Loading Profile...</p> : <HeaderProfile {...profile.data} />}
       <div className="grid grid-cols-2 gap-8 px-2 py-6 mr-4">
         <div>
           {courseLoading ? (
