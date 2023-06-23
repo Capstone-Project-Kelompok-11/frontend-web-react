@@ -23,9 +23,16 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewChapter,
-    onSubmit: (values) => {
+    onSubmit: async (values, { resetForm }) => {
       if (values) {
-        handleUpload(values);
+        await handleUpload(values);
+        toast.success(
+          `Successfully ${
+            createNewChapter ? "created new" : "updated"
+          } module!`,
+          { autoClose: 1000 }
+        );
+        resetForm();
       }
     },
   });
@@ -45,23 +52,30 @@ const NewChapterForm = ({ createNewChapter, id, data = {} }) => {
         getDownloadURL(snapshot.ref)
           .then(async (downloadURL) => {
             try {
-              const link_url = await downloadURL;
-              await handleUpdateOrCreateChapter({
-                createNewChapter,
-                values,
-                id,
-                data,
-                link_url,
-                postRequest,
-                updateRequest,
-              });
+              if (file) {
+                const link_url = await downloadURL;
+                await handleUpdateOrCreateChapter({
+                  createNewChapter,
+                  values,
+                  id,
+                  data,
+                  link_url,
+                  postRequest,
+                  updateRequest,
+                });
+              } else {
+                await handleUpdateOrCreateChapter({
+                  createNewChapter,
+                  values,
+                  id,
+                  data,
+                  link_url: undefined,
+                  postRequest,
+                  updateRequest,
+                });
+              }
+
               navigate(`/course/${data.id_course || id}`);
-              toast.success(
-                `Successfully ${
-                  createNewChapter ? "created new" : "updated"
-                } module!`,
-                { autoClose: 1000 }
-              );
               formik.resetForm();
             } catch (error) {
               console.log(error);
