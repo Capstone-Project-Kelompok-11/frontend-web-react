@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ListMyCourse from "../../molecules/ListMyCourse/ListMyCourse.molecul";
-import { listMyCourse } from "./dummyData";
 
 function MyCourse({ course }) {
   return (
