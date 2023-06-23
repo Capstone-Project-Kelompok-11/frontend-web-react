@@ -1,23 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getRandomBorderColor } from "../../../utils/helperMethod";
+import { getRandomBorderColor } from "../../../utils/helper/helperMethod";
 import CourseCard from "../CourseCard";
 
-function AllCourseCard({ id, name, category_courses, finished, member_count }) {
+function AllCourseCard({ data }) {
   const randomColorBorder = getRandomBorderColor();
-
+  const { id, name, categories, finished, member_count } = data;
   return (
-    <div
-      className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg `}
-    >
+    <div className={`p-5 rounded-xl border-l-4 ${randomColorBorder} shadow-lg`}>
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold">{name}</h1>
 
-        <CourseCard />
+        <CourseCard {...data} />
       </div>
       <div className="flex flex-row gap-2 py-4 pb-14">
         <h1>Category :</h1>
-        <p className="font-bold">{category_courses}</p>
+        <p className="font-bold">{categories.toString()}</p>
       </div>
       <div className="gap-5 flex items-start justify-start border-r">
         <div className="mx-1 text-center">
@@ -31,7 +29,7 @@ function AllCourseCard({ id, name, category_courses, finished, member_count }) {
         <div className="flex ml-auto">
           <Link
             to={`/course/${id}`}
-            className="bg-success-10 p-2 rounded-lg px-4  "
+            className="bg-success-10 p-2 rounded-lg px-4"
           >
             View
           </Link>

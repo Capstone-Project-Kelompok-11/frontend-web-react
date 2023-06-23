@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
-import { getRequest } from "../../utils/fetcherMethod";
 import { getThumbnailCourseContent } from "./constant";
 import ChapterCard from "../../components/organism/ChapterCard";
 import UserProfileThumbnailCard from "../../components/organism/UserProfileThumbnailCard";
 import useSWR from "swr";
+import useHTTP from "../../utils/hooks/useHTTP";
 
 function ReportingSummary() {
+  const { getRequest } = useHTTP();
   const { detail_user } = useParams();
   const { state } = useLocation();
   const { data: rawData, isLoading } = useSWR(
@@ -41,7 +42,7 @@ function ReportingSummary() {
         {isLoading ? (
           <p>Loading...</p>
         ) : (
-          <section className="flex flex-col gap-20 float-right w-[65%]">
+          <section className="flex flex-col gap-20 pl-8 float-right w-[65%]">
             <section className="flex flex-col gap-3">
               <h2 className="font-bold text-3xl">Summary All Material</h2>
 

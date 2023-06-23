@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import DashboardTemplate from "../../components/templates/Dashboard.template";
 import DashboardView from "../../views/Dashboard/Dashboard.view";
 import CourseView from "../../views/Course/Course.view";
@@ -16,9 +17,7 @@ import ReportingUserView from "../../views/Reporting/ReportingUser.view";
 import DetailChapter from "../../views/Chapter/DetailChapter.view";
 import NewChapterView from "../../views/Chapter/NewChapter.view";
 import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
 import sessionSlice from "../redux/session/sessionSlice/sessionSlice";
-import { useSelector } from "react-redux";
 
 function RootRouter() {
   const token = Cookies.get("token");
@@ -40,15 +39,11 @@ function RootRouter() {
             <Route path="/course" element={<CourseView />} />
             <Route path="/course/new-course" element={<NewCourseView />} />
             <Route
-              path="/course/:course_name/new-chapter"
+              path="/course/:id_course/new-chapter"
               element={<NewChapterView />}
             />
             <Route
-              path="/course/:id_course/chapter/new_quiz"
-              element={<Quiz />}
-            />
-            <Route
-              path="/course/:id_course/chapter/:id_chapter/update_quiz"
+              path="/course/:id_course/chapter/:id_chapter/quiz"
               element={<Quiz />}
             />
             <Route
@@ -75,6 +70,7 @@ function RootRouter() {
         ) : (
           <>
             <Route path="/login" element={<Login />} />
+            <Route path="*" element={<Navigate to="/login" replace={true} />} />
           </>
         )}
       </Routes>

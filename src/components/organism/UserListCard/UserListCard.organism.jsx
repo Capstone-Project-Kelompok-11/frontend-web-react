@@ -1,13 +1,12 @@
 import React from "react";
-import { getRandomBorderColor } from "../../../utils/helperMethod";
+import { getRandomBorderColor } from "../../../utils/helper/helperMethod";
 import AnonymousIcon from "../../atoms/Icons/AnonymousIcon.atom";
 
 function UserListCard({
   name,
   modules,
-  totalCourse,
   member_count,
-  category_courses,
+  categories,
 }) {
   const randomBorderColor = getRandomBorderColor();
   return (
@@ -22,11 +21,11 @@ function UserListCard({
             <p className="text-2xl font-bold pt-1">{member_count}</p>
           </div>
 
-          <p className="pt-6">Category {category_courses} </p>
+          <p className="pt-6">Category {categories.toString()} </p>
         </div>
         <div className="flex py-4 -mt-4 gap-5 text-gray-500 text-sm">
           <p>{modules?.length} Material</p>
-          <p>{totalCourse} Content</p>
+          <p>{modules?.length} Content</p>
         </div>
       </div>
     </>

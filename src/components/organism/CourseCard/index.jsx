@@ -1,27 +1,36 @@
 import React, { Fragment, useState } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
-import { getBgColor, option } from "../ChapterCard/constant";
 import ThreeDotIcon from "../../atoms/Icons/ThreeDotIcon";
 import Modal from "../../molecules/Modal/Modal.molecul";
+import useHTTP from "../../../utils/hooks/useHTTP";
+import { getColor, optionCourse } from "./constant";
 
 function CourseCard({
-  courseName,
-  courseDes,
-  coursePrice,
+  id,
+  name,
+  description,
+  price,
   score,
+  level,
+  category_courses,
+  thumbnail,
   onClick,
   isReporting = false,
 }) {
+  const { deleteRequest } = useHTTP();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
 
-  const handleDelete = () => {
-    alert("button yes delete has been clicked!");
+  const handleDelete = async () => {
+    try {
+      await deleteRequest(`/api/v1/admin/course?id=${id}`);
+    } catch (error) {
+      console.log(error.message);
+    }
     closeModal();
-    //TODO: finish this logic
   };
 
   const handleClick = (value) => {
@@ -29,12 +38,18 @@ function CourseCard({
       setIsOpen(true);
       return;
     }
-
-    // TODO: navigate to create new chapter form!
     navigate(`/course/new-course`, {
       state: {
         createNewCourse: false,
-        data: { courseName, courseDes, coursePrice },
+        data: {
+          id,
+          name,
+          description,
+          price,
+          level,
+          category_courses,
+          thumbnail,
+        },
       },
     });
   };
@@ -44,9 +59,7 @@ function CourseCard({
       <section
         onClick={onClick}
         className={onClick ? "cursor-pointer" : "cursor-default"}
-      >
-        <h2>{courseName}</h2>
-      </section>
+      ></section>
 
       <section className="relative flex items-center">
         {isReporting ? (
@@ -68,13 +81,13 @@ function CourseCard({
                 leaveTo="transform opacity-0 scale-95"
               >
                 <Menu.Items className="absolute right-0 flex flex-col w-24 gap-1 p-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  {option.map((value) => (
+                  {optionCourse.map((value) => (
                     <Menu.Item key={value} as={Fragment}>
                       {({ active }) => (
                         <button
                           type="button"
                           className={`text-center cursor-pointer rounded-md ${
-                            active && `text-white ${getBgColor(value)}`
+                            active && `text-white ${getColor(value)}`
                           }`}
                           onClick={() => handleClick(value)}
                         >
@@ -98,7 +111,7 @@ function CourseCard({
               <section className="mt-2">
                 <p className="text-sm text-gray-500">
                   Are you sure want to delete course{" "}
-                  <span className="font-semibold">{courseName}</span>?
+                  <span className="font-semibold">{name}</span>?
                 </p>
               </section>
             </Modal>
