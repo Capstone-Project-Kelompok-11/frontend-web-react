@@ -8,7 +8,7 @@ function RatingCourseCard({ list }) {
       <div className="flex justify-between p-2 py-3">
         <img
           src={list?.user?.image}
-          alt=""
+          alt={list?.user?.name}
           className="h-8 w-8 rounded-full inline-flex mt-1"
         />
         <p className="px-4 flex flex-1 text-base items-center">{list?.user?.name}</p>
