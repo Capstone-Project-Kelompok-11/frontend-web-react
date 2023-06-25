@@ -76,7 +76,7 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
                   className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    {file || !createNewCourse ? (
+                    {file || initData?.thumbnail ? (
                       <p className="w-12 overflow-hidden">{file?.name || initData?.thumbnail}</p>
                     ) : (
                       <CameraIcon />
