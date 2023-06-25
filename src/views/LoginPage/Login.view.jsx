@@ -22,8 +22,7 @@ function Login(props) {
       password: "",
     },
     onSubmit: async (values) => {
-      toast.loading("Signing in to your account...");
-      try {
+     try {
         const result = await login(values);
         if (result) {
           toast.dismiss();
@@ -34,6 +33,7 @@ function Login(props) {
         } else {
           formik.errors.email = "Incorrect Email !";
           formik.errors.password = "Incorrect Password !";
+          toast.error("Incorrect Password/Email !")
         }
       } catch (error) {
         console.log("Login error:", error);
