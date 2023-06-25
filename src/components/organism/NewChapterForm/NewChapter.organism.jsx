@@ -7,7 +7,7 @@ import {
   validationCreateNewChapter,
 } from "./constant";
 import { useNavigate } from "react-router-dom";
-import { handleUpdateOrCreateChapter } from "../../../utils/helper/updateOrCreateChapter";
+import { handleUpdateOrCreateChapter } from "../../../utils/helper/updateOrCreateMethod";
 import { toast } from "react-toastify";
 import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom";
 import useHTTP from "../../../utils/hooks/useHTTP";

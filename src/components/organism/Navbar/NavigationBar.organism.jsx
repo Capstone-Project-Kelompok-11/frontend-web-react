@@ -23,16 +23,17 @@ function NavigationBar() {
     navigate("/");
   };
   const { data } = useSWR("/api/v1/admin/events?size=5&page=1", getRequest);
+  const { data: profile } = useSWR("/api/v1/users/info", getRequest);
 
   return (
     <section className="flex sticky top-4 z-20 max-w-8xl mx-8 my-4 px-10 bg-warning-10 h-16 shadow-xl rounded-2xl">
       <IconAcademade />
 
       {/* Notification Icon */}
-      <section className="absolute gap-4 inset-y-0 right-12 mx-8 flex items-center pr-36 cursor-pointer">       
+      <section className="absolute gap-4 inset-y-0 right-12 mx-8 flex items-center pr-36 cursor-pointer">
         <Menu as="div" className="relative mx-4">
           <Menu.Button className="flex -mb-1 gap-3 rounded-full text-sm focus:ring-white focus:ring-offset-2">
-          <BellIcon style={{ width: 30 }} />
+            <BellIcon style={{ width: 30 }} />
           </Menu.Button>
 
           <Transition
@@ -99,7 +100,9 @@ function NavigationBar() {
               src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt="avatar"
             />
-            <h2 className="py-1 text-xl font-medium">Gabriel</h2>
+            <h2 className="py-1 text-xl font-medium">
+              {profile ? profile?.data?.name : "adminmin"}
+            </h2>
           </Menu.Button>
 
           <Transition

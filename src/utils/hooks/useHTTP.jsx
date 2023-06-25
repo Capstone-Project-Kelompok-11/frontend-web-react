@@ -12,6 +12,13 @@ const useHTTP = () => {
       Authorization: `Bearer ${token}`,
     },
   };
+  
+  const configMultiForm = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
   const getRequest = async (url) => {
     try {
@@ -79,12 +86,28 @@ const useHTTP = () => {
     }
   };
 
+  const uploadImage = async (url, value) => {
+    try {
+      const formData = new FormData();
+      formData.append("image", value);
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}${url}`,
+        formData,
+        configMultiForm
+      );
+      return res.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return {
     getRequest,
     postRequest,
     updateRequest,
     deleteRequest,
     login,
+    uploadImage,
   };
 };
 

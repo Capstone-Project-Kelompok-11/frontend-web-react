@@ -39,3 +39,11 @@ export const getSimpleName = (input, title) => {
 
   return raw;
 };
+
+export function convertToJuta(number) {
+  if (number >= 100000) {
+    const juta = Math.floor(number / 1000000);
+    return `${juta} Juta`;
+  }
+  return number.toString();
+}

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,39 +11,49 @@ import ArrowPathIcon from "../../atoms/Icons/ArrowPathIcon.atom.jsx";
 import ArrowIcon from "../../atoms/Icons/ArrowIcon.atom.jsx";
 import useHTTP from "../../../utils/hooks/useHTTP.jsx";
 import { useNavigate } from "react-router-dom";
+import { handleUpdateOrCreateCourse } from "../../../utils/helper/updateOrCreateMethod.js";
 
 const NewCourseForm = ({ createNewCourse, data = {} }) => {
   const navigate = useNavigate();
-  const { postRequest, updateRequest } = useHTTP();
+  const [file, setFile] = useState(null);
+  const { postRequest, updateRequest, uploadImage } = useHTTP();
   const initData = useMemo(
     () => (createNewCourse ? initCreateNewCourseValue : data),
     []
   );
+  const handleImageChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
+  const handleUpload = async (values) => {
+    try {
+      await handleUpdateOrCreateCourse({
+        createNewCourse,
+        values,
+        postRequest,
+        updateRequest,
+        id: initData.id,
+        uploadImage,
+        file,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+    toast.success("Upload successful!");
+    navigate("/course");
+  };
   const handleRefresh = () => {
     formik.resetForm();
   };
-
   const formik = useFormik({
     initialValues: initData,
     validationSchema: validationCreateNewCourse,
-    onSubmit: async (values) => {
+    onSubmit: (values) => {
       if (values) {
-        try {
-          const fetchData = createNewCourse
-            ? postRequest(`/api/v1/admin/course`, values)
-            : updateRequest(`/api/v1/admin/course?id=${data.id}`, values);
-          await fetchData;
-          toast.success("Upload successful!");
-          navigate("/course");
-        } catch (error) {
-          console.log(error.message);
-          toast.error("Upload failed. Please try again.");
-        }
+        handleUpload(values);
       }
     },
   });
-
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="mb-8 flex items-center">
@@ -66,9 +76,19 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
                   className="flex flex-col items-center justify-center w-full h-64"
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                    <CameraIcon />
+                    {file || initData?.thumbnail ? (
+                      <p className="w-12 overflow-hidden">{file?.name || initData?.thumbnail}</p>
+                    ) : (
+                      <CameraIcon />
+                    )}
                   </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
+                  <input
+                    id="dropzone-file"
+                    type="file"
+                    onChange={handleImageChange}
+                    className="hidden"
+                    accept="image/png, image/gif, image/jpeg"
+                  />
                 </label>
               </div>
             </div>
@@ -183,9 +203,9 @@ const NewCourseForm = ({ createNewCourse, data = {} }) => {
           type="button"
           onClick={() => navigate("/course")}
           className="justify-start bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm fw-bold"
-          >
+        >
           Back
-          </button>
+        </button>
         <button
           type="submit"
           className="justify-end ml-auto mr-10 bg-warning-10 hover:bg-warning-30 duration-500 text-black py-2 px-6 rounded-lg text-sm"

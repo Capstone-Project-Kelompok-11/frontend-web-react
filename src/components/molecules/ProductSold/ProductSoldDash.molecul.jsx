@@ -6,7 +6,7 @@ function ProductSoldDash({ newProductSold }) {
     <div className="inline-flex flex-col p-2 mx-3 font-bold rounded-xl text-white w-56 bg-[url('../src/assets/bgProfile.jpg')]">
       <div className="flex px-2 my-2 justify-between">
         <h1 className="pb-4 text-xl">Product Sold</h1>
-        <div className="  rounded-full h-9 mt-2 p-2 bg-white bg-opacity-30">
+        <div className="rounded-full h-9 mt-2 p-2 bg-white bg-opacity-30">
           <ProductSoldIcon />
         </div>
       </div>
