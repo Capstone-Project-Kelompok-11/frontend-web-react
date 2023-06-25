@@ -23,7 +23,7 @@ function ProfileSideBar() {
           <EmailDash text={data?.data?.email} />
           <PhoneDash phone={data?.data?.phone} />
           <DateOfBirthDash birthDate={date} />
-          <GenderDash gender={data?.data?.gender === "M" ? "Male" : "Female"} />
+          <GenderDash gender={data?.data?.gender === "M" && "Male"} />
           <WebsiteDash website={"www.lms.co.id"} />
         </div>
         <div className="border-t border-black">
